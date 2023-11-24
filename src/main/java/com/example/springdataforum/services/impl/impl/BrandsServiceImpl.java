@@ -1,10 +1,10 @@
 package com.example.springdataforum.services.impl.impl;
 
-import com.example.springdataforum.conf.utilities.ValidationUtil;
-import com.example.springdataforum.controllers.exceptions.BrandsIsExistException;
-import com.example.springdataforum.controllers.exceptions.BrandsNotFoundException;
+import com.example.springdataforum.utils.validation.ValidationUtil;
+import com.example.springdataforum.web.controllers.exceptions.BrandsIsExistException;
+import com.example.springdataforum.web.controllers.exceptions.BrandsNotFoundException;
 import com.example.springdataforum.dto.BrandsDto;
-import com.example.springdataforum.models.Brands;
+import com.example.springdataforum.models.entities.Brands;
 import com.example.springdataforum.repositories.BrandsRepository;
 import com.example.springdataforum.services.impl.BrandsService;
 import org.modelmapper.ModelMapper;

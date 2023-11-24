@@ -1,10 +1,10 @@
 package com.example.springdataforum.services.impl.impl;
 
-import com.example.springdataforum.conf.utilities.ValidationUtil;
-import com.example.springdataforum.controllers.exceptions.ModelsIsExistException;
-import com.example.springdataforum.controllers.exceptions.ModelsNotFoundException;
+import com.example.springdataforum.utils.validation.ValidationUtil;
+import com.example.springdataforum.web.controllers.exceptions.ModelsIsExistException;
+import com.example.springdataforum.web.controllers.exceptions.ModelsNotFoundException;
 import com.example.springdataforum.dto.ModelsDto;
-import com.example.springdataforum.models.Models;
+import com.example.springdataforum.models.entities.Models;
 import com.example.springdataforum.repositories.ModelsRepository;
 import com.example.springdataforum.services.impl.ModelsService;
 import org.modelmapper.ModelMapper;

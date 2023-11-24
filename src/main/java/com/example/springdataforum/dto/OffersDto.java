@@ -1,7 +1,7 @@
 package com.example.springdataforum.dto;
 
-import com.example.springdataforum.Constans.TypesOFTransmission;
-import com.example.springdataforum.Constans.TypesOfGas;
+import com.example.springdataforum.models.enums.TypesOFTransmission;
+import com.example.springdataforum.models.enums.TypesOfGas;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

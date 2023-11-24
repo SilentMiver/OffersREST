@@ -1,10 +1,10 @@
 package com.example.springdataforum.services.impl.impl;
 
-import com.example.springdataforum.conf.utilities.ValidationUtil;
-import com.example.springdataforum.controllers.exceptions.UsersIsExistException;
-import com.example.springdataforum.controllers.exceptions.UsersNotFoundException;
+import com.example.springdataforum.utils.validation.ValidationUtil;
+import com.example.springdataforum.web.controllers.exceptions.UsersIsExistException;
+import com.example.springdataforum.web.controllers.exceptions.UsersNotFoundException;
 import com.example.springdataforum.dto.UsersDto;
-import com.example.springdataforum.models.Users;
+import com.example.springdataforum.models.entities.Users;
 import com.example.springdataforum.repositories.UsersRepository;
 import com.example.springdataforum.services.impl.UsersService;
 import org.modelmapper.ModelMapper;

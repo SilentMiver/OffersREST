@@ -1,6 +1,6 @@
 package com.example.springdataforum.dto;
 
-import com.example.springdataforum.Constans.TypesOfRoles;
+import com.example.springdataforum.models.enums.TypesOfRoles;
 
 import java.util.UUID;
 

@@ -1,10 +1,10 @@
 package com.example.springdataforum.services.impl.impl;
 
-import com.example.springdataforum.conf.utilities.ValidationUtil;
-import com.example.springdataforum.controllers.exceptions.OffersIsExistException;
-import com.example.springdataforum.controllers.exceptions.OffersNotFoundException;
+import com.example.springdataforum.utils.validation.ValidationUtil;
+import com.example.springdataforum.web.controllers.exceptions.OffersIsExistException;
+import com.example.springdataforum.web.controllers.exceptions.OffersNotFoundException;
 import com.example.springdataforum.dto.OffersDto;
-import com.example.springdataforum.models.Offers;
+import com.example.springdataforum.models.entities.Offers;
 import com.example.springdataforum.repositories.OffersRepository;
 import com.example.springdataforum.services.impl.OffersService;
 import org.modelmapper.ModelMapper;

@@ -1,6 +1,6 @@
 package com.example.springdataforum.dto;
 
-import com.example.springdataforum.Constans.CategoryOfVehicles;
+import com.example.springdataforum.models.enums.CategoryOfVehicles;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

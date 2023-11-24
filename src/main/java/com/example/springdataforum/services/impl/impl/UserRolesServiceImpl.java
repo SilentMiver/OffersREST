@@ -1,10 +1,10 @@
 package com.example.springdataforum.services.impl.impl;
 
-import com.example.springdataforum.conf.utilities.ValidationUtil;
-import com.example.springdataforum.controllers.exceptions.UserRolesIsExistException;
-import com.example.springdataforum.controllers.exceptions.UserRolesNotFoundException;
+import com.example.springdataforum.utils.validation.ValidationUtil;
+import com.example.springdataforum.web.controllers.exceptions.UserRolesIsExistException;
+import com.example.springdataforum.web.controllers.exceptions.UserRolesNotFoundException;
 import com.example.springdataforum.dto.UserRolesDto;
-import com.example.springdataforum.models.UserRole;
+import com.example.springdataforum.models.entities.UserRole;
 import com.example.springdataforum.repositories.UserRoleRepository;
 import com.example.springdataforum.services.impl.UserRolesService;
 import org.modelmapper.ModelMapper;
