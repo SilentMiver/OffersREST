@@ -7,12 +7,14 @@ import java.util.List;
 
 @Entity
 @Table(name = "roles")
-public class UserRole extends BaseEntity{
-    @Column(name = "name")
+public class UserRole extends BaseEntity {
+
     TypesOfRoles role;
-    @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE)
+
     private List<Users> users;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
     public TypesOfRoles getRole() {
         return role;
     }
@@ -21,6 +23,7 @@ public class UserRole extends BaseEntity{
         this.role = role;
     }
 
+    @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE)
     public List<Users> getUsers() {
         return users;
     }
