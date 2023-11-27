@@ -1,5 +1,7 @@
 package com.example.springdataforum.services.impl;
 
+import com.example.springdataforum.dto.AddBrandDto;
+import com.example.springdataforum.dto.ShowBrandsInfoDto;
 import com.example.springdataforum.dto.ShowDetailedBrandsInfoDto;
 
 import java.util.List;
@@ -15,8 +17,16 @@ public interface BrandsService {
 
     void delete(UUID id);
 
+
     ShowDetailedBrandsInfoDto update(ShowDetailedBrandsInfoDto brand);
     void addBrandWithValidation(ShowDetailedBrandsInfoDto showDetailedBrandsInfoDto);
+//------------------------ not Rest func------------------------
+
+    void addBrand(AddBrandDto brandDto);
+
+    List<ShowBrandsInfoDto> getAllBrands();
+    ShowDetailedBrandsInfoDto brandDetails(String brandName) ;
+    void removeBrand(String brandName);
 
 
 }

@@ -3,6 +3,8 @@ package com.example.springdataforum.services.impl.impl;
 import com.example.springdataforum.conf.utilities.ValidationUtil;
 import com.example.springdataforum.controllers.exceptions.BrandsIsExistException;
 import com.example.springdataforum.controllers.exceptions.BrandsNotFoundException;
+import com.example.springdataforum.dto.AddBrandDto;
+import com.example.springdataforum.dto.ShowBrandsInfoDto;
 import com.example.springdataforum.dto.ShowDetailedBrandsInfoDto;
 import com.example.springdataforum.models.Brands;
 import com.example.springdataforum.repositories.BrandsRepository;
@@ -33,6 +35,7 @@ public class BrandsServiceImpl implements BrandsService {
         this.modelMapper = modelMapper;
     }
 
+    @Deprecated
     @Override
     public ShowDetailedBrandsInfoDto register(ShowDetailedBrandsInfoDto brand) {
         var b = modelMapper.map(brand, Brands.class);
@@ -43,16 +46,19 @@ public class BrandsServiceImpl implements BrandsService {
         }
     }
 
+    @Deprecated
     @Override
     public List<ShowDetailedBrandsInfoDto> getAll() {
         return brandRepository.findAll().stream().map((s) -> modelMapper.map(s, ShowDetailedBrandsInfoDto.class)).collect(Collectors.toList());
     }
 
+    @Deprecated
     @Override
     public Optional<ShowDetailedBrandsInfoDto> get(UUID id) {
         return Optional.ofNullable(modelMapper.map(brandRepository.findById(id), ShowDetailedBrandsInfoDto.class));
     }
 
+    @Deprecated
     @Override
     public void delete(UUID id) {
         if (brandRepository.findById(id).isPresent()) {
@@ -62,6 +68,8 @@ public class BrandsServiceImpl implements BrandsService {
         }
     }
 
+
+    @Deprecated
     @Override
     public ShowDetailedBrandsInfoDto update(ShowDetailedBrandsInfoDto brand) {
         if (brandRepository.findById(brand.getId()).isPresent()) {
@@ -71,6 +79,7 @@ public class BrandsServiceImpl implements BrandsService {
         }
     }
 
+    @Deprecated
     @Override
     public void addBrandWithValidation(ShowDetailedBrandsInfoDto showDetailedBrandsInfoDto) {
         if (!this.validationUtil.isValid(showDetailedBrandsInfoDto)) {
@@ -82,8 +91,7 @@ public class BrandsServiceImpl implements BrandsService {
                     .forEach(System.out::println);
 
             throw new IllegalArgumentException("Illegal arguments!");
-        }
-        else {
+        } else {
             try {
                 this.brandRepository
                         .saveAndFlush(this.modelMapper.map(showDetailedBrandsInfoDto, Brands.class));
@@ -91,5 +99,27 @@ public class BrandsServiceImpl implements BrandsService {
                 System.out.println("Something went wrong! \n Validation failed!");
             }
         }
+    }
+
+    @Override
+    public void addBrand(AddBrandDto brandDto) {
+    brandRepository.saveAndFlush(modelMapper.map(brandDto, Brands.class));
+    }
+
+    @Override
+    public List<ShowBrandsInfoDto> getAllBrands() {
+        return brandRepository.findAll().stream().map(company -> modelMapper.map(company, ShowBrandsInfoDto.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public ShowDetailedBrandsInfoDto brandDetails(String brandName) {
+        return modelMapper.map(brandRepository.findByName(brandName).orElse(null), ShowDetailedBrandsInfoDto.class);
+    }
+
+    @Override
+    public void removeBrand(String brandName) {
+        brandRepository.deleteByName(brandName);
+
     }
 }

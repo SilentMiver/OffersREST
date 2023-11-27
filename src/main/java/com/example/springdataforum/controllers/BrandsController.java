@@ -1,11 +1,15 @@
 package com.example.springdataforum.controllers;
 
+import com.example.springdataforum.dto.AddBrandDto;
 import com.example.springdataforum.dto.ShowDetailedBrandsInfoDto;
 import com.example.springdataforum.services.impl.BrandsService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.UUID;
 
@@ -26,25 +30,28 @@ public class BrandsController {
 
         return "brands-all";
     }
-    @GetMapping()
-    Iterable<ShowDetailedBrandsInfoDto> all() {
-        return brandService.getAll();
+    @ModelAttribute("brandModel")
+    public AddBrandDto initBrand(){
+        return new AddBrandDto();
+    }
+    @GetMapping("/add")
+    public String addBrands() {
+        return "brands-add";
+    }
+    @PostMapping("/add")
+    public String addBrands(@Valid AddBrandDto brandModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("brandModel", brandModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.brandModel",
+                    bindingResult);
+            return "redirect:/brands/add";
+        }
+        brandService.addBrand(brandModel);
+
+        return "redirect:/";
     }
 
-    @GetMapping("/{id}")
-    ShowDetailedBrandsInfoDto get(@PathVariable UUID id) {
-        return brandService.get(id).get();
-    }
-
-    @DeleteMapping("/{id}")
-    void deleteBrand(@PathVariable UUID id) {
-        brandService.delete(id);
-    }
-
-    @PostMapping()
-    ShowDetailedBrandsInfoDto update(@RequestBody ShowDetailedBrandsInfoDto brand) {
-        return brandService.update(brand);
-    }
 
 
 
