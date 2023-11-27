@@ -9,24 +9,17 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "Offers")
 public class Offers extends BaseEntity {
-    @Column(name = "description")
     String description;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "engine")
+
     TypesOfGas engine;
-    @Column(name = "imageURL")
+
     String imageURL;
-    @Column(name = "mileage")
+
     int mileage;
-    @Column(name = "price")
     int price;
-    @Column(name = "transmission")
     TypesOFTransmission transmission;
-    @Column(name = "year")
     String year;
-    @Column(name = "created")
     LocalDateTime created;
-    @Column(name = "modified")
     LocalDateTime modified;
     // model and seller
     @ManyToOne
@@ -38,6 +31,8 @@ public class Offers extends BaseEntity {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Users users;
 
+    @Column(name = "description", columnDefinition = "TEXT")
+
     public String getDescription() {
         return description;
     }
@@ -46,6 +41,8 @@ public class Offers extends BaseEntity {
         this.description = description;
     }
 
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "engine")
     public TypesOfGas getEngine() {
         return engine;
     }
@@ -54,6 +51,7 @@ public class Offers extends BaseEntity {
         this.engine = engine;
     }
 
+    @Column(name = "imageURL")
     public String getImageURL() {
         return imageURL;
     }
@@ -61,6 +59,8 @@ public class Offers extends BaseEntity {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
+
+    @Column(name = "mileage")
 
     public int getMileage() {
         return mileage;
@@ -70,6 +70,9 @@ public class Offers extends BaseEntity {
         this.mileage = mileage;
     }
 
+    @Column(name = "price")
+
+
     public int getPrice() {
         return price;
     }
@@ -78,6 +81,9 @@ public class Offers extends BaseEntity {
         this.price = price;
     }
 
+    @Column(name = "transmission")
+
+
     public TypesOFTransmission getTransmission() {
         return transmission;
     }
@@ -85,6 +91,8 @@ public class Offers extends BaseEntity {
     public void setTransmission(TypesOFTransmission transmission) {
         this.transmission = transmission;
     }
+
+    @Column(name = "year")
 
     public String getYear() {
         return year;
@@ -111,6 +119,8 @@ public class Offers extends BaseEntity {
         this.users = users;
     }
 
+    @Column(name = "created")
+
     public LocalDateTime getCreated() {
         return created;
     }
@@ -118,6 +128,8 @@ public class Offers extends BaseEntity {
     public void setCreated(LocalDateTime created) {
         this.created = created;
     }
+
+    @Column(name = "modified")
 
     public LocalDateTime getModified() {
         return modified;

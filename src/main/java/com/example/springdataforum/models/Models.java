@@ -9,19 +9,12 @@ import java.util.List;
 @Entity
 @Table(name = "models")
 public class Models extends BaseEntity {
-    @Column(name = "name")
     private String name;
-    @Column(name = "category")
     CategoryOfVehicles category;
-    @Column(name = "imageURL")
     String imageURL;
-    @Column(name = "startYear")
     int startYear;
-    @Column(name = "endYear")
     int endYear;
-    @Column(name = "created")
     LocalDateTime created;
-    @Column(name = "modified")
     LocalDateTime modified;
     // brand ссылка To do
     @ManyToOne
@@ -66,7 +59,7 @@ public class Models extends BaseEntity {
         this.brand = brand;
         this.offers = offers;
     }
-
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -74,6 +67,7 @@ public class Models extends BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
+    @Column(name = "category")
 
     public CategoryOfVehicles getCategory() {
         return category;
@@ -82,6 +76,7 @@ public class Models extends BaseEntity {
     public void setCategory(CategoryOfVehicles category) {
         this.category = category;
     }
+    @Column(name = "imageURL")
 
     public String getImageURL() {
         return imageURL;
@@ -90,6 +85,7 @@ public class Models extends BaseEntity {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
+    @Column(name = "startYear")
 
     public int getStartYear() {
         return startYear;
@@ -98,6 +94,7 @@ public class Models extends BaseEntity {
     public void setStartYear(int startYear) {
         this.startYear = startYear;
     }
+    @Column(name = "endYear")
 
     public int getEndYear() {
         return endYear;
@@ -106,6 +103,7 @@ public class Models extends BaseEntity {
     public void setEndYear(int endYear) {
         this.endYear = endYear;
     }
+    @Column(name = "created")
 
     public LocalDateTime getCreated() {
         return created;
@@ -114,6 +112,7 @@ public class Models extends BaseEntity {
     public void setCreated(LocalDateTime created) {
         this.created = created;
     }
+    @Column(name = "modified")
 
     public LocalDateTime getModified() {
         return modified;

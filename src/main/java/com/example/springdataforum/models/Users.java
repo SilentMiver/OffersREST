@@ -8,22 +8,14 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class Users extends BaseEntity {
-    @Column(name = "username")
     String username;
-    @Column(name = "password")
     String password;
-    @Column(name = "firstName")
     String firstName;
-    @Column(name = "lastName")
     String lastName;
     //role
-    @Column(name = "isactive")
     private boolean isActive;
-    @Column(name = "imageURL")
     String imageURL;
-    @Column(name = "created")
     LocalDateTime created;
-    @Column(name = "modified")
     LocalDateTime modified;
 
     @ManyToOne
@@ -35,6 +27,7 @@ public class Users extends BaseEntity {
 
     protected Users() {
     }
+    @Column(name = "username")
 
     public String getUsername() {
         return username;
@@ -43,6 +36,7 @@ public class Users extends BaseEntity {
     public void setUsername(String username) {
         this.username = username;
     }
+    @Column(name = "password")
 
     public String getPassword() {
         return password;
@@ -51,6 +45,7 @@ public class Users extends BaseEntity {
     public void setPassword(String password) {
         this.password = password;
     }
+    @Column(name = "firstName")
 
     public String getFirstName() {
         return firstName;
@@ -59,6 +54,7 @@ public class Users extends BaseEntity {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+    @Column(name = "lastName")
 
     public String getLastName() {
         return lastName;
@@ -67,6 +63,7 @@ public class Users extends BaseEntity {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    @Column(name = "isactive")
 
     public boolean isActive() {
         return isActive;
@@ -75,6 +72,7 @@ public class Users extends BaseEntity {
     public void setActive(boolean active) {
         isActive = active;
     }
+    @Column(name = "imageURL")
 
     public String getImageURL() {
         return imageURL;
@@ -83,6 +81,7 @@ public class Users extends BaseEntity {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
+    @Column(name = "created")
 
     public LocalDateTime getCreated() {
         return created;
@@ -91,6 +90,7 @@ public class Users extends BaseEntity {
     public void setCreated(LocalDateTime created) {
         this.created = created;
     }
+    @Column(name = "modified")
 
     public LocalDateTime getModified() {
         return modified;

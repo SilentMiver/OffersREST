@@ -12,7 +12,7 @@ public class Brands extends BaseEntity {
     private String name;
 
     private LocalDateTime created;
-    @Column(name = "modified")
+
     private LocalDateTime modified;
 
     public Brands(String name, LocalDateTime created, LocalDateTime modified) {
@@ -36,6 +36,7 @@ public class Brands extends BaseEntity {
         this.name = name;
     }
 
+    @Column(name = "created")
     public LocalDateTime getCreated() {
         return created;
     }
@@ -44,6 +45,7 @@ public class Brands extends BaseEntity {
         this.created = created;
     }
 
+    @Column(name = "modified")
     public LocalDateTime getModified() {
         return modified;
     }
