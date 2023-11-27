@@ -26,7 +26,7 @@ public class Brands extends BaseEntity {
 
     private List<Models> models;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(nullable = false)
     public String getName() {
         return name;
     }
@@ -34,7 +34,8 @@ public class Brands extends BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
-    @Column(columnDefinition = "DATE", nullable = false)
+
+    @Column(nullable = false)
 
     public LocalDateTime getCreated() {
         return created;
@@ -44,7 +45,7 @@ public class Brands extends BaseEntity {
         this.created = created;
     }
 
-    @Column(columnDefinition = "DATE", nullable = false)
+    @Column(nullable = false)
     public LocalDateTime getModified() {
         return modified;
     }

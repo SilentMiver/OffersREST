@@ -9,25 +9,24 @@ import java.util.List;
 @Entity
 @Table(name = "models")
 public class Models extends BaseEntity {
-    @Column(name = "name")
+
     private String name;
-    @Column(name = "category")
+
     CategoryOfVehicles category;
-    @Column(name = "imageURL")
+
     String imageURL;
-    @Column(name = "startYear")
+
     int startYear;
-    @Column(name = "endYear")
+
     int endYear;
-    @Column(name = "created")
+
     LocalDateTime created;
-    @Column(name = "modified")
+
     LocalDateTime modified;
     // brand ссылка To do
-    @ManyToOne
-    @JoinColumn(name = "brand_id", referencedColumnName = "id")
+
     private Brands brand;
-    @OneToMany(mappedBy = "model", cascade = CascadeType.REMOVE)
+
     private List<Offers> offers;
 
     protected Models() {
@@ -67,6 +66,7 @@ public class Models extends BaseEntity {
         this.offers = offers;
     }
 
+    @Column(nullable = false)
     public String getName() {
         return name;
     }
@@ -75,6 +75,8 @@ public class Models extends BaseEntity {
         this.name = name;
     }
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
     public CategoryOfVehicles getCategory() {
         return category;
     }
@@ -83,6 +85,7 @@ public class Models extends BaseEntity {
         this.category = category;
     }
 
+    @Column(nullable = false)
     public String getImageURL() {
         return imageURL;
     }
@@ -91,6 +94,7 @@ public class Models extends BaseEntity {
         this.imageURL = imageURL;
     }
 
+    @Column(nullable = false)
     public int getStartYear() {
         return startYear;
     }
@@ -99,6 +103,7 @@ public class Models extends BaseEntity {
         this.startYear = startYear;
     }
 
+    @Column(nullable = false)
     public int getEndYear() {
         return endYear;
     }
@@ -107,6 +112,7 @@ public class Models extends BaseEntity {
         this.endYear = endYear;
     }
 
+    @Column(nullable = false)
     public LocalDateTime getCreated() {
         return created;
     }
@@ -115,6 +121,7 @@ public class Models extends BaseEntity {
         this.created = created;
     }
 
+    @Column(nullable = false)
     public LocalDateTime getModified() {
         return modified;
     }
@@ -123,6 +130,8 @@ public class Models extends BaseEntity {
         this.modified = modified;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "brand_id", referencedColumnName = "id")
     public Brands getBrand() {
         return brand;
     }
@@ -130,7 +139,7 @@ public class Models extends BaseEntity {
     public void setBrand(Brands brands) {
         this.brand = brands;
     }
-
+    @OneToMany(mappedBy = "model", cascade = CascadeType.REMOVE)
     public List<Offers> getOffers() {
         return offers;
     }
@@ -138,4 +147,5 @@ public class Models extends BaseEntity {
     public void setOffers(List<Offers> offers) {
         this.offers = offers;
     }
+
 }
