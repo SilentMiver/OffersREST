@@ -3,7 +3,7 @@ package com.example.springdataforum.services.impl.impl;
 import com.example.springdataforum.conf.utilities.ValidationUtil;
 import com.example.springdataforum.controllers.exceptions.UserRolesIsExistException;
 import com.example.springdataforum.controllers.exceptions.UserRolesNotFoundException;
-import com.example.springdataforum.dto.UserRolesDto;
+import com.example.springdataforum.dto.ShowDetailedUserRolesInfoDto;
 import com.example.springdataforum.models.UserRole;
 import com.example.springdataforum.repositories.UserRoleRepository;
 import com.example.springdataforum.services.impl.UserRolesService;
@@ -36,23 +36,23 @@ public class UserRolesServiceImpl implements UserRolesService {
 
 
     @Override
-    public UserRolesDto register(UserRolesDto role) {
+    public ShowDetailedUserRolesInfoDto register(ShowDetailedUserRolesInfoDto role) {
         UserRole b = modelMapper.map(role, UserRole.class);
         if (!(roleRepository.existsById(b.getId())) || get(b.getId()).isEmpty()) {
-            return modelMapper.map(roleRepository.save(b), UserRolesDto.class);
+            return modelMapper.map(roleRepository.save(b), ShowDetailedUserRolesInfoDto.class);
         } else {
             throw new UserRolesIsExistException("A role with this id already exists");
         }
     }
 
     @Override
-    public List<UserRolesDto> getAll() {
-        return roleRepository.findAll().stream().map((s) -> modelMapper.map(s, UserRolesDto.class)).collect(Collectors.toList());
+    public List<ShowDetailedUserRolesInfoDto> getAll() {
+        return roleRepository.findAll().stream().map((s) -> modelMapper.map(s, ShowDetailedUserRolesInfoDto.class)).collect(Collectors.toList());
     }
 
     @Override
-    public Optional<UserRolesDto> get(UUID id) {
-        return Optional.ofNullable(modelMapper.map(roleRepository.findById(id), UserRolesDto.class));
+    public Optional<ShowDetailedUserRolesInfoDto> get(UUID id) {
+        return Optional.ofNullable(modelMapper.map(roleRepository.findById(id), ShowDetailedUserRolesInfoDto.class));
     }
 
     @Override
@@ -65,27 +65,27 @@ public class UserRolesServiceImpl implements UserRolesService {
     }
 
     @Override
-    public UserRolesDto update(UserRolesDto role) {
+    public ShowDetailedUserRolesInfoDto update(ShowDetailedUserRolesInfoDto role) {
         if (roleRepository.findById(role.getId()).isPresent()) {
-            return modelMapper.map(roleRepository.save(modelMapper.map(role, UserRole.class)), UserRolesDto.class);
+            return modelMapper.map(roleRepository.save(modelMapper.map(role, UserRole.class)), ShowDetailedUserRolesInfoDto.class);
         } else {
             throw new UserRolesNotFoundException(role.getId());
         }
     }
 
     @Override
-    public void addUserRolesWithValidation(UserRolesDto userRolesDto) {
-        if (!this.validationUtil.isValid(userRolesDto)) {
+    public void addUserRolesWithValidation(ShowDetailedUserRolesInfoDto showDetailedUserRolesInfoDto) {
+        if (!this.validationUtil.isValid(showDetailedUserRolesInfoDto)) {
 
             this.validationUtil
-                    .violations(userRolesDto)
+                    .violations(showDetailedUserRolesInfoDto)
                     .stream()
                     .map(ConstraintViolation::getMessage)
                     .forEach(System.out::println);
         } else {
             this.roleRepository
                     .saveAndFlush(this.modelMapper
-                            .map(userRolesDto, UserRole.class));
+                            .map(showDetailedUserRolesInfoDto, UserRole.class));
 
         }
     }

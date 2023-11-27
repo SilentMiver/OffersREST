@@ -4,17 +4,17 @@ import com.example.springdataforum.Constans.TypesOfRoles;
 
 import java.util.UUID;
 
-public class UserRolesDto {
+public class ShowDetailedUserRolesInfoDto {
     UUID id;
     TypesOfRoles role;
 
-    public UserRolesDto(UUID id, TypesOfRoles role) {
+    public ShowDetailedUserRolesInfoDto(UUID id, TypesOfRoles role) {
         this.id = id;
         this.role = role;
 
     }
 
-    protected UserRolesDto() {
+    protected ShowDetailedUserRolesInfoDto() {
     }
 
     public UUID getId() {
@@ -35,7 +35,7 @@ public class UserRolesDto {
 
     @Override
     public String toString() {
-        return "UserRolesDto{" +
+        return "ShowDetailedUserRolesInfoDto{" +
                 "id=" + id +
                 ", role=" + role +
                 '}';

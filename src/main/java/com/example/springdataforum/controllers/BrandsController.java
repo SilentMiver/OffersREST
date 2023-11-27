@@ -1,7 +1,6 @@
 package com.example.springdataforum.controllers;
 
-import com.example.springdataforum.controllers.exceptions.BrandsNotFoundException;
-import com.example.springdataforum.dto.BrandsDto;
+import com.example.springdataforum.dto.ShowDetailedBrandsInfoDto;
 import com.example.springdataforum.services.impl.BrandsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +20,12 @@ public class BrandsController {
 
 
     @GetMapping()
-    Iterable<BrandsDto> all() {
+    Iterable<ShowDetailedBrandsInfoDto> all() {
         return brandService.getAll();
     }
 
     @GetMapping("/{id}")
-    BrandsDto get(@PathVariable UUID id) {
+    ShowDetailedBrandsInfoDto get(@PathVariable UUID id) {
         return brandService.get(id).get();
     }
 
@@ -36,7 +35,7 @@ public class BrandsController {
     }
 
     @PostMapping()
-    BrandsDto update(@RequestBody BrandsDto brand) {
+    ShowDetailedBrandsInfoDto update(@RequestBody ShowDetailedBrandsInfoDto brand) {
         return brandService.update(brand);
     }
 }

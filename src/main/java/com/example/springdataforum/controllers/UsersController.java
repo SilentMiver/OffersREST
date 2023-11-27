@@ -2,8 +2,7 @@ package com.example.springdataforum.controllers;
 
 
 
-import com.example.springdataforum.controllers.exceptions.UsersNotFoundException;
-import com.example.springdataforum.dto.UsersDto;
+import com.example.springdataforum.dto.ShowsDetailedUsersInfoDto;
 import com.example.springdataforum.services.impl.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +20,11 @@ public class UsersController {
         this.usersService = usersService;
     }
     @GetMapping()
-    Iterable<UsersDto> all() {
+    Iterable<ShowsDetailedUsersInfoDto> all() {
         return usersService.getAll();
     }
     @GetMapping("/{id}")
-    UsersDto get(@PathVariable UUID id) {
+    ShowsDetailedUsersInfoDto get(@PathVariable UUID id) {
         return usersService.get(id).get();
     }
     @DeleteMapping("/{id}")
@@ -33,7 +32,7 @@ public class UsersController {
         usersService.delete(id);
     }
     @PostMapping()
-    UsersDto update(@RequestBody UsersDto usersDto) {
-        return usersService.update(usersDto);
+    ShowsDetailedUsersInfoDto update(@RequestBody ShowsDetailedUsersInfoDto showsDetailedUsersInfoDto) {
+        return usersService.update(showsDetailedUsersInfoDto);
     }
 }

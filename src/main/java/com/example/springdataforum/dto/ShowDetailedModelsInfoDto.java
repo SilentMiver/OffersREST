@@ -5,7 +5,7 @@ import com.example.springdataforum.Constans.CategoryOfVehicles;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class ModelsDto {
+public class ShowDetailedModelsInfoDto {
     UUID id;
     String name;
     CategoryOfVehicles category;
@@ -14,9 +14,9 @@ public class ModelsDto {
     int endYear;
     LocalDateTime created;
     LocalDateTime modified;
-    BrandsDto brand;
+    ShowDetailedBrandsInfoDto brand;
 
-    public ModelsDto(UUID id, String name, CategoryOfVehicles category, String imageURL, int startYear, int endYear, LocalDateTime created, LocalDateTime modified, BrandsDto brand) {
+    public ShowDetailedModelsInfoDto(UUID id, String name, CategoryOfVehicles category, String imageURL, int startYear, int endYear, LocalDateTime created, LocalDateTime modified, ShowDetailedBrandsInfoDto brand) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -28,7 +28,7 @@ public class ModelsDto {
         this.brand = brand;
     }
 
-    protected ModelsDto() {};
+    protected ShowDetailedModelsInfoDto() {};
 
     public UUID getId() {
         return id;
@@ -38,11 +38,11 @@ public class ModelsDto {
         this.id = id;
     }
 
-    public BrandsDto getBrand() {
+    public ShowDetailedBrandsInfoDto getBrand() {
         return brand;
     }
 
-    public void setBrand(BrandsDto brand) {
+    public void setBrand(ShowDetailedBrandsInfoDto brand) {
         this.brand = brand;
     }
 
@@ -104,7 +104,7 @@ public class ModelsDto {
 
     @Override
     public String toString() {
-        return "ModelsDto{" +
+        return "ShowDetailedModelsInfoDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", category=" + category +

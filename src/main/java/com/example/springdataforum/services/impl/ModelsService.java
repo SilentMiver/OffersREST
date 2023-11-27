@@ -1,21 +1,20 @@
 package com.example.springdataforum.services.impl;
 
-import com.example.springdataforum.dto.BrandsDto;
-import com.example.springdataforum.dto.ModelsDto;
+import com.example.springdataforum.dto.ShowDetailedModelsInfoDto;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 public interface ModelsService {
-    ModelsDto register(ModelsDto model);
+    ShowDetailedModelsInfoDto register(ShowDetailedModelsInfoDto model);
 
-    List<ModelsDto> getAll();
+    List<ShowDetailedModelsInfoDto> getAll();
 
-    Optional<ModelsDto> get(UUID id);
+    Optional<ShowDetailedModelsInfoDto> get(UUID id);
 
     void delete(UUID id);
 
-    ModelsDto update(ModelsDto model);
-    void addModelWithValidation(ModelsDto modelsDto);
+    ShowDetailedModelsInfoDto update(ShowDetailedModelsInfoDto model);
+    void addModelWithValidation(ShowDetailedModelsInfoDto showDetailedModelsInfoDto);
 }

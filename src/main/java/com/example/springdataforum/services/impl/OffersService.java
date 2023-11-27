@@ -1,20 +1,20 @@
 package com.example.springdataforum.services.impl;
 
-import com.example.springdataforum.dto.OffersDto;
+import com.example.springdataforum.dto.ShowDetailedOffersInfoDto;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 public interface OffersService {
-    OffersDto register(OffersDto offer);
+    ShowDetailedOffersInfoDto register(ShowDetailedOffersInfoDto offer);
 
-    List<OffersDto> getAll();
+    List<ShowDetailedOffersInfoDto> getAll();
 
-    Optional<OffersDto> get(UUID id);
+    Optional<ShowDetailedOffersInfoDto> get(UUID id);
 
     void delete(UUID id);
 
-    OffersDto update(OffersDto offer);
-    void addOfferWithValidation(OffersDto offersDto);
+    ShowDetailedOffersInfoDto update(ShowDetailedOffersInfoDto offer);
+    void addOfferWithValidation(ShowDetailedOffersInfoDto showDetailedOffersInfoDto);
 }

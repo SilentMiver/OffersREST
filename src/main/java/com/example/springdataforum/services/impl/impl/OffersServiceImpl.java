@@ -3,7 +3,7 @@ package com.example.springdataforum.services.impl.impl;
 import com.example.springdataforum.conf.utilities.ValidationUtil;
 import com.example.springdataforum.controllers.exceptions.OffersIsExistException;
 import com.example.springdataforum.controllers.exceptions.OffersNotFoundException;
-import com.example.springdataforum.dto.OffersDto;
+import com.example.springdataforum.dto.ShowDetailedOffersInfoDto;
 import com.example.springdataforum.models.Offers;
 import com.example.springdataforum.repositories.OffersRepository;
 import com.example.springdataforum.services.impl.OffersService;
@@ -34,25 +34,25 @@ public class OffersServiceImpl implements OffersService {
 
 
     @Override
-    public OffersDto register(OffersDto offer) {
+    public ShowDetailedOffersInfoDto register(ShowDetailedOffersInfoDto offer) {
         Offers b = modelMapper.map(offer, Offers.class);
         if (!(offerRepository.existsById(b.getId())) || get(b.getId()).isEmpty())  // пиздец. найти как упростить
         {
 
-            return modelMapper.map(offerRepository.save(b), OffersDto.class);
+            return modelMapper.map(offerRepository.save(b), ShowDetailedOffersInfoDto.class);
         } else {
             throw new OffersIsExistException("A offer with this id already exists");
         }
     }
 
     @Override
-    public List<OffersDto> getAll() {
-        return offerRepository.findAll().stream().map((s) -> modelMapper.map(s, OffersDto.class)).collect(Collectors.toList());
+    public List<ShowDetailedOffersInfoDto> getAll() {
+        return offerRepository.findAll().stream().map((s) -> modelMapper.map(s, ShowDetailedOffersInfoDto.class)).collect(Collectors.toList());
     }
 
     @Override
-    public Optional<OffersDto> get(UUID id) {
-        return Optional.ofNullable(modelMapper.map(offerRepository.findById(id), OffersDto.class));
+    public Optional<ShowDetailedOffersInfoDto> get(UUID id) {
+        return Optional.ofNullable(modelMapper.map(offerRepository.findById(id), ShowDetailedOffersInfoDto.class));
     }
 
     @Override
@@ -65,20 +65,20 @@ public class OffersServiceImpl implements OffersService {
     }
 
     @Override
-    public OffersDto update(OffersDto offer) {
+    public ShowDetailedOffersInfoDto update(ShowDetailedOffersInfoDto offer) {
         if (offerRepository.findById(offer.getId()).isPresent()) {
-            return modelMapper.map(offerRepository.save(modelMapper.map(offer, Offers.class)), OffersDto.class);
+            return modelMapper.map(offerRepository.save(modelMapper.map(offer, Offers.class)), ShowDetailedOffersInfoDto.class);
         } else {
             throw new OffersNotFoundException(offer.getId());
         }
     }
 
     @Override
-    public void addOfferWithValidation(OffersDto offersDto) {
-        if (!this.validationUtil.isValid(offersDto)) {
+    public void addOfferWithValidation(ShowDetailedOffersInfoDto showDetailedOffersInfoDto) {
+        if (!this.validationUtil.isValid(showDetailedOffersInfoDto)) {
 
             this.validationUtil
-                    .violations(offersDto)
+                    .violations(showDetailedOffersInfoDto)
                     .stream()
                     .map(ConstraintViolation::getMessage)
                     .forEach(System.out::println);
@@ -86,7 +86,7 @@ public class OffersServiceImpl implements OffersService {
             throw new IllegalArgumentException("Illegal arguments!");
         }
 
-        Offers offer = this.modelMapper.map(offersDto, Offers.class);
+        Offers offer = this.modelMapper.map(showDetailedOffersInfoDto, Offers.class);
 
 
         this.offerRepository.saveAndFlush(offer);

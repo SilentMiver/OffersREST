@@ -1,9 +1,7 @@
 package com.example.springdataforum.controllers;
 
 
-import com.example.springdataforum.controllers.exceptions.ModelsNotFoundException;
-import com.example.springdataforum.dto.ModelsDto;
-import com.example.springdataforum.services.impl.BrandsService;
+import com.example.springdataforum.dto.ShowDetailedModelsInfoDto;
 import com.example.springdataforum.services.impl.ModelsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +20,12 @@ public class ModelsController {
     }
 
     @GetMapping()
-    Iterable<ModelsDto> all() {
+    Iterable<ShowDetailedModelsInfoDto> all() {
         return modelsService.getAll();
     }
 
     @GetMapping("/{id}")
-    ModelsDto get(@PathVariable UUID id) {
+    ShowDetailedModelsInfoDto get(@PathVariable UUID id) {
         return modelsService.get(id).get();
     }
 
@@ -37,7 +35,7 @@ public class ModelsController {
     }
 
     @PostMapping()
-    ModelsDto update(@RequestBody ModelsDto modelsDto) {
-        return modelsService.update(modelsDto);
+    ShowDetailedModelsInfoDto update(@RequestBody ShowDetailedModelsInfoDto showDetailedModelsInfoDto) {
+        return modelsService.update(showDetailedModelsInfoDto);
     }
 }

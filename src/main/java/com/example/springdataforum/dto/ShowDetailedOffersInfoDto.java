@@ -6,7 +6,7 @@ import com.example.springdataforum.Constans.TypesOfGas;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class OffersDto {
+public class ShowDetailedOffersInfoDto {
     UUID id;
     String description;
     TypesOfGas engine;
@@ -17,10 +17,10 @@ public class OffersDto {
     int year;
     LocalDateTime created;
     LocalDateTime modified;
-    ModelsDto model;
-    UsersDto users;
+    ShowDetailedModelsInfoDto model;
+    ShowsDetailedUsersInfoDto users;
 
-    public OffersDto(UUID id, String description, TypesOfGas engine, String imageURL, int mileage, int price, TypesOFTransmission transmission, int year, LocalDateTime created, LocalDateTime modified, ModelsDto model, UsersDto users) {
+    public ShowDetailedOffersInfoDto(UUID id, String description, TypesOfGas engine, String imageURL, int mileage, int price, TypesOFTransmission transmission, int year, LocalDateTime created, LocalDateTime modified, ShowDetailedModelsInfoDto model, ShowsDetailedUsersInfoDto users) {
         this.id = id;
         this.description = description;
         this.engine = engine;
@@ -43,19 +43,19 @@ public class OffersDto {
         this.id = id;
     }
 
-    public ModelsDto getModel() {
+    public ShowDetailedModelsInfoDto getModel() {
         return model;
     }
 
-    public void setModel(ModelsDto model) {
+    public void setModel(ShowDetailedModelsInfoDto model) {
         this.model = model;
     }
 
-    public UsersDto getUsers() {
+    public ShowsDetailedUsersInfoDto getUsers() {
         return users;
     }
 
-    public void setUsers(UsersDto users) {
+    public void setUsers(ShowsDetailedUsersInfoDto users) {
         this.users = users;
     }
 
@@ -131,12 +131,12 @@ public class OffersDto {
         this.modified = modified;
     }
 
-    protected OffersDto() {
+    protected ShowDetailedOffersInfoDto() {
     }
 
     @Override
     public String toString() {
-        return "OffersDto{" +
+        return "ShowDetailedOffersInfoDto{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", engine=" + engine +

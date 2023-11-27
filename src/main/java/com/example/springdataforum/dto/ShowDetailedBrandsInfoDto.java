@@ -3,20 +3,20 @@ package com.example.springdataforum.dto;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class BrandsDto {
+public class ShowDetailedBrandsInfoDto {
     public UUID id;
     public String name;
     public LocalDateTime created;
     public LocalDateTime modified;
 
-    public BrandsDto(UUID id, String name, LocalDateTime created, LocalDateTime modified) {
+    public ShowDetailedBrandsInfoDto(UUID id, String name, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.name = name;
         this.created = created;
         this.modified = modified;
     }
 
-    protected BrandsDto() {};
+    protected ShowDetailedBrandsInfoDto() {};
 
     public UUID getId() {
         return id;

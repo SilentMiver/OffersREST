@@ -3,9 +3,9 @@ package com.example.springdataforum.dto;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class UsersDto {
+public class ShowsDetailedUsersInfoDto {
     private UUID id;
-    private UserRolesDto role;
+    private ShowDetailedUserRolesInfoDto role;
     private String userName;
     private String password;
     private String firstName;
@@ -14,9 +14,9 @@ public class UsersDto {
     private String imageURL;
     private LocalDateTime created;
     private LocalDateTime modified;
-    protected UsersDto() {};
+    protected ShowsDetailedUsersInfoDto() {};
 
-    public UsersDto(UUID id, UserRolesDto role, String userName, String password, String firstName, String lastName, boolean isActive, String imageURL, LocalDateTime created, LocalDateTime modified) {
+    public ShowsDetailedUsersInfoDto(UUID id, ShowDetailedUserRolesInfoDto role, String userName, String password, String firstName, String lastName, boolean isActive, String imageURL, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.role = role;
         this.userName = userName;
@@ -37,11 +37,11 @@ public class UsersDto {
         this.id = id;
     }
 
-    public UserRolesDto getRole() {
+    public ShowDetailedUserRolesInfoDto getRole() {
         return role;
     }
 
-    public void setRole(UserRolesDto role) {
+    public void setRole(ShowDetailedUserRolesInfoDto role) {
         this.role = role;
     }
 
@@ -111,7 +111,7 @@ public class UsersDto {
 
     @Override
     public String toString() {
-        return "UsersDto{" +
+        return "ShowsDetailedUsersInfoDto{" +
                 "id=" + id +
                 ", role=" + role +
                 ", userName='" + userName + '\'' +

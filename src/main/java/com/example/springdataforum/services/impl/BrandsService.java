@@ -1,22 +1,22 @@
 package com.example.springdataforum.services.impl;
 
-import com.example.springdataforum.dto.BrandsDto;
+import com.example.springdataforum.dto.ShowDetailedBrandsInfoDto;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 public interface BrandsService {
-    BrandsDto register(BrandsDto brand);
+    ShowDetailedBrandsInfoDto register(ShowDetailedBrandsInfoDto brand);
 
-    List<BrandsDto> getAll();
+    List<ShowDetailedBrandsInfoDto> getAll();
 
-    Optional<BrandsDto> get(UUID id);
+    Optional<ShowDetailedBrandsInfoDto> get(UUID id);
 
     void delete(UUID id);
 
-    BrandsDto update(BrandsDto brand);
-    void addBrandWithValidation(BrandsDto brandsDto);
+    ShowDetailedBrandsInfoDto update(ShowDetailedBrandsInfoDto brand);
+    void addBrandWithValidation(ShowDetailedBrandsInfoDto showDetailedBrandsInfoDto);
 
 
 }

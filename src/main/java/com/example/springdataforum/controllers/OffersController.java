@@ -1,8 +1,6 @@
 package com.example.springdataforum.controllers;
 
-import com.example.springdataforum.controllers.exceptions.OffersNotFoundException;
-import com.example.springdataforum.dto.OffersDto;
-import com.example.springdataforum.services.impl.ModelsService;
+import com.example.springdataforum.dto.ShowDetailedOffersInfoDto;
 import com.example.springdataforum.services.impl.OffersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +18,11 @@ public class OffersController {
         this.offersService = offersService;
     }
     @GetMapping()
-    Iterable<OffersDto> all() {
+    Iterable<ShowDetailedOffersInfoDto> all() {
         return offersService.getAll();
     }
     @GetMapping("/{id}")
-    OffersDto get(@PathVariable UUID id) {
+    ShowDetailedOffersInfoDto get(@PathVariable UUID id) {
         return offersService.get(id).get();
     }
     @DeleteMapping("/{id}")
@@ -32,7 +30,7 @@ public class OffersController {
         offersService.delete(id);
     }
     @PostMapping()
-    OffersDto update(@RequestBody OffersDto offersDto) {
-        return offersService.update(offersDto);
+    ShowDetailedOffersInfoDto update(@RequestBody ShowDetailedOffersInfoDto showDetailedOffersInfoDto) {
+        return offersService.update(showDetailedOffersInfoDto);
     }
 }

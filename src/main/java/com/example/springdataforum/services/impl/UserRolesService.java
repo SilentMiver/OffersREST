@@ -1,20 +1,20 @@
 package com.example.springdataforum.services.impl;
 
-import com.example.springdataforum.dto.UserRolesDto;
+import com.example.springdataforum.dto.ShowDetailedUserRolesInfoDto;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 public interface UserRolesService {
-    UserRolesDto register(UserRolesDto role);
+    ShowDetailedUserRolesInfoDto register(ShowDetailedUserRolesInfoDto role);
 
-    List<UserRolesDto> getAll();
+    List<ShowDetailedUserRolesInfoDto> getAll();
 
-    Optional<UserRolesDto> get(UUID id);
+    Optional<ShowDetailedUserRolesInfoDto> get(UUID id);
 
     void delete(UUID id);
 
-    UserRolesDto update(UserRolesDto role);
-    void addUserRolesWithValidation(UserRolesDto userRolesDto);
+    ShowDetailedUserRolesInfoDto update(ShowDetailedUserRolesInfoDto role);
+    void addUserRolesWithValidation(ShowDetailedUserRolesInfoDto showDetailedUserRolesInfoDto);
 }

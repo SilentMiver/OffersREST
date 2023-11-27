@@ -2,8 +2,7 @@ package com.example.springdataforum.controllers;
 
 
 
-import com.example.springdataforum.controllers.exceptions.UserRolesNotFoundException;
-import com.example.springdataforum.dto.UserRolesDto;
+import com.example.springdataforum.dto.ShowDetailedUserRolesInfoDto;
 import com.example.springdataforum.services.impl.UserRolesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +20,11 @@ public class UserRolesController {
         this.userRolesService = userRolesService;
     }
     @GetMapping()
-    Iterable<UserRolesDto> all() {
+    Iterable<ShowDetailedUserRolesInfoDto> all() {
         return userRolesService.getAll();
     }
     @GetMapping("/{id}")
-    UserRolesDto get(@PathVariable UUID id) {
+    ShowDetailedUserRolesInfoDto get(@PathVariable UUID id) {
         return userRolesService.get(id).get();
     }
     @DeleteMapping("/{id}")
@@ -33,8 +32,8 @@ public class UserRolesController {
         userRolesService.delete(id);
     }
     @PostMapping()
-    UserRolesDto update(@RequestBody UserRolesDto userRolesDto) {
-        return userRolesService.update(userRolesDto);
+    ShowDetailedUserRolesInfoDto update(@RequestBody ShowDetailedUserRolesInfoDto showDetailedUserRolesInfoDto) {
+        return userRolesService.update(showDetailedUserRolesInfoDto);
     }
 }
 

@@ -37,12 +37,12 @@ public class DataInitializer implements CommandLineRunner {
 
     private void seedData() {
         System.out.println("Start test: \n");
-        UserRolesDto role1 = new UserRolesDto(UUID.randomUUID(), TypesOfRoles.USER);
-        UserRolesDto role2 = new UserRolesDto(UUID.randomUUID(), TypesOfRoles.ADMIN);
+        ShowDetailedUserRolesInfoDto role1 = new ShowDetailedUserRolesInfoDto(UUID.randomUUID(), TypesOfRoles.USER);
+        ShowDetailedUserRolesInfoDto role2 = new ShowDetailedUserRolesInfoDto(UUID.randomUUID(), TypesOfRoles.ADMIN);
         role1 = roleService.register(role1);
         role2 = roleService.register(role2);
 
-        var role3 = new UserRolesDto(UUID.randomUUID(), TypesOfRoles.ADMIN);
+        var role3 = new ShowDetailedUserRolesInfoDto(UUID.randomUUID(), TypesOfRoles.ADMIN);
         roleService.addUserRolesWithValidation(role3);
 
         System.out.println(role1);
@@ -50,10 +50,10 @@ public class DataInitializer implements CommandLineRunner {
 
         var date = LocalDateTime.now();
 
-        BrandsDto brand1 = new BrandsDto(UUID.randomUUID(), "Lada", date, date);
-        BrandsDto brand2 = new BrandsDto(UUID.randomUUID(), "Moscwich", date, date);
+        ShowDetailedBrandsInfoDto brand1 = new ShowDetailedBrandsInfoDto(UUID.randomUUID(), "Lada", date, date);
+        ShowDetailedBrandsInfoDto brand2 = new ShowDetailedBrandsInfoDto(UUID.randomUUID(), "Moscwich", date, date);
 
-        var brandWithValidationTest = new BrandsDto(UUID.randomUUID(), "I'm test", date, date);
+        var brandWithValidationTest = new ShowDetailedBrandsInfoDto(UUID.randomUUID(), "I'm test", date, date);
         brandService.addBrandWithValidation(brandWithValidationTest);
 
         System.out.println(brand1.getId().equals(brand2.getId()));
@@ -63,14 +63,14 @@ public class DataInitializer implements CommandLineRunner {
         System.out.println(brand2);
 
 
-        ModelsDto model1 = new ModelsDto(UUID.randomUUID(), "Niva", CategoryOfVehicles.Car, "http://qwqwqwqw",
+        ShowDetailedModelsInfoDto model1 = new ShowDetailedModelsInfoDto(UUID.randomUUID(), "Niva", CategoryOfVehicles.Car, "http://qwqwqwqw",
                 1999, 2023, date, date, brand1);
-        ModelsDto model2 = new ModelsDto(UUID.randomUUID(), "23", CategoryOfVehicles.Car, "http://kjkjkjkjk",
+        ShowDetailedModelsInfoDto model2 = new ShowDetailedModelsInfoDto(UUID.randomUUID(), "23", CategoryOfVehicles.Car, "http://kjkjkjkjk",
                 2022, 2023, date, date, brand2);
         model1 = modelService.register(model1);
         model2 = modelService.register(model2);
 
-        var model3 = new ModelsDto(UUID.randomUUID(), "Test", CategoryOfVehicles.Car, "http://kjkjkjkjk",
+        var model3 = new ShowDetailedModelsInfoDto(UUID.randomUUID(), "Test", CategoryOfVehicles.Car, "http://kjkjkjkjk",
                 2022, 2023, date, date, brand2);
         modelService.addModelWithValidation(model3);
 
@@ -78,15 +78,15 @@ public class DataInitializer implements CommandLineRunner {
         System.out.println(model1);
         System.out.println(model2);
 
-        UsersDto user1 = new UsersDto(UUID.randomUUID(), role1, "Kisa17", "555555", "Zlata",
+        ShowsDetailedUsersInfoDto user1 = new ShowsDetailedUsersInfoDto(UUID.randomUUID(), role1, "Kisa17", "555555", "Zlata",
                 "Kikimora", true, "http://jjejfbejbf", date, date);
-        UsersDto user2 = new UsersDto(UUID.randomUUID(), role2, "Gora", "6666666", "Morgan",
+        ShowsDetailedUsersInfoDto user2 = new ShowsDetailedUsersInfoDto(UUID.randomUUID(), role2, "Gora", "6666666", "Morgan",
                 "Freeman", true, "http://bebfebufbe", date, date);
         user1 = usersService.register(user1);
         user2 = usersService.register(user2);
 
 
-        var user3 = new UsersDto(UUID.randomUUID(), role1, "Kisa17", "555555", "Zlata",
+        var user3 = new ShowsDetailedUsersInfoDto(UUID.randomUUID(), role1, "Kisa17", "555555", "Zlata",
                 "Test", true, "http://jjejfbejbf", date, date);
         usersService.addUserWithValidation(user3);
 
@@ -97,14 +97,14 @@ public class DataInitializer implements CommandLineRunner {
         var price1 = 100_000;
         var price2 = 3_000_000;
 
-        OffersDto offer1 = new OffersDto(UUID.randomUUID(), "Top in 1999", TypesOfGas.ELECTRIC,
+        ShowDetailedOffersInfoDto offer1 = new ShowDetailedOffersInfoDto(UUID.randomUUID(), "Top in 1999", TypesOfGas.ELECTRIC,
                 "http://ya.ru", 20, price1, TypesOFTransmission.AUTOMATIC, 2022, date, date, model1, user2);
-        OffersDto offer2 = new OffersDto(UUID.randomUUID(), "Too much", TypesOfGas.GASOLINE,
+        ShowDetailedOffersInfoDto offer2 = new ShowDetailedOffersInfoDto(UUID.randomUUID(), "Too much", TypesOfGas.GASOLINE,
                 "http://d", 2, price2, TypesOFTransmission.AUTOMATIC, 2022, date, date, model2, user2);
         offerService.register(offer1);
         offerService.register(offer2);
 
-        var offer3 = new OffersDto(UUID.randomUUID(), "Test", TypesOfGas.ELECTRIC,
+        var offer3 = new ShowDetailedOffersInfoDto(UUID.randomUUID(), "Test", TypesOfGas.ELECTRIC,
                 "http://ya.ru", 20, price1, TypesOFTransmission.AUTOMATIC, 2022, date, date, model1, user2);
 
         offerService.addOfferWithValidation(offer3);
