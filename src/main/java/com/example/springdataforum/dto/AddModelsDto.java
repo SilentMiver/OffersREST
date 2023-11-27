@@ -1,12 +1,13 @@
 package com.example.springdataforum.dto;
 
 import com.example.springdataforum.Constans.CategoryOfVehicles;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-public class AddBrandsDto {
-    UUID id;
+public class AddModelsDto {
     String name;
     CategoryOfVehicles category;
     String imageURL;
@@ -16,8 +17,11 @@ public class AddBrandsDto {
     LocalDateTime modified;
     ShowDetailedBrandsInfoDto brand;
 
-    public AddBrandsDto(UUID id, String name, CategoryOfVehicles category, String imageURL, int startYear, int endYear, LocalDateTime created, LocalDateTime modified, ShowDetailedBrandsInfoDto brand) {
-        this.id = id;
+
+    protected AddModelsDto() {
+    }
+
+    public AddModelsDto(String name, CategoryOfVehicles category, String imageURL, int startYear, int endYear, LocalDateTime created, LocalDateTime modified, ShowDetailedBrandsInfoDto brand) {
         this.name = name;
         this.category = category;
         this.imageURL = imageURL;
@@ -28,17 +32,6 @@ public class AddBrandsDto {
         this.brand = brand;
     }
 
-    protected AddBrandsDto() {
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
     public ShowDetailedBrandsInfoDto getBrand() {
         return brand;
     }
@@ -47,6 +40,9 @@ public class AddBrandsDto {
         this.brand = brand;
     }
 
+    @NotEmpty(message = "Brand name must not be null or empty!")
+    @Size(min = 2, max = 10, message = "Brand name must be between 2 and 10 characters!")
+
     public String getName() {
         return name;
     }
@@ -54,7 +50,7 @@ public class AddBrandsDto {
     public void setName(String name) {
         this.name = name;
     }
-
+    @NotEmpty(message = "Category must not be null or empty!")
     public CategoryOfVehicles getCategory() {
         return category;
     }
@@ -63,6 +59,8 @@ public class AddBrandsDto {
         this.category = category;
     }
 
+    @NotEmpty(message = "URL must not be null or empty!")
+    @Size(min = 2, max = 10, message = "URL must be between 2 and 10 characters!")
     public String getImageURL() {
         return imageURL;
     }
@@ -71,6 +69,8 @@ public class AddBrandsDto {
         this.imageURL = imageURL;
     }
 
+    @NotEmpty(message = "Start year must not be null or empty!")
+    @Min(value = 1, message = "Start Year must be a positive number!")
     public int getStartYear() {
         return startYear;
     }
@@ -78,6 +78,8 @@ public class AddBrandsDto {
     public void setStartYear(int startYear) {
         this.startYear = startYear;
     }
+    @NotEmpty(message = "End year must not be null or empty!")
+    @Min(value = 1, message = "End Year must be a positive number!")
 
     public int getEndYear() {
         return endYear;
@@ -86,6 +88,7 @@ public class AddBrandsDto {
     public void setEndYear(int endYear) {
         this.endYear = endYear;
     }
+
 
     public LocalDateTime getCreated() {
         return created;

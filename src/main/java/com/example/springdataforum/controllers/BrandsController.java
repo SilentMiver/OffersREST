@@ -3,11 +3,13 @@ package com.example.springdataforum.controllers;
 import com.example.springdataforum.dto.ShowDetailedBrandsInfoDto;
 import com.example.springdataforum.services.impl.BrandsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@RestController
+@Controller //not @Rest
 @RequestMapping("/brands")
 public class BrandsController {
     //Add setter injection
@@ -18,7 +20,12 @@ public class BrandsController {
         this.brandService = brandService;
     }
 
+    @GetMapping("/all")
+    public String showAllEmployees(Model model) {
+        model.addAttribute("brandsInfos", brandService.getAll());
 
+        return "brands-all";
+    }
     @GetMapping()
     Iterable<ShowDetailedBrandsInfoDto> all() {
         return brandService.getAll();
@@ -38,4 +45,8 @@ public class BrandsController {
     ShowDetailedBrandsInfoDto update(@RequestBody ShowDetailedBrandsInfoDto brand) {
         return brandService.update(brand);
     }
+
+
+
 }
+
