@@ -9,35 +9,33 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "Offers")
 public class Offers extends BaseEntity {
-    @Column(name = "description")
+
     String description;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "engine")
+
     TypesOfGas engine;
-    @Column(name = "imageURL")
+
     String imageURL;
-    @Column(name = "mileage")
+
     int mileage;
-    @Column(name = "price")
+
     int price;
-    @Column(name = "transmission")
+
     TypesOFTransmission transmission;
-    @Column(name = "year")
+
     String year;
-    @Column(name = "created")
+
     LocalDateTime created;
-    @Column(name = "modified")
+
     LocalDateTime modified;
     // model and seller
-    @ManyToOne
-    @JoinColumn(name = "model_id", referencedColumnName = "id")
+
     private Models model;
 
     //seller скорее всего user
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+
     private Users users;
 
+    @Column(columnDefinition = "TEXT")
     public String getDescription() {
         return description;
     }
@@ -46,6 +44,8 @@ public class Offers extends BaseEntity {
         this.description = description;
     }
 
+    @Enumerated(EnumType.ORDINAL)
+    @Column()
     public TypesOfGas getEngine() {
         return engine;
     }
@@ -53,6 +53,8 @@ public class Offers extends BaseEntity {
     public void setEngine(TypesOfGas engine) {
         this.engine = engine;
     }
+
+    @Column(nullable = false)
 
     public String getImageURL() {
         return imageURL;
@@ -62,6 +64,8 @@ public class Offers extends BaseEntity {
         this.imageURL = imageURL;
     }
 
+    @Column(nullable = false)
+
     public int getMileage() {
         return mileage;
     }
@@ -70,6 +74,7 @@ public class Offers extends BaseEntity {
         this.mileage = mileage;
     }
 
+    @Column(nullable = false)
     public int getPrice() {
         return price;
     }
@@ -78,6 +83,10 @@ public class Offers extends BaseEntity {
         this.price = price;
     }
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+
+
     public TypesOFTransmission getTransmission() {
         return transmission;
     }
@@ -85,7 +94,7 @@ public class Offers extends BaseEntity {
     public void setTransmission(TypesOFTransmission transmission) {
         this.transmission = transmission;
     }
-
+    @Column(nullable = false)
     public String getYear() {
         return year;
     }
@@ -93,7 +102,8 @@ public class Offers extends BaseEntity {
     public void setYear(String year) {
         this.year = year;
     }
-
+    @ManyToOne
+    @JoinColumn(name = "model_id", referencedColumnName = "id")
 
     public Models getModel() {
         return model;
@@ -102,7 +112,8 @@ public class Offers extends BaseEntity {
     public void setModel(Models models) {
         this.model = models;
     }
-
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     public Users getUsers() {
         return users;
     }
@@ -110,6 +121,7 @@ public class Offers extends BaseEntity {
     public void setUsers(Users users) {
         this.users = users;
     }
+    @Column(nullable = false)
 
     public LocalDateTime getCreated() {
         return created;
@@ -119,6 +131,7 @@ public class Offers extends BaseEntity {
         this.created = created;
     }
 
+    @Column(nullable = false)
     public LocalDateTime getModified() {
         return modified;
     }
