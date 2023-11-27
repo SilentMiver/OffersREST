@@ -12,7 +12,6 @@ public class Brands extends BaseEntity {
     private String name;
 
     private LocalDateTime created;
-    @Column(name = "modified")
     private LocalDateTime modified;
 
     public Brands(String name, LocalDateTime created, LocalDateTime modified) {
@@ -24,10 +23,10 @@ public class Brands extends BaseEntity {
     protected Brands() {
     }
 
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.REMOVE)
+
     private List<Models> models;
 
-    @Column(name = "name")
+    @Column(columnDefinition = "TEXT", nullable = false)
     public String getName() {
         return name;
     }
@@ -35,6 +34,7 @@ public class Brands extends BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
+    @Column(columnDefinition = "DATE", nullable = false)
 
     public LocalDateTime getCreated() {
         return created;
@@ -44,11 +44,21 @@ public class Brands extends BaseEntity {
         this.created = created;
     }
 
+    @Column(columnDefinition = "DATE", nullable = false)
     public LocalDateTime getModified() {
         return modified;
     }
 
     public void setModified(LocalDateTime modified) {
         this.modified = modified;
+    }
+
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.REMOVE)
+    public List<Models> getModels() {
+        return models;
+    }
+
+    public void setModels(List<Models> models) {
+        this.models = models;
     }
 }
