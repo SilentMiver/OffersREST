@@ -18,9 +18,9 @@ public class ShowDetailedOffersInfoDto {
     LocalDateTime created;
     LocalDateTime modified;
     ShowDetailedModelsInfoDto model;
-    ShowsDetailedUsersInfoDto users;
+    ShowDetailedUsersInfoDto users;
 
-    public ShowDetailedOffersInfoDto(UUID id, String description, TypesOfGas engine, String imageURL, int mileage, int price, TypesOFTransmission transmission, int year, LocalDateTime created, LocalDateTime modified, ShowDetailedModelsInfoDto model, ShowsDetailedUsersInfoDto users) {
+    public ShowDetailedOffersInfoDto(UUID id, String description, TypesOfGas engine, String imageURL, int mileage, int price, TypesOFTransmission transmission, int year, LocalDateTime created, LocalDateTime modified, ShowDetailedModelsInfoDto model, ShowDetailedUsersInfoDto users) {
         this.id = id;
         this.description = description;
         this.engine = engine;
@@ -51,11 +51,11 @@ public class ShowDetailedOffersInfoDto {
         this.model = model;
     }
 
-    public ShowsDetailedUsersInfoDto getUsers() {
+    public ShowDetailedUsersInfoDto getUsers() {
         return users;
     }
 
-    public void setUsers(ShowsDetailedUsersInfoDto users) {
+    public void setUsers(ShowDetailedUsersInfoDto users) {
         this.users = users;
     }
 

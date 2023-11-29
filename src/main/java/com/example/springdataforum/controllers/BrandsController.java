@@ -25,7 +25,7 @@ public class BrandsController {
     }
 
     @GetMapping("/all")
-    public String showAllEmployees(Model model) {
+    public String showAllBrands(Model model) {
         model.addAttribute("brandsInfos", brandService.getAll());
 
         return "brands-all";

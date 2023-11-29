@@ -1,20 +1,28 @@
 package com.example.springdataforum.services.impl;
 
-import com.example.springdataforum.dto.ShowsDetailedUsersInfoDto;
+import com.example.springdataforum.dto.AddUsersDto;
+import com.example.springdataforum.dto.ShowDetailedUsersInfoDto;
+import com.example.springdataforum.dto.ShowUsersInfoDto;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 public interface UsersService {
-    ShowsDetailedUsersInfoDto register(ShowsDetailedUsersInfoDto users);
+    ShowDetailedUsersInfoDto register(ShowDetailedUsersInfoDto users);
 
-    List<ShowsDetailedUsersInfoDto> getAll();
+    List<ShowDetailedUsersInfoDto> getAll();
 
-    Optional<ShowsDetailedUsersInfoDto> get(UUID id);
+    Optional<ShowDetailedUsersInfoDto> get(UUID id);
 
     void delete(UUID id);
 
-    ShowsDetailedUsersInfoDto update(ShowsDetailedUsersInfoDto users);
-    void addUserWithValidation(ShowsDetailedUsersInfoDto showsDetailedUsersInfoDto);
+    ShowDetailedUsersInfoDto update(ShowDetailedUsersInfoDto users);
+    void addUserWithValidation(ShowDetailedUsersInfoDto showDetailedUsersInfoDto);
+    //------------------------ not Rest func------------------------
+    void addUser(AddUsersDto userDto);
+
+    List<ShowUsersInfoDto> getAllUsers();
+    ShowDetailedUsersInfoDto userDetails(String userName) ;
+    void removeUser(String userName);
 }

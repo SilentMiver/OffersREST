@@ -3,7 +3,7 @@ package com.example.springdataforum.dto;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class ShowsDetailedUsersInfoDto {
+public class ShowDetailedUsersInfoDto {
     private UUID id;
     private ShowDetailedUserRolesInfoDto role;
     private String userName;
@@ -14,9 +14,9 @@ public class ShowsDetailedUsersInfoDto {
     private String imageURL;
     private LocalDateTime created;
     private LocalDateTime modified;
-    protected ShowsDetailedUsersInfoDto() {};
+    protected ShowDetailedUsersInfoDto() {};
 
-    public ShowsDetailedUsersInfoDto(UUID id, ShowDetailedUserRolesInfoDto role, String userName, String password, String firstName, String lastName, boolean isActive, String imageURL, LocalDateTime created, LocalDateTime modified) {
+    public ShowDetailedUsersInfoDto(UUID id, ShowDetailedUserRolesInfoDto role, String userName, String password, String firstName, String lastName, boolean isActive, String imageURL, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.role = role;
         this.userName = userName;
@@ -111,7 +111,7 @@ public class ShowsDetailedUsersInfoDto {
 
     @Override
     public String toString() {
-        return "ShowsDetailedUsersInfoDto{" +
+        return "ShowDetailedUsersInfoDto{" +
                 "id=" + id +
                 ", role=" + role +
                 ", userName='" + userName + '\'' +

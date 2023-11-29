@@ -79,15 +79,15 @@ public class DataInitializer implements CommandLineRunner {
 ////        System.out.println(model1);
 ////        System.out.println(model2);
 //
-//        ShowsDetailedUsersInfoDto user1 = new ShowsDetailedUsersInfoDto(UUID.randomUUID(), role1, "Kisa17", "555555", "Zlata",
+//        ShowDetailedUsersInfoDto user1 = new ShowDetailedUsersInfoDto(UUID.randomUUID(), role1, "Kisa17", "555555", "Zlata",
 //                "Kikimora", true, "http://jjejfbejbf", date, date);
-//        ShowsDetailedUsersInfoDto user2 = new ShowsDetailedUsersInfoDto(UUID.randomUUID(), role2, "Gora", "6666666", "Morgan",
+//        ShowDetailedUsersInfoDto user2 = new ShowDetailedUsersInfoDto(UUID.randomUUID(), role2, "Gora", "6666666", "Morgan",
 //                "Freeman", true, "http://bebfebufbe", date, date);
 //        user1 = usersService.register(user1);
 //        user2 = usersService.register(user2);
 //
 //
-//        var user3 = new ShowsDetailedUsersInfoDto(UUID.randomUUID(), role1, "Kisa17", "555555", "Zlata",
+//        var user3 = new ShowDetailedUsersInfoDto(UUID.randomUUID(), role1, "Kisa17", "555555", "Zlata",
 //                "Test", true, "http://jjejfbejbf", date, date);
 //        usersService.addUserWithValidation(user3);
 //
