@@ -41,7 +41,7 @@ public class Offers extends BaseEntity {
         this.description = description;
     }
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING) // Не хочет ординал
     @Column(name = "engine")
     public TypesOfGas getEngine() {
         return engine;
