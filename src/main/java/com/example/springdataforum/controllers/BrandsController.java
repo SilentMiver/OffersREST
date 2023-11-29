@@ -46,7 +46,7 @@ public class BrandsController {
         }
         brandService.addBrand(brandModel);
 
-        return "redirect:/";
+        return "redirect:/brands/all";
     }
     @GetMapping("/brand-details/{brand-name}")
     public String brandDetails(@PathVariable("brand-name") String brandName, Model model) {
