@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
-public class AddModelsDto {
+public class AddModelDto {
     String name;
     CategoryOfVehicles category;
     String imageURL;
@@ -18,10 +18,10 @@ public class AddModelsDto {
     ShowDetailedBrandsInfoDto brand;
 
 
-    protected AddModelsDto() {
+    public AddModelDto() {
     }
 
-    public AddModelsDto(String name, CategoryOfVehicles category, String imageURL, int startYear, int endYear, LocalDateTime created, LocalDateTime modified, ShowDetailedBrandsInfoDto brand) {
+    public AddModelDto(String name, CategoryOfVehicles category, String imageURL, int startYear, int endYear, LocalDateTime created, LocalDateTime modified, ShowDetailedBrandsInfoDto brand) {
         this.name = name;
         this.category = category;
         this.imageURL = imageURL;
@@ -32,7 +32,7 @@ public class AddModelsDto {
         this.brand = brand;
     }
 
-    @NotEmpty(message = "Brand name must not be null or empty!")
+
     public ShowDetailedBrandsInfoDto getBrand() {
         return brand;
     }
@@ -51,7 +51,7 @@ public class AddModelsDto {
     public void setName(String name) {
         this.name = name;
     }
-    @NotEmpty(message = "Category must not be null or empty!")
+
     public CategoryOfVehicles getCategory() {
         return category;
     }
@@ -60,8 +60,7 @@ public class AddModelsDto {
         this.category = category;
     }
 
-    @NotEmpty(message = "URL must not be null or empty!")
-    @Size(min = 2, max = 10, message = "URL must be between 2 and 10 characters!")
+
     public String getImageURL() {
         return imageURL;
     }
@@ -70,8 +69,7 @@ public class AddModelsDto {
         this.imageURL = imageURL;
     }
 
-    @NotEmpty(message = "Start year must not be null or empty!")
-    @Min(value = 1, message = "Start Year must be a positive number!")
+
     public int getStartYear() {
         return startYear;
     }
@@ -79,8 +77,7 @@ public class AddModelsDto {
     public void setStartYear(int startYear) {
         this.startYear = startYear;
     }
-    @NotEmpty(message = "End year must not be null or empty!")
-    @Min(value = 1, message = "End Year must be a positive number!")
+
 
     public int getEndYear() {
         return endYear;

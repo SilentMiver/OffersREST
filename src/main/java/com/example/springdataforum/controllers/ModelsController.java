@@ -1,41 +1,124 @@
 package com.example.springdataforum.controllers;
 
 
+import com.example.springdataforum.dto.AddModelDto;
 import com.example.springdataforum.dto.ShowDetailedModelsInfoDto;
+import com.example.springdataforum.dto.ShowModelsInfoDto;
 import com.example.springdataforum.services.impl.ModelsService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
 
-@RestController
+import java.util.List;
+
+@Controller
 @RequestMapping("/models")
 public class ModelsController {
-    // add setter injection
-    private ModelsService modelsService;
+
+    private final ModelsService modelsService;
 
     @Autowired
-    public void setModelsService(ModelsService modelsService) {
+    public ModelsController(ModelsService modelsService) {
         this.modelsService = modelsService;
     }
 
-    @GetMapping()
-    Iterable<ShowDetailedModelsInfoDto> all() {
-        return modelsService.getAll();
+    @GetMapping("/add")
+    public String showAddModelForm(Model model) {
+        model.addAttribute("addModelDto", new AddModelDto());
+        return "addModel";
     }
 
-    @GetMapping("/{id}")
-    ShowDetailedModelsInfoDto get(@PathVariable UUID id) {
-        return modelsService.get(id).get();
+    @PostMapping("/add")
+    public String addModel(@ModelAttribute @Valid AddModelDto modelDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "addModel";
+        }
+        modelsService.addModel(modelDto);
+        return "redirect:/models/getAll";
     }
 
-    @DeleteMapping("/{id}")
-    void deleteBrand(@PathVariable UUID id) {
-        modelsService.delete(id);
+    @GetMapping("/getAll")
+    public String getAllModels(Model model) {
+        List<ShowModelsInfoDto> models = modelsService.getAllModels();
+        model.addAttribute("models", models);
+        return "getAllModels";
     }
 
-    @PostMapping()
-    ShowDetailedModelsInfoDto update(@RequestBody ShowDetailedModelsInfoDto showDetailedModelsInfoDto) {
-        return modelsService.update(showDetailedModelsInfoDto);
+    @GetMapping("/details/{modelName}")
+    public String getModelDetails(@PathVariable String modelName, Model model) {
+        ShowDetailedModelsInfoDto modelDetails = modelsService.modelDetails(modelName);
+        model.addAttribute("modelDetails", modelDetails);
+        return "getModelDetails";
+    }
+
+    @GetMapping("/remove/{modelName}")
+    public String showRemoveModelForm(@PathVariable String modelName, Model model) {
+        model.addAttribute("modelName", modelName);
+        return "removeModel";
+    }
+    @GetMapping("/remove")
+    public String showRemoveModelForm() {
+        return "removeModel";
+    }
+
+    @PostMapping("/remove")
+    public String removeModel(@RequestParam String modelName) {
+        modelsService.removeModel(modelName);
+        return "redirect:/models/getAll";
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//@RestController
+//@RequestMapping("/models")
+//public class ModelsController {
+//    // add setter injection
+//    private ModelsService modelsService;
+//
+//    @Autowired
+//    public void setModelsService(ModelsService modelsService) {
+//        this.modelsService = modelsService;
+//    }
+//
+//    @GetMapping()
+//    Iterable<ShowDetailedModelsInfoDto> all() {
+//        return modelsService.getAll();
+//    }
+//
+//    @GetMapping("/{id}")
+//    ShowDetailedModelsInfoDto get(@PathVariable UUID id) {
+//        return modelsService.get(id).get();
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    void deleteBrand(@PathVariable UUID id) {
+//        modelsService.delete(id);
+//    }
+//
+//    @PostMapping()
+//    ShowDetailedModelsInfoDto update(@RequestBody ShowDetailedModelsInfoDto showDetailedModelsInfoDto) {
+//        return modelsService.update(showDetailedModelsInfoDto);
+//    }
+//}

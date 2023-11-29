@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Model Details</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Model Details</h2>
+    <dl class="row">
+        <dt class="col-sm-3">Name:</dt>
+        <dd class="col-sm-9" th:text="${modelDetails.name}"></dd>
+        <!-- Add other details as needed -->
+    </dl>
+</div>
+
+</body>
+</html>
