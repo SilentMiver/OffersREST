@@ -7,13 +7,13 @@
     <title>Model Details</title>
 </head>
 <body>
-
+<div th:replace="fragments/navbar">Navbar</div>
 <div class="container mt-5">
     <h2>Model Details</h2>
     <dl class="row">
         <dt class="col-sm-3">Name:</dt>
         <dd class="col-sm-9" th:text="${modelDetails.name}"></dd>
-        <!-- Add other details as needed -->
+
     </dl>
 </div>
 
