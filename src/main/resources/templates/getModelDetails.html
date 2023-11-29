@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <title>Model Details</title>
 </head>
 <body>
@@ -13,10 +13,19 @@
     <dl class="row">
         <dt class="col-sm-3">Name:</dt>
         <dd class="col-sm-9" th:text="${modelDetails.name}"></dd>
-        <dt class="col-sm-3">Column:</dt>
-        <dd class="col-sm-9" th:text="${modelDetails.}"></dd>
+        <dt class="col-sm-3">Type of Vehicle:</dt>
+        <dd class="col-sm-9" th:text="${modelDetails.category}"></dd>
+        <dt class="col-sm-3">StartYear:</dt>
+        <dd class="col-sm-9" th:text="${modelDetails.startYear}"></dd>
+        <dt class="col-sm-3">End Year:</dt>
+        <dd class="col-sm-9" th:text="${modelDetails.endYear}"></dd>
+        <dt class="col-sm-3">Created:</dt>
+        <dd class="col-sm-9" th:text="${modelDetails.created}"></dd>
+        <dt class="col-sm-3">Modified:</dt>
+        <dd class="col-sm-9" th:text="${modelDetails.modified}"></dd>
 
     </dl>
+    <a class="btn btn-primary" th:href="@{/models/all}">Back to All Models</a>
 </div>
 
 </body>

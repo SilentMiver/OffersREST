@@ -38,10 +38,10 @@ public class ModelsController {
             return "addModel";
         }
         modelsService.addModel(modelDto);
-        return "redirect:/models/getAll";
+        return "redirect:/models/all";
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/all")
     public String getAllModels(Model model) {
         List<ShowModelsInfoDto> models = modelsService.getAllModels();
         model.addAttribute("models", models);
@@ -68,7 +68,7 @@ public class ModelsController {
     @PostMapping("/remove")
     public String removeModel(@RequestParam String modelName) {
         modelsService.removeModel(modelName);
-        return "redirect:/models/getAll";
+        return "redirect:/models/all";
     }
 }
 

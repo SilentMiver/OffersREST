@@ -64,14 +64,14 @@ public String showAllUsers(Model model) {
 
         return "redirect:/";
     }
-    @GetMapping("/user-details/{user-name}")
-    public String userDetails(@PathVariable("user-name") String userName, Model model) {
+    @GetMapping("/details/{userName}")
+    public String userDetails(@PathVariable("userName") String userName, Model model) {
         model.addAttribute("userDetails", usersService.userDetails(userName));
 
         return "getUsersDetails";
     }
-    @GetMapping("/user-delete/{user-name}")
-    public String deleteUser(@PathVariable("user-name") String userName) {
+    @GetMapping("/remove/{userName}")
+    public String deleteUser(@PathVariable("userName") String userName) {
         usersService.removeUser(userName);
 
         return "redirect:/users/all";

@@ -3,6 +3,7 @@ package com.example.springdataforum.dto;
 import com.example.springdataforum.Constans.TypesOFTransmission;
 import com.example.springdataforum.Constans.TypesOfGas;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class AddOfferDto {
@@ -13,6 +14,24 @@ public class AddOfferDto {
     private int price;
     private TypesOFTransmission transmission;
     private String year;
+    LocalDateTime created;
+    LocalDateTime modified;
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public LocalDateTime getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDateTime modified) {
+        this.modified = modified;
+    }
 //    private UUID modelId;
 //    private UUID userId;
 
