@@ -1,36 +1,119 @@
 package com.example.springdataforum.controllers;
 
+import com.example.springdataforum.dto.AddOfferDto;
 import com.example.springdataforum.dto.ShowDetailedOffersInfoDto;
+import com.example.springdataforum.dto.ShowOffersInfoDto;
 import com.example.springdataforum.services.impl.OffersService;
+import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
+import java.util.List;
 
-@RestController
+
+@Controller
 @RequestMapping("/offers")
 public class OffersController {
-    // add setter injection
-    private  OffersService offersService;
+
+    private final OffersService offersService;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public void setOffersService(OffersService offersService) {
+    public OffersController(OffersService offersService, ModelMapper modelMapper) {
         this.offersService = offersService;
+        this.modelMapper = modelMapper;
     }
-    @GetMapping()
-    Iterable<ShowDetailedOffersInfoDto> all() {
-        return offersService.getAll();
+
+    @GetMapping("/add")
+    public String showAddOfferForm(Model model) {
+        model.addAttribute("addOfferDto", new AddOfferDto());
+        return "addOffer";
     }
-    @GetMapping("/{id}")
-    ShowDetailedOffersInfoDto get(@PathVariable UUID id) {
-        return offersService.get(id).get();
+
+    @PostMapping("/add")
+    public String addOffer(@ModelAttribute("addOfferDto") @Valid AddOfferDto addOfferDto, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addOffer";
+        }
+
+        offersService.addOffer(addOfferDto);
+        return "redirect:/offers/all";
     }
-    @DeleteMapping("/{id}")
-    void deleteBrand(@PathVariable UUID id) {
-        offersService.delete(id);
+
+    @GetMapping("/all")
+    public String getAllOffers(Model model) {
+        List<ShowOffersInfoDto> offers = offersService.getAllOffers();
+        model.addAttribute("offers", offers);
+        return "allOffers";
     }
-    @PostMapping()
-    ShowDetailedOffersInfoDto update(@RequestBody ShowDetailedOffersInfoDto showDetailedOffersInfoDto) {
-        return offersService.update(showDetailedOffersInfoDto);
+
+    @GetMapping("/details/{offerId}")
+    public String getOfferDetails(@PathVariable String offerId, Model model) {
+        ShowDetailedOffersInfoDto offerDetails = offersService.offerDetails(offerId);
+        model.addAttribute("offerDetails", offerDetails);
+        return "offerDetails";
+    }
+
+
+    @GetMapping("/remove/{offerDescription}")
+    public String showRemoveOfferForm(@PathVariable String offerDescription, Model model) {
+        model.addAttribute("offerName", offerDescription);
+        return "removeOffer";
+    }
+    @GetMapping("/remove")
+    public String showRemoveOfferForm() {
+        return "removeOffer";
+    }
+
+    @PostMapping("/remove")
+    public String removeOffer(@RequestParam String offerDescription) {
+        offersService.removeOffer(offerDescription);
+        return "redirect:/offers/all";
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//@RestController
+//@RequestMapping("/offers")
+//public class OffersController {
+//    // add setter injection
+//    private  OffersService offersService;
+//
+//    @Autowired
+//    public void setOffersService(OffersService offersService) {
+//        this.offersService = offersService;
+//    }
+//    @GetMapping()
+//    Iterable<ShowDetailedOffersInfoDto> all() {
+//        return offersService.getAll();
+//    }
+//    @GetMapping("/{id}")
+//    ShowDetailedOffersInfoDto get(@PathVariable UUID id) {
+//        return offersService.get(id).get();
+//    }
+//    @DeleteMapping("/{id}")
+//    void deleteBrand(@PathVariable UUID id) {
+//        offersService.delete(id);
+//    }
+//    @PostMapping()
+//    ShowDetailedOffersInfoDto update(@RequestBody ShowDetailedOffersInfoDto showDetailedOffersInfoDto) {
+//        return offersService.update(showDetailedOffersInfoDto);
+//    }
+//}

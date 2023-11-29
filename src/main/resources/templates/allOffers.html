@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Offers</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>All Offers</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Description</th>
+            <th>Engine</th>
+            <th>Price</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterate over the list of ShowOffersInfoDto -->
+        <tr th:each="offer : ${offers}">
+            <td th:text="${offer.description}"></td>
+            <td th:text="${offer.engine}"></td>
+            <td th:text="${offer.price}"></td>
+
+            <td>
+                <!-- Add actions as needed, e.g., details, edit, delete -->
+                <a th:href="@{/offers/details/{description}(description=${offer.description})}">Details</a>
+                <a th:href="@{/offers/edit/{description}(description=${offer.description})}">Edit</a>
+                <a th:href="@{/offers/remove/{description}(description=${offer.description})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class ShowDetailedOffersInfoDto {
-    UUID id;
+
     String description;
     TypesOfGas engine;
     String imageURL;
@@ -20,28 +20,8 @@ public class ShowDetailedOffersInfoDto {
     ShowDetailedModelsInfoDto model;
     ShowDetailedUsersInfoDto users;
 
-    public ShowDetailedOffersInfoDto(UUID id, String description, TypesOfGas engine, String imageURL, int mileage, int price, TypesOFTransmission transmission, int year, LocalDateTime created, LocalDateTime modified, ShowDetailedModelsInfoDto model, ShowDetailedUsersInfoDto users) {
-        this.id = id;
-        this.description = description;
-        this.engine = engine;
-        this.imageURL = imageURL;
-        this.mileage = mileage;
-        this.price = price;
-        this.transmission = transmission;
-        this.year = year;
-        this.created = created;
-        this.modified = modified;
-        this.model = model;
-        this.users = users;
-    }
 
-    public UUID getId() {
-        return id;
-    }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public ShowDetailedModelsInfoDto getModel() {
         return model;
@@ -137,7 +117,6 @@ public class ShowDetailedOffersInfoDto {
     @Override
     public String toString() {
         return "ShowDetailedOffersInfoDto{" +
-                "id=" + id +
                 ", description='" + description + '\'' +
                 ", engine=" + engine +
                 ", imageURL='" + imageURL + '\'' +
