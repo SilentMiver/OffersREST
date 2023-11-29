@@ -1,7 +1,6 @@
 package com.example.springdataforum.controllers;
 
 import com.example.springdataforum.dto.AddBrandDto;
-import com.example.springdataforum.dto.ShowDetailedBrandsInfoDto;
 import com.example.springdataforum.services.impl.BrandsService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.UUID;
 
 @Controller //not @Rest
 @RequestMapping("/brands")
@@ -28,7 +25,7 @@ public class BrandsController {
     public String showAllBrands(Model model) {
         model.addAttribute("brandsInfos", brandService.getAll());
 
-        return "brands-all";
+        return "getAllBrands";
     }
     @ModelAttribute("brandModel")
     public AddBrandDto initBrand(){
@@ -36,7 +33,7 @@ public class BrandsController {
     }
     @GetMapping("/add")
     public String addBrands() {
-        return "brands-add";
+        return "addBrands";
     }
     @PostMapping("/add")
     public String addBrands(@Valid AddBrandDto brandModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
@@ -55,7 +52,7 @@ public class BrandsController {
     public String brandDetails(@PathVariable("brand-name") String brandName, Model model) {
         model.addAttribute("brandDetails", brandService.brandDetails(brandName));
 
-        return "brand-details";
+        return "getBrandDetails";
     }
     @GetMapping("/brand-delete/{brand-name}")
     public String deleteBrand(@PathVariable("brand-name") String brandName) {

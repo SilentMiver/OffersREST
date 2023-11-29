@@ -46,10 +46,10 @@ import java.util.UUID;
     @RequestMapping("/userRoles")
     public class UserRolesController {
 
-        private final UserRolesService userRolesService;
+        private UserRolesService userRolesService;
 
         @Autowired
-        public UserRolesController(UserRolesService userRolesService) {
+        public void setUserRolesService(UserRolesService userRolesService){
             this.userRolesService = userRolesService;
         }
 

@@ -31,13 +31,13 @@ public class OffersController {
     @GetMapping("/add")
     public String showAddOfferForm(Model model) {
         model.addAttribute("addOfferDto", new AddOfferDto());
-        return "addOffer";
+        return "addOffers";
     }
 
     @PostMapping("/add")
     public String addOffer(@ModelAttribute("addOfferDto") @Valid AddOfferDto addOfferDto, BindingResult result) {
         if (result.hasErrors()) {
-            return "addOffer";
+            return "addOffers";
         }
 
         offersService.addOffer(addOfferDto);
@@ -48,14 +48,14 @@ public class OffersController {
     public String getAllOffers(Model model) {
         List<ShowOffersInfoDto> offers = offersService.getAllOffers();
         model.addAttribute("offers", offers);
-        return "allOffers";
+        return "getAllOffers";
     }
 
     @GetMapping("/details/{offerId}")
     public String getOfferDetails(@PathVariable String offerId, Model model) {
         ShowDetailedOffersInfoDto offerDetails = offersService.offerDetails(offerId);
         model.addAttribute("offerDetails", offerDetails);
-        return "offerDetails";
+        return "getOfferDetails";
     }
 
 

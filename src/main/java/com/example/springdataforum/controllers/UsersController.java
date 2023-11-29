@@ -41,7 +41,7 @@ public class UsersController {
 public String showAllUsers(Model model) {
     model.addAttribute("usersInfos", usersService.getAll());
 
-    return "users-all";
+    return "getAllUsers";
 }
     @ModelAttribute("userModel")
     public AddUsersDto initUser(){
@@ -49,7 +49,7 @@ public String showAllUsers(Model model) {
     }
     @GetMapping("/add")
     public String addUsers() {
-        return "users-add";
+        return "addUsers";
     }
     @PostMapping("/add")
     public String addUsers(@Valid AddUsersDto userModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
@@ -68,7 +68,7 @@ public String showAllUsers(Model model) {
     public String userDetails(@PathVariable("user-name") String userName, Model model) {
         model.addAttribute("userDetails", usersService.userDetails(userName));
 
-        return "users-details";
+        return "getUsersDetails";
     }
     @GetMapping("/user-delete/{user-name}")
     public String deleteUser(@PathVariable("user-name") String userName) {
