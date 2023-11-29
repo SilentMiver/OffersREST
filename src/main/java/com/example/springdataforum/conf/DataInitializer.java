@@ -36,6 +36,7 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void seedData() {
+
 //        System.out.println("Start test: \n");
 //        ShowDetailedUserRolesInfoDto role1 = new ShowDetailedUserRolesInfoDto(UUID.randomUUID(), TypesOfRoles.USER);
 //        ShowDetailedUserRolesInfoDto role2 = new ShowDetailedUserRolesInfoDto(UUID.randomUUID(), TypesOfRoles.ADMIN);
