@@ -16,5 +16,7 @@
         <li th:each="userRole : ${userRoles}" class="list-group-item" th:text="${userRole.role}"></li>
     </ul>
 </div>
+
 </body>
+<footer th:replace="fragments/footer"/>
 </html>
