@@ -16,6 +16,8 @@ public class AddOfferDto {
     private String year;
     LocalDateTime created;
     LocalDateTime modified;
+    private UUID modelId;
+    private UUID userId;
 
     public LocalDateTime getCreated() {
         return created;
@@ -32,8 +34,7 @@ public class AddOfferDto {
     public void setModified(LocalDateTime modified) {
         this.modified = modified;
     }
-//    private UUID modelId;
-//    private UUID userId;
+
 
     public String getDescription() {
         return description;
@@ -91,20 +92,20 @@ public class AddOfferDto {
         this.year = year;
     }
 
-//    public UUID getModelId() {
-//        return modelId;
-//    }
-//
-//    public void setModelId(UUID modelId) {
-//        this.modelId = modelId;
-//    }
-//
-//    public UUID getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(UUID userId) {
-//        this.userId = userId;
-//    }
+    public UUID getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(UUID modelId) {
+        this.modelId = modelId;
+    }
+
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
 }
 

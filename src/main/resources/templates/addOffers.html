@@ -12,17 +12,15 @@
     <h2>Add Offer</h2>
     <form th:action="@{/offers/add}" th:object="${addOfferDto}" method="post">
         <div class="form-group">
+            <label for="userId">Select User:</label>
+            <select class="form-control" id="userId" name="userId" th:field="*{userId}">
+                <option th:each="user : ${allUsers}" th:value="${user.id}" th:text="${user.userName}"></option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="description">Description:</label>
             <input type="text" class="form-control" id="description" name="description" th:field="*{description}" >
         </div>
-<!--        <div class="form-group">-->
-<!--            <label for="engine">Engine:</label>-->
-<!--            <select class="form-control" id="engine" name="engine" th:field="*{engine}" >-->
-<!--                <option value="DIESEL">Diesel</option>-->
-<!--                <option value="1">Not Diesiel</option>-->
-
-<!--            </select>-->
-<!--        </div>-->
         <div class="form-group">
             <label for="imageURL">Image URL:</label>
             <input type="text" class="form-control" id="imageURL" name="imageURL" th:field="*{imageURL}" >
@@ -40,28 +38,33 @@
             <select class="form-control" id="transmission" name="transmission" th:field="*{transmission}" >
                 <option value="AUTOMATIC">Automatic</option>
                 <option value="MANUAL">Manual</option>
-                <!-- Add other transmission types as needed -->
             </select>
         </div>
+
         <div class="form-group">
             <label for="year">Year:</label>
             <input type="text" class="form-control" id="year" name="year" th:field="*{year}" >
         </div>
         <div class="form-group">
-            <label for="created">ImageURL:</label>
+            <label for="created">Created:</label>
             <input type="datetime-local" class="form-control" id="created" name="created" th:field="*{created}" >
         </div>
         <div class="form-group">
-            <label for="modified">ImageURL:</label>
+            <label for="modified">Modified:</label>
             <input type="datetime-local" class="form-control" id="modified" name="modified" th:field="*{modified}" >
         </div>
+
 <!--        <div class="form-group">-->
 <!--            <label for="modelId">Model ID:</label>-->
 <!--            <input type="text" class="form-control" id="modelId" name="modelId" th:field="*{modelId}" >-->
 <!--        </div>-->
 <!--        <div class="form-group">-->
 <!--            <label for="userId">User ID:</label>-->
-<!--            <input type="text" class="form-control" id="userId" name="userId" th:field="*{userId}" >-->
+<!--            <select class="form-control" id="userId" name="transmission" th:field="*{userId}" th:each="users: ${allUsers}" >-->
+<!--                <option value=${users.id}>${users.name}</option>-->
+<!--                -->
+<!--                &lt;!&ndash; Add other transmission types as needed &ndash;&gt;-->
+<!--            </select>-->
 <!--        </div>-->
         <button type="submit" class="btn btn-primary">Add Offer</button>
     </form>

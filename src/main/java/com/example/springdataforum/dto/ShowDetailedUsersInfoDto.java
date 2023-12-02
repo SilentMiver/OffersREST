@@ -4,17 +4,21 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class ShowDetailedUsersInfoDto {
-    private UUID id;
-    private ShowDetailedUserRolesInfoDto role;
-    private String userName;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private boolean isActive;
-    private String imageURL;
-    private LocalDateTime created;
-    private LocalDateTime modified;
-    protected ShowDetailedUsersInfoDto() {};
+    UUID id;
+    ShowDetailedUserRolesInfoDto role;
+    String userName;
+    String password;
+    String firstName;
+    String lastName;
+    boolean isActive;
+    String imageURL;
+    LocalDateTime created;
+    LocalDateTime modified;
+
+    ShowDetailedUsersInfoDto() {
+    }
+
+    ;
 
     public ShowDetailedUsersInfoDto(UUID id, ShowDetailedUserRolesInfoDto role, String userName, String password, String firstName, String lastName, boolean isActive, String imageURL, LocalDateTime created, LocalDateTime modified) {
         this.id = id;

@@ -4,6 +4,7 @@ import com.example.springdataforum.dto.AddOfferDto;
 import com.example.springdataforum.dto.ShowDetailedOffersInfoDto;
 import com.example.springdataforum.dto.ShowOffersInfoDto;
 import com.example.springdataforum.services.impl.OffersService;
+import com.example.springdataforum.services.impl.UsersService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +21,20 @@ import java.util.List;
 public class OffersController {
 
     private final OffersService offersService;
+    private final UsersService usersService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public OffersController(OffersService offersService, ModelMapper modelMapper) {
+    public OffersController(OffersService offersService, UsersService usersService, ModelMapper modelMapper) {
         this.offersService = offersService;
+        this.usersService = usersService;
         this.modelMapper = modelMapper;
     }
 
     @GetMapping("/add")
     public String showAddOfferForm(Model model) {
         model.addAttribute("addOfferDto", new AddOfferDto());
+        model.addAttribute("allUsers", usersService.getAll());
         return "addOffers";
     }
 
