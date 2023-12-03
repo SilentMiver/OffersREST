@@ -4,7 +4,6 @@ import com.example.springdataforum.Constans.TypesOFTransmission;
 import com.example.springdataforum.Constans.TypesOfGas;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class ShowDetailedOffersInfoDto {
 
@@ -18,7 +17,7 @@ public class ShowDetailedOffersInfoDto {
     LocalDateTime created;
     LocalDateTime modified;
     ShowDetailedModelsInfoDto model;
-    ShowDetailedUsersInfoDto users;
+    ShowDetailedUsersInfoDto user;
 
 
 
@@ -31,12 +30,12 @@ public class ShowDetailedOffersInfoDto {
         this.model = model;
     }
 
-    public ShowDetailedUsersInfoDto getUsers() {
-        return users;
+    public ShowDetailedUsersInfoDto getUser() {
+        return user;
     }
 
-    public void setUsers(ShowDetailedUsersInfoDto users) {
-        this.users = users;
+    public void setUser(ShowDetailedUsersInfoDto user) {
+        this.user = user;
     }
 
     public String getDescription() {
@@ -127,7 +126,7 @@ public class ShowDetailedOffersInfoDto {
                 ", created=" + created +
                 ", modified=" + modified +
                 ", model=" + model +
-                ", users=" + users +
+                ", users=" + user +
                 '}';
     }
 }

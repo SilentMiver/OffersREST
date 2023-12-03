@@ -12,9 +12,14 @@
     <h2>Add Offer</h2>
     <form th:action="@{/offers/add}" th:object="${addOfferDto}" method="post">
         <div class="form-group">
-            <label for="userId">Select User:</label>
-            <select class="form-control" id="userId" name="userId" th:field="*{userId}">
-                <option th:each="user : ${allUsers}" th:value="${user}" th:text="${user.userName}"></option>
+            <label for="description">Description:</label>
+            <input type="text" class="form-control" id="description" name="description" th:field="*{description}" >
+        </div>
+
+        <div class="form-group">
+            <label for="usersId">Select User:</label>
+            <select class="form-control" id="usersId" name="usersId" th:field="*{userId}">
+                <option th:each="user : ${allUsersX}" th:value="${user.id}" th:text="${user.userName}"></option>
             </select>
         </div>
 
@@ -25,10 +30,7 @@
             </select>
         </div>
 
-        <div class="form-group">
-            <label for="description">Description:</label>
-            <input type="text" class="form-control" id="description" name="description" th:field="*{description}" >
-        </div>
+
         <div class="form-group">
             <label for="imageURL">Image URL:</label>
             <input type="text" class="form-control" id="imageURL" name="imageURL" th:field="*{imageURL}" >

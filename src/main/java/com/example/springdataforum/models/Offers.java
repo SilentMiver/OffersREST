@@ -29,7 +29,7 @@ public class Offers extends BaseEntity {
     //seller скорее всего user
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Users users;
+    private Users user;
 
     @Column(name = "description", columnDefinition = "TEXT")
 
@@ -111,12 +111,12 @@ public class Offers extends BaseEntity {
         this.model = models;
     }
 
-    public Users getUsers() {
-        return users;
+    public Users getUser() {
+        return user;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setUser(Users users) {
+        this.user = users;
     }
 
     @Column(name = "created")
@@ -139,7 +139,7 @@ public class Offers extends BaseEntity {
         this.modified = modified;
     }
 
-    public Offers(String description, TypesOfGas engine, String imageURL, int mileage, int price, TypesOFTransmission transmission, String year, LocalDateTime created, LocalDateTime modified, Models model, Users users) {
+    public Offers(String description, TypesOfGas engine, String imageURL, int mileage, int price, TypesOFTransmission transmission, String year, LocalDateTime created, LocalDateTime modified, Models model, Users user) {
         this.description = description;
         this.engine = engine;
         this.imageURL = imageURL;
@@ -150,7 +150,7 @@ public class Offers extends BaseEntity {
         this.created = created;
         this.modified = modified;
         this.model = model;
-        this.users = users;
+        this.user = user;
     }
 
     protected Offers() {

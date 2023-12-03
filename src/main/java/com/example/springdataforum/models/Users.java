@@ -22,7 +22,7 @@ public class Users extends BaseEntity {
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private UserRole role;
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Offers> offers;
 
     protected Users() {

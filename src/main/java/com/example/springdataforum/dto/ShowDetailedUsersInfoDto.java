@@ -15,7 +15,7 @@ public class ShowDetailedUsersInfoDto {
     LocalDateTime created;
     LocalDateTime modified;
 
-    ShowDetailedUsersInfoDto() {
+   protected ShowDetailedUsersInfoDto() {
     }
 
     ;
@@ -115,17 +115,6 @@ public class ShowDetailedUsersInfoDto {
 
     @Override
     public String toString() {
-        return "ShowDetailedUsersInfoDto{" +
-                "id=" + id +
-                ", role=" + role +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", isActive=" + isActive +
-                ", imageURL='" + imageURL + '\'' +
-                ", created=" + created +
-                ", modified=" + modified +
-                '}';
+        return userName;
     }
 }

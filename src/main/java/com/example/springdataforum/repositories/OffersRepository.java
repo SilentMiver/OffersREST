@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface OffersRepository extends JpaRepository<Offers, UUID> {
-    @Query("SELECT o from Offers o JOIN o.users u WHERE u.username = :username")
+    @Query("SELECT o from Offers o JOIN o.user u WHERE u.username = :username")
     List<Offers> findAllByUserName (String username);
 
 
