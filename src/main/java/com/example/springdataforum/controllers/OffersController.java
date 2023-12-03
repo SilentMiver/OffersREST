@@ -3,6 +3,7 @@ package com.example.springdataforum.controllers;
 import com.example.springdataforum.dto.AddOfferDto;
 import com.example.springdataforum.dto.ShowDetailedOffersInfoDto;
 import com.example.springdataforum.dto.ShowOffersInfoDto;
+import com.example.springdataforum.services.impl.ModelsService;
 import com.example.springdataforum.services.impl.OffersService;
 import com.example.springdataforum.services.impl.UsersService;
 import jakarta.validation.Valid;
@@ -22,25 +23,28 @@ public class OffersController {
 
     private final OffersService offersService;
     private final UsersService usersService;
+    private final ModelsService modelService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public OffersController(OffersService offersService, UsersService usersService, ModelMapper modelMapper) {
+    public OffersController(OffersService offersService, UsersService usersService, ModelsService modelService, ModelMapper modelMapper) {
         this.offersService = offersService;
         this.usersService = usersService;
+        this.modelService = modelService;
         this.modelMapper = modelMapper;
     }
-
     @GetMapping("/add")
     public String showAddOfferForm(Model model) {
         model.addAttribute("addOfferDto", new AddOfferDto());
         model.addAttribute("allUsers", usersService.getAll());
+        model.addAttribute("allModelsX", modelService.getAll());
         return "addOffers";
     }
 
     @PostMapping("/add")
     public String addOffer(@ModelAttribute("addOfferDto") @Valid AddOfferDto addOfferDto, BindingResult result) {
         if (result.hasErrors()) {
+            System.out.println("\n" + result);
             return "addOffers";
         }
 

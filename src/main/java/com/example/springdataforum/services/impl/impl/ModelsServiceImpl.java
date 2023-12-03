@@ -3,9 +3,7 @@ package com.example.springdataforum.services.impl.impl;
 import com.example.springdataforum.conf.utilities.ValidationUtil;
 import com.example.springdataforum.controllers.exceptions.ModelsIsExistException;
 import com.example.springdataforum.controllers.exceptions.ModelsNotFoundException;
-import com.example.springdataforum.dto.AddModelDto;
-import com.example.springdataforum.dto.ShowModelsInfoDto;
-import com.example.springdataforum.dto.ShowDetailedModelsInfoDto;
+import com.example.springdataforum.dto.*;
 import com.example.springdataforum.dto.ShowDetailedModelsInfoDto;
 import com.example.springdataforum.models.Models;
 import com.example.springdataforum.models.Models;
@@ -42,6 +40,11 @@ public class ModelsServiceImpl implements ModelsService {
     @Override
     public void addModel(AddModelDto modelDto) {
         modelRepository.saveAndFlush(modelMapper.map(modelDto, Models.class));
+    }
+
+    @Override
+    public List<ShowDetailedModelsInfoDto> getAll() {
+        return modelRepository.findAll().stream().map((s) -> modelMapper.map(s, ShowDetailedModelsInfoDto.class)).collect(Collectors.toList());
     }
 
     @Override

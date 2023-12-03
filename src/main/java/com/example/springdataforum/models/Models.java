@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "models")
 public class Models extends BaseEntity {
-    private String name;
+     String name;
     CategoryOfVehicles category;
     String imageURL;
     int startYear;

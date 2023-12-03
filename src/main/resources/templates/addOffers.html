@@ -14,9 +14,17 @@
         <div class="form-group">
             <label for="userId">Select User:</label>
             <select class="form-control" id="userId" name="userId" th:field="*{userId}">
-                <option th:each="user : ${allUsers}" th:value="${user.id}" th:text="${user.userName}"></option>
+                <option th:each="user : ${allUsers}" th:value="${user}" th:text="${user.userName}"></option>
             </select>
         </div>
+
+        <div class="form-group">
+            <label for="modelId">Select Model:</label>
+            <select class="form-control" id="modelId" name="modelId" th:field="*{modelId}">
+                <option th:each="model : ${allModelsX}" th:value="${model.id}" th:text="${model.name}"></option>
+            </select>
+        </div>
+
         <div class="form-group">
             <label for="description">Description:</label>
             <input type="text" class="form-control" id="description" name="description" th:field="*{description}" >
@@ -38,6 +46,15 @@
             <select class="form-control" id="transmission" name="transmission" th:field="*{transmission}" >
                 <option value="AUTOMATIC">Automatic</option>
                 <option value="MANUAL">Manual</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="engine">Transmission:</label>
+            <select class="form-control" id="engine" name="engine" th:field="*{engine}" >
+                <option value="GASOLINE">GASOLINE</option>
+                <option value="DIESEL">DIESEL</option>
+                <option value="ELECTRIC">ELECTRIC</option>
+                <option value="HYBRID">HYBRID</option>
             </select>
         </div>
 

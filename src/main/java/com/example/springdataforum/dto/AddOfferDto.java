@@ -16,8 +16,42 @@ public class AddOfferDto {
     private String year;
     LocalDateTime created;
     LocalDateTime modified;
-    private UUID modelId;
-    private UUID userId;
+    private String userId;
+    private String modelId;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(String modelId) {
+        this.modelId = modelId;
+    }
+    //    private ShowDetailedModelsInfoDto model;
+//    private ShowDetailedUsersInfoDto user;
+
+//    public ShowDetailedModelsInfoDto getModel() {
+//        return model;
+//    }
+//
+//    public void setModel(ShowDetailedModelsInfoDto model) {
+//        this.model = model;
+//    }
+//
+//    public ShowDetailedUsersInfoDto getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(ShowDetailedUsersInfoDto user) {
+//        this.user = user;
+//    }
 
     public LocalDateTime getCreated() {
         return created;
@@ -92,20 +126,6 @@ public class AddOfferDto {
         this.year = year;
     }
 
-    public UUID getModelId() {
-        return modelId;
-    }
 
-    public void setModelId(UUID modelId) {
-        this.modelId = modelId;
-    }
-
-    public UUID getUserId() {
-        return userId;
-    }
-
-    public void setUserId(UUID userId) {
-        this.userId = userId;
-    }
 }
 

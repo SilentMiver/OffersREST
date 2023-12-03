@@ -11,14 +11,14 @@ import java.util.UUID;
 
 public interface ModelsService {
     void addModel(AddModelDto modelDto);
-
+    List<ShowDetailedModelsInfoDto> getAll();
     List<ShowModelsInfoDto> getAllModels();
     ShowDetailedModelsInfoDto modelDetails(String modelName) ;
     void removeModel(String modelName);  
 }
 //    ShowDetailedModelsInfoDto register(ShowDetailedModelsInfoDto model);
 ////
-////    List<ShowDetailedModelsInfoDto> getAll();
+
 ////
 ////    Optional<ShowDetailedModelsInfoDto> get(UUID id);
 ////
