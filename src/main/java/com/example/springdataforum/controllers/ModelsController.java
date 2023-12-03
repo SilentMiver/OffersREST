@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -37,6 +38,8 @@ public class ModelsController {
         if (bindingResult.hasErrors()) {
             return "addModel";
         }
+        modelDto.setCreated(LocalDateTime.now());
+        modelDto.setModified(LocalDateTime.now());
         modelsService.addModel(modelDto);
         return "redirect:/models/all";
     }

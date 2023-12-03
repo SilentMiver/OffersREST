@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -47,7 +48,8 @@ public class OffersController {
             System.out.println("\n" + result);
             return "addOffers";
         }
-
+        addOfferDto.setCreated(LocalDateTime.now());
+        addOfferDto.setModified(LocalDateTime.now());
         offersService.addOffer(addOfferDto);
         return "redirect:/offers/all";
     }

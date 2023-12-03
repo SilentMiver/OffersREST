@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDateTime;
+
 @Controller
 @RequestMapping("/users")
 public class UsersController {
@@ -60,6 +62,8 @@ public String showAllUsers(Model model) {
                     bindingResult);
             return "redirect:/users/add";
         }
+        userModel.setCreated(LocalDateTime.now());
+        userModel.setModified(LocalDateTime.now());
         usersService.addUser(userModel);
 
         return "redirect:/";
