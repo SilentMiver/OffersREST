@@ -1,40 +1,47 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head"/>
-<body class="d-flex flex-column h-100">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Offer</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
 <div th:replace="fragments/navbar">Navbar</div>
-<main class="flex-shrink-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="jumbotron text-center rounded col-md-8 align-self-center pt-5">
-                <div class="justify-content-center">
-                    <h1>Add Brand</h1>
-                </div>
-
-                <form th:action="@{/brands/add}"
-                      th:method="post"
-                      th:object="${brandModel}"
-                      class="m-md-auto w-50 pb-3">
-                    <div class="mb-3">
-                        <label class="form-label" for="name">Name</label>
-                        <input th:field="*{name}"
-                               th:errorclass="is-invalid"
-                               type="text" class="form-control text-center" id="name" aria-describedby="nameHelp"
-                               name="name"/>
-                        <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Error
-                            message</small>
-                    </div>
-
-
-
-                    <button type="submit" class="btn  bg-primary align-bottom text-bg-light" >Add Company</button>
-
-                </form>
-            </div>
+<div class="container mt-5">
+    <h2>Add Brand</h2>
+    <form th:action="@{/brands/add}" th:object="${brandModel}" method="post">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" th:field="*{name}" >
         </div>
-    </div>
-</main>
-<footer th:replace="fragments/footer"/>
+
+
+        <!--        <div class="form-group">-->
+        <!--            <label for="created">Created:</label>-->
+        <!--            <input type="datetime-local" class="form-control" id="created" name="created" th:field="*{created}" >-->
+        <!--        </div>-->
+        <!--        <div class="form-group">-->
+        <!--            <label for="modified">Modified:</label>-->
+        <!--            <input type="datetime-local" class="form-control" id="modified" name="modified" th:field="*{modified}" >-->
+        <!--        </div>-->
+
+        <!--        <div class="form-group">-->
+        <!--            <label for="modelId">Model ID:</label>-->
+        <!--            <input type="text" class="form-control" id="modelId" name="modelId" th:field="*{modelId}" >-->
+        <!--        </div>-->
+        <!--        <div class="form-group">-->
+        <!--            <label for="userId">User ID:</label>-->
+        <!--            <select class="form-control" id="userId" name="transmission" th:field="*{userId}" th:each="users: ${allUsers}" >-->
+        <!--                <option value=${users.id}>${users.name}</option>-->
+        <!--                -->
+        <!--                &lt;!&ndash; Add other transmission types as needed &ndash;&gt;-->
+        <!--            </select>-->
+        <!--        </div>-->
+        <button type="submit" class="btn btn-primary">Add Brand</button>
+    </form>
+</div>
+
 </body>
+<footer th:replace="fragments/footer"/>
 </html>

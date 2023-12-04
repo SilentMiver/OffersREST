@@ -70,20 +70,11 @@ public class OffersController {
 
 
     @GetMapping("/remove/{offerDescription}")
-    public String showRemoveOfferForm(@PathVariable String offerDescription, Model model) {
-        model.addAttribute("offerName", offerDescription);
-        return "removeOffer";
-    }
-    @GetMapping("/remove")
-    public String showRemoveOfferForm() {
-        return "removeOffer";
-    }
-
-    @PostMapping("/remove")
-    public String removeOffer(@RequestParam String offerDescription) {
+    public String deleteOffer(@PathVariable("offerDescription") String offerDescription) {
         offersService.removeOffer(offerDescription);
         return "redirect:/offers/all";
     }
+
 }
 
 

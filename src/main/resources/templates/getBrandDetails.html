@@ -1,31 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head"/>
-<body class="d-flex flex-column h-100">
-<div th:replace="fragments/navbar">Navbar</div>
-<main class="flex-shrink-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <main class="jumbotron text-center rounded col-md-12 align-self-center pt-5">
-                <div class="justify-content-center">
-                    <h1>Brand Details</h1>
-                </div>
-                <div class="row bg-light rounded">
-                    <div class="col-md-6"><img src="/pic/company.png" height="350px"></div>
-                    <div class="col-md-6 pt-3">
-                        <h2>Company</h2>
-                        <h4 th:text="'Name: ' + ${brandDetails.name}"></h4>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offer Details</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
 
-                        <div class="align-bottom"><a class="btn btn-danger align-bottom"
-                                                     th:href="@{/brands/brand-delete/{brand-name}(brand-name=${brandDetails.name})}">Delete company</a>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
-</main>
-<footer th:replace="fragments/footer"/>
+<div th:replace="fragments/navbar">Navbar</div>
+<div class="container mt-5">
+    <h2>Brand Details</h2>
+    <dl class="row">
+        <dt class="col-sm-3">Name:</dt>
+        <dd class="col-sm-9" th:text="${brandDetails.name}"></dd>
+
+
+        <dt class="col-sm-3">Created:</dt>
+        <dd class="col-sm-9" th:text="${brandDetails.created}"></dd>
+
+        <dt class="col-sm-3">Modified:</dt>
+        <dd class="col-sm-9" th:text="${brandDetails.modified}"></dd>
+    </dl>
+    <a class="btn btn-primary" th:href="@{/brands/all}">Back to All Brands</a>
+</div>
+
 </body>
+<footer th:replace="fragments/footer"/>
 </html>

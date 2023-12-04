@@ -10,6 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDateTime;
+
 @Controller //not @Rest
 @RequestMapping("/brands")
 public class BrandsController {
@@ -23,7 +25,7 @@ public class BrandsController {
 
     @GetMapping("/all")
     public String showAllBrands(Model model) {
-        model.addAttribute("brandsInfos", brandService.getAll());
+        model.addAttribute("brands", brandService.getAllBrands());
 
         return "getAllBrands";
     }
@@ -44,17 +46,19 @@ public class BrandsController {
                     bindingResult);
             return "redirect:/brands/add";
         }
+        brandModel.setCreated(LocalDateTime.now());
+        brandModel.setModified(LocalDateTime.now());
         brandService.addBrand(brandModel);
 
         return "redirect:/brands/all";
     }
-    @GetMapping("/brand-details/{brand-name}")
+    @GetMapping("/details/{brand-name}")
     public String brandDetails(@PathVariable("brand-name") String brandName, Model model) {
         model.addAttribute("brandDetails", brandService.brandDetails(brandName));
 
         return "getBrandDetails";
     }
-    @GetMapping("/brand-delete/{brand-name}")
+    @GetMapping("/remove/{brand-name}")
     public String deleteBrand(@PathVariable("brand-name") String brandName) {
         brandService.removeBrand(brandName);
 
