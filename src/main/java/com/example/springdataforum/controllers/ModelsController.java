@@ -4,6 +4,7 @@ package com.example.springdataforum.controllers;
 import com.example.springdataforum.dto.AddModelDto;
 import com.example.springdataforum.dto.ShowDetailedModelsInfoDto;
 import com.example.springdataforum.dto.ShowModelsInfoDto;
+import com.example.springdataforum.services.impl.BrandsService;
 import com.example.springdataforum.services.impl.ModelsService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +22,19 @@ import java.util.List;
 public class ModelsController {
 
     private final ModelsService modelsService;
+    private final BrandsService brandsService;
 
 
     @Autowired
-    public ModelsController(ModelsService modelsService) {
+    public ModelsController(ModelsService modelsService, BrandsService brandsService) {
         this.modelsService = modelsService;
+        this.brandsService = brandsService;
     }
 
     @GetMapping("/add")
     public String showAddModelForm(Model model) {
         model.addAttribute("addModelDto", new AddModelDto());
+        model.addAttribute("allBrands", brandsService.getAll());
         return "addModel";
     }
 

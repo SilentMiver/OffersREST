@@ -15,31 +15,27 @@ public class AddModelDto {
     int endYear;
     LocalDateTime created;
     LocalDateTime modified;
-    ShowDetailedBrandsInfoDto brand;
+    String brandId;
 
 
     public AddModelDto() {
     }
 
-    public AddModelDto(String name, CategoryOfVehicles category, String imageURL, int startYear, int endYear, LocalDateTime created, LocalDateTime modified, ShowDetailedBrandsInfoDto brand) {
-        this.name = name;
-        this.category = category;
-        this.imageURL = imageURL;
-        this.startYear = startYear;
-        this.endYear = endYear;
-        this.created = created;
-        this.modified = modified;
-        this.brand = brand;
+    public String getBrandId() {
+        return brandId;
     }
 
-
-    public ShowDetailedBrandsInfoDto getBrand() {
-        return brand;
+    public void setBrandId(String brandId) {
+        this.brandId = brandId;
     }
 
-    public void setBrand(ShowDetailedBrandsInfoDto brand) {
-        this.brand = brand;
-    }
+    //    public ShowDetailedBrandsInfoDto getBrand() {
+//        return brand;
+//    }
+//
+//    public void setBrand(ShowDetailedBrandsInfoDto brand) {
+//        this.brand = brand;
+//    }
 
 //    @NotEmpty(message = "Model name must not be null or empty!")
 //    @Size(min = 2, max = 10, message = "Brand name must be between 2 and 10 characters!")

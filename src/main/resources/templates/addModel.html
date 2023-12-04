@@ -13,6 +13,12 @@
     <h2>Add Model</h2>
     <form th:action="@{/models/add}" th:object="${addModelDto}" method="post">
         <div class="form-group">
+            <label for="brandId">Select User:</label>
+            <select class="form-control" id="brandId" name="brandId" th:field="*{brandId}">
+                <option th:each="brand : ${allBrands}" th:value="${brand.id}" th:text="${brand.name}"></option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" class="form-control" id="name" name="name" th:field="*{name}" >
         </div>
