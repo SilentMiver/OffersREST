@@ -62,7 +62,7 @@ public class OffersController {
     }
 
     @GetMapping("/details/{offerId}")
-    public String getOfferDetails(@PathVariable String offerId, Model model) {
+    public String getOfferDetails(@PathVariable("offerId") String offerId, Model model) {
         ShowDetailedOffersInfoDto offerDetails = offersService.offerDetails(offerId);
         model.addAttribute("offerDetails", offerDetails);
         return "getOfferDetails";

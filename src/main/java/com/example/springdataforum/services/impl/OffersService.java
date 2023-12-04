@@ -13,7 +13,7 @@ public interface OffersService {
     void addOffer(AddOfferDto offerDto);
 
     List<ShowOffersInfoDto> getAllOffers();
-    ShowDetailedOffersInfoDto offerDetails(String offerName) ;
+    ShowDetailedOffersInfoDto offerDetails(String offerId) ;
     void removeOffer(String offerName);
 //    ShowDetailedOffersInfoDto register(ShowDetailedOffersInfoDto offer);
 //

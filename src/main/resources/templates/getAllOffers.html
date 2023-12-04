@@ -27,7 +27,7 @@
 
             <td>
                 <!-- Add actions as needed, e.g., details, edit, delete -->
-                <a th:href="@{/offers/details/{description}(description=${offer.description})}">Details</a>
+                <a th:href="@{/offers/details/{id}(id=${offer.id})}">Details</a>
                 <a th:href="@{/offers/edit/{description}(description=${offer.description})}">Edit</a>
                 <a th:href="@{/offers/remove/{description}(description=${offer.description})}">Delete</a>
             </td>

@@ -49,8 +49,8 @@ public class OffersServiceImpl implements OffersService {
     }
 
     @Override
-    public ShowDetailedOffersInfoDto offerDetails(String description) {
-        return modelMapper.map(offerRepository.findByDescription(description).orElse(null), ShowDetailedOffersInfoDto.class);
+    public ShowDetailedOffersInfoDto offerDetails(String id) {
+        return modelMapper.map(offerRepository.findById(UUID.fromString(id)).orElse(null), ShowDetailedOffersInfoDto.class);
     }
 
     @Override
