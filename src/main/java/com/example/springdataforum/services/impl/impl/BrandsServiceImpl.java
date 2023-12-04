@@ -122,4 +122,11 @@ public class BrandsServiceImpl implements BrandsService {
         brandRepository.deleteByName(brandName);
 
     }
+
+    @Override
+    public Optional<Brands> findByName(String name) {
+        return brandRepository.findByName(name);
+    }
+
+
 }

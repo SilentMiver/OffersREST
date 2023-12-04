@@ -40,6 +40,7 @@ public class AddModelDto {
 //    @NotEmpty(message = "Model name must not be null or empty!")
 //    @Size(min = 2, max = 10, message = "Brand name must be between 2 and 10 characters!")
 
+
     public String getName() {
         return name;
     }

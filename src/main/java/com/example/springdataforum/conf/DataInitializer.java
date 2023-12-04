@@ -3,6 +3,7 @@ package com.example.springdataforum.conf;
 
 import com.example.springdataforum.Constans.TypesOfRoles;
 import com.example.springdataforum.dto.AddUserRoleDto;
+import com.example.springdataforum.repositories.BrandsRepository;
 import com.example.springdataforum.services.impl.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,14 +17,16 @@ public class DataInitializer implements CommandLineRunner {
     private final UsersService usersService;
     private final OffersService offerService;
     private final UserRolesService userRolesService;
+    private final BrandsRepository brandsRepository;
 
-    public DataInitializer(UserRolesService roleService, BrandsService brandService, ModelsService modelService, UsersService usersService, OffersService offerService, UserRolesService userRolesService) {
+    public DataInitializer(UserRolesService roleService, BrandsService brandService, ModelsService modelService, UsersService usersService, OffersService offerService, UserRolesService userRolesService, BrandsRepository brandsRepository) {
         this.roleService = roleService;
         this.brandService = brandService;
         this.modelService = modelService;
         this.usersService = usersService;
         this.offerService = offerService;
         this.userRolesService = userRolesService;
+        this.brandsRepository = brandsRepository;
     }
 
     @Override
@@ -40,6 +43,8 @@ public class DataInitializer implements CommandLineRunner {
         userRole2.setRole(TypesOfRoles.ADMIN);
         userRolesService.addUserRole(userRole1);
         userRolesService.addUserRole(userRole2);
+        UniqueBrandNameValidator validator =new UniqueBrandNameValidator();
+        validator.setBrandsRepository(brandsRepository);
 
 //        System.out.println("Start test: \n");
 //        ShowDetailedUserRolesInfoDto role1 = new ShowDetailedUserRolesInfoDto(UUID.randomUUID(), TypesOfRoles.USER);

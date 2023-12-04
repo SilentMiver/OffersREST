@@ -1,11 +1,13 @@
 package com.example.springdataforum.dto;
 
+import com.example.springdataforum.conf.UniqueBrandName;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
 public class AddBrandDto {
+    @UniqueBrandName
     public String name;
     public LocalDateTime created;
     public LocalDateTime modified;

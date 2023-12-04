@@ -3,6 +3,7 @@ package com.example.springdataforum.services.impl;
 import com.example.springdataforum.dto.AddBrandDto;
 import com.example.springdataforum.dto.ShowBrandsInfoDto;
 import com.example.springdataforum.dto.ShowDetailedBrandsInfoDto;
+import com.example.springdataforum.models.Brands;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +28,7 @@ public interface BrandsService {
     List<ShowBrandsInfoDto> getAllBrands();
     ShowDetailedBrandsInfoDto brandDetails(String brandName) ;
     void removeBrand(String brandName);
+    Optional<Brands> findByName(String name);
 
 
 }

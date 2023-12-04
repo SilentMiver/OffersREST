@@ -13,7 +13,9 @@
     <form th:action="@{/brands/add}" th:object="${brandModel}" method="post">
         <div class="form-group">
             <label for="name">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" th:field="*{name}" >
+            <input type="text" class="form-control" id="name" name="name" th:field="*{name}" th:errorclass="is-invalid" >
+            <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Error
+                message</small>
         </div>
 
 

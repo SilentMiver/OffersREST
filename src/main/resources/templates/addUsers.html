@@ -27,7 +27,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="roleId">Role</label>
-                        <select class="form-control" id="roleId" name="roleId" th:field="*{roleId}">
+                        <select class="form-control" id="roleId" name="roleId" th:field="*{roleId}" th:errorclass="is-invalid" >
                             <option th:each="role : ${allRoles}" th:value="${role.id}" th:text="${role.role}"></option>
                         </select>
                         <small th:if="${#fields.hasErrors('roleId')}" th:errors="*{roleId}" class="text-danger">Error
