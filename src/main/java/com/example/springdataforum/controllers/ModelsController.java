@@ -22,6 +22,7 @@ public class ModelsController {
 
     private final ModelsService modelsService;
 
+
     @Autowired
     public ModelsController(ModelsService modelsService) {
         this.modelsService = modelsService;
@@ -59,20 +60,11 @@ public class ModelsController {
     }
 
     @GetMapping("/remove/{modelName}")
-    public String showRemoveModelForm(@PathVariable String modelName, Model model) {
-        model.addAttribute("modelName", modelName);
-        return "removeModel";
-    }
-    @GetMapping("/remove")
-    public String showRemoveModelForm() {
-        return "removeModel";
+    public String deleteModel(@PathVariable String modelName) {
+     modelsService.removeModel(modelName);
+     return "redirect:/models/all";
     }
 
-    @PostMapping("/remove")
-    public String removeModel(@RequestParam String modelName) {
-        modelsService.removeModel(modelName);
-        return "redirect:/models/all";
-    }
 }
 
 

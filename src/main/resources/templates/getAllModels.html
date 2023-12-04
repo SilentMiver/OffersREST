@@ -21,6 +21,13 @@
         <tr th:each="model : ${models}">
             <td th:text="${model.name}"></td>
 
+            <td>
+                <!-- Add actions as needed, e.g., details, edit, delete -->
+                <a th:href="@{/models/details/{name}(name=${model.name})}">Details</a>
+                <a th:href="@{/models/edit/{name}(name=${model.name})}">Edit</a>
+                <a th:href="@{/models/remove/{name}(name=${model.name})}">Delete</a>
+            </td>
+
         </tr>
         </tbody>
     </table>
