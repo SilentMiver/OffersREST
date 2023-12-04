@@ -57,6 +57,11 @@ public class UserRolesServiceImpl implements UserRolesService {
         roleRepository.deleteByRole(TypesOfRoles.valueOf(roleName));
     }
 
+    @Override
+    public List<ShowDetailedUserRolesInfoDto> getAll() {
+        return  roleRepository.findAll().stream().map((s) -> modelMapper.map(s, ShowDetailedUserRolesInfoDto.class)).collect(Collectors.toList());
+    }
+
 
 //    @Override
 //    public ShowDetailedUserRolesInfoDto register(ShowDetailedUserRolesInfoDto role) {

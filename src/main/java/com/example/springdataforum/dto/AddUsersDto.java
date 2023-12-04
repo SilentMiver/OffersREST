@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class AddUsersDto {
 
-    private ShowDetailedUserRolesInfoDto role;
+    private String roleId;
     private String userName;
     private String password;
     private String firstName;
@@ -18,15 +18,22 @@ public class AddUsersDto {
     private LocalDateTime created;
     private LocalDateTime modified;
 
-
-    public ShowDetailedUserRolesInfoDto getRole() {
-        return role;
+    public String getRoleId() {
+        return roleId;
     }
 
-
-    public void setRole(ShowDetailedUserRolesInfoDto role) {
-        this.role = role;
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
+
+    //    public ShowDetailedUserRolesInfoDto getRole() {
+//        return role;
+//    }
+//
+//
+//    public void setRole(ShowDetailedUserRolesInfoDto role) {
+//        this.role = role;
+//    }
     @NotEmpty(message = "Username must not be null or empty!")
     @Size(min = 2, max = 10, message = "Brand name must be between 2 and 10 characters!")
     public String getUserName() {

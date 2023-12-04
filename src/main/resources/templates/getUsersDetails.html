@@ -1,38 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head"/>
-<body class="d-flex flex-column h-100">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offer Details</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+
 <div th:replace="fragments/navbar">Navbar</div>
-<main class="flex-shrink-0">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-2"></div>
-      <main class="jumbotron text-center rounded col-md-12 align-self-center pt-5">
-        <div class="justify-content-center">
-          <h1>USer Details</h1>
-        </div>
-        <div class="row bg-light rounded">
-          <div class="col-md-6"><img src="/pic/company.png" height="350px"></div>
-          <div class="col-md-6 pt-3">
-            <h2>ser</h2>
-            <h4 th:text="'User Name: ' + ${userDetails.userName}"></h4>
-            <h4 th:text="'Name: ' + ${userDetails.firstName}"></h4>
-            <h4 th:text="'Last Name: ' + ${userDetails.lastName}"></h4>
-            <h4 th:text="'Active: ' + ${userDetails.active}"></h4>
-            <h4 th:text="'Image: ' + ${userDetails.imageURL}"></h4>
+<div class="container mt-5">
+  <h2>Offer Details</h2>
+  <dl class="row">
+    <dt class="col-sm-3">User Name:</dt>
+    <dd class="col-sm-9" th:text="${userDetails.userName}"></dd>
 
-            <div class="align-bottom"><a class="btn btn-danger align-bottom"
-                                         th:href="@{/users/remove/{userName}(userName=${userDetails.userName})}">Delet User</a>
-              <a class="btn btn-secondary align-bottom"
-                 th:href="@{/users/all}">back to all Users</a>
+    <dt class="col-sm-3">First Name:</dt>
+    <dd class="col-sm-9" th:text="${userDetails.firstName}"></dd>
 
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
-  </div>
-</main>
-<footer th:replace="fragments/footer"/>
+    <dt class="col-sm-3">Last Name:</dt>
+    <dd class="col-sm-9" th:text="${userDetails.lastName}"></dd>
+
+    <dt class="col-sm-3">Role:</dt>
+    <dd class="col-sm-9" th:text="${userDetails.role.role}"></dd>
+
+    <dt class="col-sm-3">Image URL:</dt>
+    <dd class="col-sm-9" th:text="${userDetails.imageURL}"></dd>
+
+
+    <dt class="col-sm-3">Created:</dt>
+    <dd class="col-sm-9" th:text="${userDetails.created}"></dd>
+
+    <dt class="col-sm-3">Modified:</dt>
+    <dd class="col-sm-9" th:text="${userDetails.modified}"></dd>
+  </dl>
+  <a class="btn btn-primary" th:href="@{/offers/all}">Back to All Offers</a>
+</div>
+
 </body>
+<footer th:replace="fragments/footer"/>
 </html>

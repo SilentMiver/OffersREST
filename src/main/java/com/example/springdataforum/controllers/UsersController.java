@@ -2,6 +2,7 @@ package com.example.springdataforum.controllers;
 
 
 import com.example.springdataforum.dto.AddUsersDto;
+import com.example.springdataforum.services.impl.UserRolesService;
 import com.example.springdataforum.services.impl.UsersService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,15 @@ import java.time.LocalDateTime;
 public class UsersController {
     // add setter injection
     private UsersService usersService;
+    private UserRolesService userRolesService;
 
     @Autowired
     public void setUsersService(UsersService usersService) {
         this.usersService = usersService;
+    }
+ @Autowired
+    public void setUsersRolesService(UserRolesService userRolesService) {
+        this.userRolesService = userRolesService;
     }
 //    @GetMapping()
 //    Iterable<ShowDetailedUsersInfoDto> all() {
@@ -50,7 +56,9 @@ public String showAllUsers(Model model) {
         return new AddUsersDto();
     }
     @GetMapping("/add")
-    public String addUsers() {
+    public String addUsers(Model model) {
+        model.addAttribute("allRoles", userRolesService.getAll());
+
         return "addUsers";
     }
     @PostMapping("/add")

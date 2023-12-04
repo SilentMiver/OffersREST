@@ -1,17 +1,11 @@
 package com.example.springdataforum.conf;
 
 
-import com.example.springdataforum.Constans.CategoryOfVehicles;
-import com.example.springdataforum.Constans.TypesOFTransmission;
-import com.example.springdataforum.Constans.TypesOfGas;
 import com.example.springdataforum.Constans.TypesOfRoles;
-import com.example.springdataforum.dto.*;
+import com.example.springdataforum.dto.AddUserRoleDto;
 import com.example.springdataforum.services.impl.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -21,13 +15,15 @@ public class DataInitializer implements CommandLineRunner {
     private final ModelsService modelService;
     private final UsersService usersService;
     private final OffersService offerService;
+    private final UserRolesService userRolesService;
 
-    public DataInitializer(UserRolesService roleService, BrandsService brandService, ModelsService modelService, UsersService usersService, OffersService offerService) {
+    public DataInitializer(UserRolesService roleService, BrandsService brandService, ModelsService modelService, UsersService usersService, OffersService offerService, UserRolesService userRolesService) {
         this.roleService = roleService;
         this.brandService = brandService;
         this.modelService = modelService;
         this.usersService = usersService;
         this.offerService = offerService;
+        this.userRolesService = userRolesService;
     }
 
     @Override
@@ -36,6 +32,14 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void seedData() {
+        AddUserRoleDto userRole1;
+        AddUserRoleDto userRole2;
+        userRole1 = new AddUserRoleDto();
+        userRole2 = new AddUserRoleDto();
+        userRole1.setRole(TypesOfRoles.USER);
+        userRole2.setRole(TypesOfRoles.ADMIN);
+        userRolesService.addUserRole(userRole1);
+        userRolesService.addUserRole(userRole2);
 
 //        System.out.println("Start test: \n");
 //        ShowDetailedUserRolesInfoDto role1 = new ShowDetailedUserRolesInfoDto(UUID.randomUUID(), TypesOfRoles.USER);

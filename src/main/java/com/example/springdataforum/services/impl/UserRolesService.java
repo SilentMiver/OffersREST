@@ -13,6 +13,8 @@ void addUserRole(AddUserRoleDto brandDto);
     List<ShowUserRolesInfoDto> getAllUserRoles();
     ShowDetailedUserRolesInfoDto userRoleDetails(String brandName) ;
     void removeUserRole(String brandName);
+
+    List<ShowDetailedUserRolesInfoDto> getAll();
 }
 //    ShowDetailedUserRolesInfoDto register(ShowDetailedUserRolesInfoDto role);
 ////
