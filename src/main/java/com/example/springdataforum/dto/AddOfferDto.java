@@ -2,11 +2,17 @@ package com.example.springdataforum.dto;
 
 import com.example.springdataforum.Constans.TypesOFTransmission;
 import com.example.springdataforum.Constans.TypesOfGas;
+import com.example.springdataforum.conf.UniqueOfferDescription;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class AddOfferDto {
+    @UniqueOfferDescription
     private String description;
     private TypesOfGas engine;
     private String imageURL;
@@ -18,7 +24,7 @@ public class AddOfferDto {
     LocalDateTime modified;
     private String userId;
     private String modelId;
-
+    @NotNull(message = "User must not be null or empty!")
     public String getUserId() {
         return userId;
     }
@@ -26,7 +32,7 @@ public class AddOfferDto {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-
+    @NotNull(message = "Model must not be null or empty!")
     public String getModelId() {
         return modelId;
     }
@@ -69,7 +75,8 @@ public class AddOfferDto {
         this.modified = modified;
     }
 
-
+    @NotEmpty(message = "Model name must not be null or empty!")
+    @Size(min = 10, message = "Model name must be between 10 and more characters!")
     public String getDescription() {
         return description;
     }
@@ -77,7 +84,7 @@ public class AddOfferDto {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    @NotNull(message = "Engine must not be null or empty!")
     public TypesOfGas getEngine() {
         return engine;
     }
@@ -85,7 +92,8 @@ public class AddOfferDto {
     public void setEngine(TypesOfGas engine) {
         this.engine = engine;
     }
-
+    @NotEmpty(message = "URL must not be null or empty!")
+    @Size(min = 5, message = "URL must be more than 5 characters!")
     public String getImageURL() {
         return imageURL;
     }
@@ -93,7 +101,8 @@ public class AddOfferDto {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
-
+    @Min(value = 1, message = "Year must be a positive number")
+    @NotNull(message = "null")
     public int getMileage() {
         return mileage;
     }
@@ -102,6 +111,8 @@ public class AddOfferDto {
         this.mileage = mileage;
     }
 
+    @Min(value = 0, message = "Year must be a positive number")
+    @NotNull(message = "null")
     public int getPrice() {
         return price;
     }
@@ -109,7 +120,7 @@ public class AddOfferDto {
     public void setPrice(int price) {
         this.price = price;
     }
-
+    @NotNull(message = "Transmission must not be null or empty!")
     public TypesOFTransmission getTransmission() {
         return transmission;
     }
@@ -117,7 +128,8 @@ public class AddOfferDto {
     public void setTransmission(TypesOFTransmission transmission) {
         this.transmission = transmission;
     }
-
+    @Min(value = 0, message = "Year must be a positive number")
+    @NotNull(message = "null")
     public String getYear() {
         return year;
     }

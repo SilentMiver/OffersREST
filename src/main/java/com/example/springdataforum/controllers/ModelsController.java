@@ -39,8 +39,9 @@ public class ModelsController {
     }
 
     @PostMapping("/add")
-    public String addModel(@ModelAttribute @Valid AddModelDto modelDto, BindingResult bindingResult) {
+    public String addModel(@ModelAttribute @Valid AddModelDto modelDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("allBrands", brandsService.getAll());
             return "addModel";
         }
         modelDto.setCreated(LocalDateTime.now());

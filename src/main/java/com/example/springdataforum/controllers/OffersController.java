@@ -43,9 +43,11 @@ public class OffersController {
     }
 
     @PostMapping("/add")
-    public String addOffer(@ModelAttribute("addOfferDto") @Valid AddOfferDto addOfferDto, BindingResult result) {
+    public String addOffer(@ModelAttribute("addOfferDto") @Valid AddOfferDto addOfferDto, BindingResult result,Model model) {
         if (result.hasErrors()) {
             System.out.println("\n" + result);
+            model.addAttribute("allUsersX", usersService.getAll());
+            model.addAttribute("allModelsX", modelService.getAll());
             return "addOffers";
         }
         addOfferDto.setCreated(LocalDateTime.now());

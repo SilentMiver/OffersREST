@@ -23,74 +23,70 @@
         </div>
 
         <div class="form-group">
-            <label for="usersId">Select User:</label>
-            <select class="form-control" id="usersId" name="usersId" th:field="*{userId}">
+            <label for="userId">Select User:</label>
+            <select class="form-control" id="userId" name="userId" th:field="*{userId}" th:errorclass="is-invalid">
                 <option th:each="user : ${allUsersX}" th:value="${user.id}" th:text="${user.userName}"></option>
             </select>
+            <small th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="text-danger">Error
+                message</small>
         </div>
 
         <div class="form-group">
             <label for="modelId">Select Model:</label>
-            <select class="form-control" id="modelId" name="modelId" th:field="*{modelId}">
+            <select class="form-control" id="modelId" name="modelId" th:field="*{modelId}" th:errorclass="is-invalid">
                 <option th:each="model : ${allModelsX}" th:value="${model.id}" th:text="${model.name}"></option>
             </select>
+            <small th:if="${#fields.hasErrors('modelId')}" th:errors="*{modelId}" class="text-danger">Error
+                message</small>
         </div>
 
 
         <div class="form-group">
             <label for="imageURL">Image URL:</label>
-            <input type="text" class="form-control" id="imageURL" name="imageURL" th:field="*{imageURL}" >
+            <input type="text" class="form-control" id="imageURL" name="imageURL" th:field="*{imageURL}" th:errorclass="is-invalid" >
+            <small th:if="${#fields.hasErrors('modelId')}" th:errors="*{modelId}" class="text-danger">Error
+                message</small>
         </div>
         <div class="form-group">
             <label for="mileage">Mileage:</label>
-            <input type="number" class="form-control" id="mileage" name="mileage" th:field="*{mileage}" >
+            <input type="number" class="form-control" id="mileage" name="mileage" th:field="*{mileage}" th:errorclass="is-invalid">
+            <small th:if="${#fields.hasErrors('mileage')}" th:errors="*{mileage}" class="text-danger">Error
+                message</small>
         </div>
         <div class="form-group">
             <label for="price">Price:</label>
-            <input type="number" class="form-control" id="price" name="price" th:field="*{price}" >
+            <input type="number" class="form-control" id="price" name="price" th:field="*{price}" th:errorclass="is-invalid" >
+            <small th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger">Error
+                message</small>
         </div>
         <div class="form-group">
             <label for="transmission">Transmission:</label>
-            <select class="form-control" id="transmission" name="transmission" th:field="*{transmission}" >
+            <select class="form-control" id="transmission" name="transmission" th:field="*{transmission}" th:errorclass="is-invalid" >
                 <option value="AUTOMATIC">Automatic</option>
                 <option value="MANUAL">Manual</option>
             </select>
+            <small th:if="${#fields.hasErrors('transmission')}" th:errors="*{transmission}" class="text-danger">Error
+                message</small>
         </div>
         <div class="form-group">
-            <label for="engine">Transmission:</label>
-            <select class="form-control" id="engine" name="engine" th:field="*{engine}" >
+            <label for="engine">Engine:</label>
+            <select class="form-control" id="engine" name="engine" th:field="*{engine}" th:errorclass="is-invalid" >
                 <option value="GASOLINE">GASOLINE</option>
                 <option value="DIESEL">DIESEL</option>
                 <option value="ELECTRIC">ELECTRIC</option>
                 <option value="HYBRID">HYBRID</option>
             </select>
+            <small th:if="${#fields.hasErrors('engine')}" th:errors="*{engine}" class="text-danger">Error
+                message</small>
         </div>
 
         <div class="form-group">
             <label for="year">Year:</label>
-            <input type="text" class="form-control" id="year" name="year" th:field="*{year}" >
+            <input type="text" class="form-control" id="year" name="year" th:field="*{year}" th:errorclass="is-invalid" >
+            <small th:if="${#fields.hasErrors('year')}" th:errors="*{year}" class="text-danger">Error
+                message</small>
         </div>
-<!--        <div class="form-group">-->
-<!--            <label for="created">Created:</label>-->
-<!--            <input type="datetime-local" class="form-control" id="created" name="created" th:field="*{created}" >-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label for="modified">Modified:</label>-->
-<!--            <input type="datetime-local" class="form-control" id="modified" name="modified" th:field="*{modified}" >-->
-<!--        </div>-->
 
-<!--        <div class="form-group">-->
-<!--            <label for="modelId">Model ID:</label>-->
-<!--            <input type="text" class="form-control" id="modelId" name="modelId" th:field="*{modelId}" >-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label for="userId">User ID:</label>-->
-<!--            <select class="form-control" id="userId" name="transmission" th:field="*{userId}" th:each="users: ${allUsers}" >-->
-<!--                <option value=${users.id}>${users.name}</option>-->
-<!--                -->
-<!--                &lt;!&ndash; Add other transmission types as needed &ndash;&gt;-->
-<!--            </select>-->
-<!--        </div>-->
         <button type="submit" class="btn btn-primary">Add Offer</button>
     </form>
 </div>

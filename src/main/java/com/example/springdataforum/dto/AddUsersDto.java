@@ -1,6 +1,8 @@
 package com.example.springdataforum.dto;
 
+import com.example.springdataforum.conf.UniqueUserName;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
@@ -9,15 +11,17 @@ import java.util.UUID;
 public class AddUsersDto {
 
     private String roleId;
+    @UniqueUserName
     private String userName;
     private String password;
     private String firstName;
     private String lastName;
-    private boolean isActive;
+    private boolean isActive = true;
     private String imageURL;
     private LocalDateTime created;
     private LocalDateTime modified;
 
+    @NotNull(message = "Null")
     public String getRoleId() {
         return roleId;
     }
@@ -74,7 +78,7 @@ public class AddUsersDto {
         this.lastName = lastName;
     }
 
-
+    @NotNull(message = "null")
     public boolean isActive() {
         return isActive;
     }
