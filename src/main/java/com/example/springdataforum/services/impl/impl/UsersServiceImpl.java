@@ -109,6 +109,11 @@ public class UsersServiceImpl implements UsersService {
         return usersRepository.findAll().stream().map(user -> modelMapper.map(user, ShowUsersInfoDto.class))
                 .collect(Collectors.toList());
     }
+    @Override
+    public ShowUsersInfoDto getUserByName(String userName){
+        return usersRepository.findByUsername(userName).stream().map(user -> modelMapper.map(user, ShowUsersInfoDto.class)).toList().get(0);
+
+    }
 
     @Override
     public ShowDetailedUsersInfoDto userDetails(String userName) {

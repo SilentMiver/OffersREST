@@ -63,6 +63,11 @@ public class ModelsServiceImpl implements ModelsService {
         modelRepository.deleteByName(modelName);
     }
 
+    @Override
+    public ShowModelsInfoDto getModelByName(String name) {
+        return modelRepository.findByName(name).stream().map(model -> modelMapper.map(model, ShowModelsInfoDto.class)).toList().get(0);
+    }
+
 
 //
 }

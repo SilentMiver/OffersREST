@@ -1,10 +1,9 @@
 package com.example.springdataforum.services.impl;
 
-import com.example.springdataforum.dto.AddOfferDto;
-import com.example.springdataforum.dto.ShowOffersInfoDto;
-import com.example.springdataforum.dto.ShowDetailedOffersInfoDto;
+import com.example.springdataforum.dto.*;
 import com.example.springdataforum.dto.ShowDetailedOffersInfoDto;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -13,9 +12,14 @@ public interface OffersService {
     void addOffer(AddOfferDto offerDto);
 
     List<ShowOffersInfoDto> getAllOffers();
-    ShowDetailedOffersInfoDto offerDetails(String offerId) ;
+
+    ShowDetailedOffersInfoDto offerDetails(String offerId);
+
     void removeOffer(String offerName);
-//    ShowDetailedOffersInfoDto register(ShowDetailedOffersInfoDto offer);
+
+    List<ShowDetailedOffersInfoDto> getAll();
+
+    //    ShowDetailedOffersInfoDto register(ShowDetailedOffersInfoDto offer);
 //
 //    List<ShowDetailedOffersInfoDto> getAll();
 //
@@ -25,4 +29,5 @@ public interface OffersService {
 //
 //    ShowDetailedOffersInfoDto update(ShowDetailedOffersInfoDto offer);
 //    void addOfferWithValidation(ShowDetailedOffersInfoDto showDetailedOffersInfoDto);
+    List<ShowDetailedOffersInfoDto> findAllByUserName(String username);
 }

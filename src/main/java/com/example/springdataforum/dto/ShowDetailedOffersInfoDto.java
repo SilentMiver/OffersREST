@@ -4,8 +4,10 @@ import com.example.springdataforum.Constans.TypesOFTransmission;
 import com.example.springdataforum.Constans.TypesOfGas;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class ShowDetailedOffersInfoDto {
+    UUID id;
 
     String description;
     TypesOfGas engine;
@@ -20,7 +22,13 @@ public class ShowDetailedOffersInfoDto {
     ShowDetailedUsersInfoDto user;
 
 
+    public UUID getId() {
+        return id;
+    }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public ShowDetailedModelsInfoDto getModel() {
         return model;
@@ -115,18 +123,6 @@ public class ShowDetailedOffersInfoDto {
 
     @Override
     public String toString() {
-        return "ShowDetailedOffersInfoDto{" +
-                ", description='" + description + '\'' +
-                ", engine=" + engine +
-                ", imageURL='" + imageURL + '\'' +
-                ", mileage=" + mileage +
-                ", price=" + price +
-                ", transmission=" + transmission +
-                ", year=" + year +
-                ", created=" + created +
-                ", modified=" + modified +
-                ", model=" + model +
-                ", users=" + user +
-                '}';
+        return description;
     }
 }

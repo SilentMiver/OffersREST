@@ -14,7 +14,8 @@ public interface ModelsService {
     List<ShowDetailedModelsInfoDto> getAll();
     List<ShowModelsInfoDto> getAllModels();
     ShowDetailedModelsInfoDto modelDetails(String modelName) ;
-    void removeModel(String modelName);  
+    void removeModel(String modelName);
+    ShowModelsInfoDto getModelByName(String name);
 }
 //    ShowDetailedModelsInfoDto register(ShowDetailedModelsInfoDto model);
 ////

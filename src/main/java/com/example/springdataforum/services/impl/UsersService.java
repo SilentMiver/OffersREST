@@ -25,4 +25,5 @@ public interface UsersService {
     List<ShowUsersInfoDto> getAllUsers();
     ShowDetailedUsersInfoDto userDetails(String userName) ;
     void removeUser(String userName);
+     ShowUsersInfoDto getUserByName(String userName);
 }

@@ -1,12 +1,17 @@
 package com.example.springdataforum.conf;
 
 
+import com.example.springdataforum.Constans.CategoryOfVehicles;
+import com.example.springdataforum.Constans.TypesOFTransmission;
+import com.example.springdataforum.Constans.TypesOfGas;
 import com.example.springdataforum.Constans.TypesOfRoles;
-import com.example.springdataforum.dto.AddUserRoleDto;
+import com.example.springdataforum.dto.*;
 import com.example.springdataforum.repositories.BrandsRepository;
 import com.example.springdataforum.services.impl.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -35,6 +40,7 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void seedData() {
+        var date = LocalDateTime.now();
         AddUserRoleDto userRole1;
         AddUserRoleDto userRole2;
         userRole1 = new AddUserRoleDto();
@@ -45,6 +51,43 @@ public class DataInitializer implements CommandLineRunner {
         userRolesService.addUserRole(userRole2);
         UniqueBrandNameValidator validator =new UniqueBrandNameValidator();
         validator.setBrandsRepository(brandsRepository);
+        var user1 = new AddUsersDto();
+        user1.setRoleId(roleService.getAll().get(0).getId().toString());
+        user1.setUserName("User");
+        user1.setPassword("1321312");
+        user1.setFirstName("John");
+        user1.setLastName("Doe");
+        user1.setImageURL("yandex.ru");
+        user1.setCreated(date);
+        user1.setModified(date);
+        usersService.addUser(user1);
+        var brand1 = new AddBrandDto();
+        brand1.setName("Brand");
+        brand1.setCreated(date);
+        brand1.setModified(date);
+        brandService.addBrand(brand1);
+        var model1 = new AddModelDto();
+        model1.setBrandId(brandService.findByName(brand1.name).get().getId().toString());
+        model1.setName("Model");
+        model1.setCategory(CategoryOfVehicles.Car);
+        model1.setStartYear(1800);
+        model1.setEndYear(1800);
+        model1.setCreated(date);
+        model1.setModified(date);
+        modelService.addModel(model1);
+        var offer1 = new AddOfferDto();
+        offer1.setDescription("12345678910");
+        offer1.setUserId(usersService.userDetails(user1.getUserName()).getId().toString());
+        offer1.setModelId(modelService.modelDetails(model1.getName()).getId().toString());
+        offer1.setImageURL("google.com");
+        offer1.setMileage(100000);
+        offer1.setPrice(100000);
+        offer1.setTransmission(TypesOFTransmission.AUTOMATIC);
+        offer1.setEngine(TypesOfGas.ELECTRIC);
+        offer1.setYear("1900");
+        offer1.setCreated(date);
+        offer1.setModified(date);
+        offerService.addOffer(offer1);
 
 //        System.out.println("Start test: \n");
 //        ShowDetailedUserRolesInfoDto role1 = new ShowDetailedUserRolesInfoDto(UUID.randomUUID(), TypesOfRoles.USER);

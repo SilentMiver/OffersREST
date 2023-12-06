@@ -3,9 +3,7 @@ package com.example.springdataforum.services.impl.impl;
 import com.example.springdataforum.conf.utilities.ValidationUtil;
 import com.example.springdataforum.controllers.exceptions.OffersIsExistException;
 import com.example.springdataforum.controllers.exceptions.OffersNotFoundException;
-import com.example.springdataforum.dto.AddOfferDto;
-import com.example.springdataforum.dto.ShowOffersInfoDto;
-import com.example.springdataforum.dto.ShowDetailedOffersInfoDto;
+import com.example.springdataforum.dto.*;
 import com.example.springdataforum.dto.ShowDetailedOffersInfoDto;
 import com.example.springdataforum.models.Offers;
 import com.example.springdataforum.models.Offers;
@@ -15,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -58,6 +57,17 @@ public class OffersServiceImpl implements OffersService {
         offerRepository.deleteByDescription(description);
 
     }
+
+    @Override
+    public List<ShowDetailedOffersInfoDto> getAll() {
+        return offerRepository.findAll().stream().map((s) -> modelMapper.map(s, ShowDetailedOffersInfoDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ShowDetailedOffersInfoDto> findAllByUserName(String username) {
+        return offerRepository.findAllByUserName(username).stream().map((s) -> modelMapper.map(s, ShowDetailedOffersInfoDto.class)).collect(Collectors.toList());
+    }
+
 }
 
 //    @Override
