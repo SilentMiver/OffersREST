@@ -1,5 +1,6 @@
 package com.example.springdataforum.services.impl.impl;
 
+import com.example.springdataforum.Constans.CategoryOfVehicles;
 import com.example.springdataforum.conf.utilities.ValidationUtil;
 import com.example.springdataforum.controllers.exceptions.ModelsIsExistException;
 import com.example.springdataforum.controllers.exceptions.ModelsNotFoundException;
@@ -66,6 +67,25 @@ public class ModelsServiceImpl implements ModelsService {
     @Override
     public ShowModelsInfoDto getModelByName(String name) {
         return modelRepository.findByName(name).stream().map(model -> modelMapper.map(model, ShowModelsInfoDto.class)).toList().get(0);
+    }
+    @Override
+    public List<ShowModelsInfoDto> getAllModelsByBrand(String brandName) {
+        return modelRepository.findAllByBrandName(brandName).stream()
+                .map(model -> modelMapper.map(model, ShowModelsInfoDto.class))
+                .collect(Collectors.toList());
+    }
+    @Override
+    public List<ShowModelsInfoDto> getAllModelsByBrandAndCategory(String brandName, CategoryOfVehicles category) {
+        return modelRepository.findAllByBrandNameAndCategory(brandName, category).stream()
+                .map(model -> modelMapper.map(model, ShowModelsInfoDto.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ShowModelsInfoDto> getAllModelsByCategory(CategoryOfVehicles category) {
+        return modelRepository.findAllByCategory(category).stream()
+                .map(model -> modelMapper.map(model, ShowModelsInfoDto.class))
+                .collect(Collectors.toList());
     }
 
 

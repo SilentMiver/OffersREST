@@ -1,11 +1,13 @@
 package com.example.springdataforum.controllers;
 
 
+import com.example.springdataforum.Constans.CategoryOfVehicles;
 import com.example.springdataforum.dto.AddModelDto;
 import com.example.springdataforum.dto.ShowDetailedModelsInfoDto;
 import com.example.springdataforum.dto.ShowModelsInfoDto;
 import com.example.springdataforum.services.impl.BrandsService;
 import com.example.springdataforum.services.impl.ModelsService;
+import io.micrometer.common.util.StringUtils;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,10 +52,31 @@ public class ModelsController {
         return "redirect:/models/all";
     }
 
+    //    @GetMapping("/all")
+//    public String getAllModels(Model model) {
+//        List<ShowModelsInfoDto> models = modelsService.getAllModels();
+//        model.addAttribute("models", models);
+//        return "getAllModels";
+//    }
     @GetMapping("/all")
-    public String getAllModels(Model model) {
-        List<ShowModelsInfoDto> models = modelsService.getAllModels();
+    public String getAllModels(@RequestParam(name = "brandFilter", required = false) String brandFilter,
+                               @RequestParam(name = "categoryFilter", required = false) String categoryFilter,
+                               Model model) {
+
+        List<ShowModelsInfoDto> models;
+
+        if (StringUtils.isNotBlank(brandFilter) && StringUtils.isNotBlank(categoryFilter)) {
+            models = modelsService.getAllModelsByBrandAndCategory(brandFilter, CategoryOfVehicles.valueOf(categoryFilter));
+        } else if (StringUtils.isNotBlank(brandFilter)) {
+            models = modelsService.getAllModelsByBrand(brandFilter);
+        } else if (StringUtils.isNotBlank(categoryFilter)) {
+            models = modelsService.getAllModelsByCategory(CategoryOfVehicles.valueOf(categoryFilter));
+        } else {
+            models = modelsService.getAllModels();
+        }
+
         model.addAttribute("models", models);
+        model.addAttribute("allBrands", brandsService.getAll());
         return "getAllModels";
     }
 
@@ -66,29 +89,11 @@ public class ModelsController {
 
     @GetMapping("/remove/{modelName}")
     public String deleteModel(@PathVariable String modelName) {
-     modelsService.removeModel(modelName);
-     return "redirect:/models/all";
+        modelsService.removeModel(modelName);
+        return "redirect:/models/all";
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //@RestController

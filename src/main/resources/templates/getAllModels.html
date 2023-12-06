@@ -10,6 +10,24 @@
 <div th:replace="fragments/navbar">Navbar</div>
 <div class="container mt-5">
     <h2>All Models</h2>
+    <form th:action="@{/models/all}" method="get">
+        <label for="brandFilter">Filter by Brand:</label>
+        <select id="brandFilter" name="brandFilter">
+            <option value="">All Brands</option>
+            <th:block th:each="brand : ${allBrands}">
+                <option th:value="${brand.name}" th:text="${brand.name}"></option>
+            </th:block>
+        </select>
+        <label for="categoryFilter">Filter by Category:</label>
+        <select id="categoryFilter" name="categoryFilter">
+            <option value="">All Categories</option>
+            <!-- Add options dynamically based on available categories -->
+            <th:block th:each="category : ${T(com.example.springdataforum.Constans.CategoryOfVehicles).values()}">
+                <option th:value="${category}" th:text="${category}"></option>
+            </th:block>
+        </select>
+        <button type="submit">Apply Filter</button>
+    </form>
     <table class="table">
         <thead>
         <tr>
