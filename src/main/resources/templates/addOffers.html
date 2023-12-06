@@ -44,7 +44,7 @@
         <div class="form-group">
             <label for="imageURL">Image URL:</label>
             <input type="text" class="form-control" id="imageURL" name="imageURL" th:field="*{imageURL}" th:errorclass="is-invalid" >
-            <small th:if="${#fields.hasErrors('modelId')}" th:errors="*{modelId}" class="text-danger">Error
+            <small th:if="${#fields.hasErrors('imageURL')}" th:errors="*{imageURL}" class="text-danger">Error
                 message</small>
         </div>
         <div class="form-group">

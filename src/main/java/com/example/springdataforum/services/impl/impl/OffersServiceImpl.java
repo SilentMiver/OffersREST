@@ -24,7 +24,7 @@ public class OffersServiceImpl implements OffersService {
 
     private final ModelMapper modelMapper;
     private  OffersRepository offerRepository;
-    private final ValidationUtil validationUtil;
+
     @Autowired
     public void setOfferRepository(OffersRepository offerRepository){
         this.offerRepository = offerRepository;
@@ -32,7 +32,7 @@ public class OffersServiceImpl implements OffersService {
 
     public OffersServiceImpl(ModelMapper modelMapper, ValidationUtil validationUtil) {
         this.modelMapper = modelMapper;
-        this.validationUtil = validationUtil;
+
     }
 
 
