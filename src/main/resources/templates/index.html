@@ -11,13 +11,9 @@
             <option th:value="${brand.name}" th:text="${brand.name}"></option>
         </th:block>
     </select>
-                    <label for="priceFilter"></label>
-                    <select id="priceFilter" name="priceFilter">
-                        <option value="">Select price</option>
-                        <th:block th:each="offer : ${allOffers}">
-                            <option th:value="${offer.price}" th:text="${offer.price}"></option>
-                        </th:block>
-                    </select>
+    <label for="priceFilter">Price </label>
+    <input id="priceFilter" name="priceFilter" type="text" >
+
     <button type="submit">Apply Filter</button>
 </form>
 <main class="flex-shrink-0">
