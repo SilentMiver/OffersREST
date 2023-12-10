@@ -79,7 +79,7 @@ public class DataInitializer implements CommandLineRunner {
         offer1.setDescription("12345678910");
         offer1.setUserId(usersService.userDetails(user1.getUserName()).getId().toString());
         offer1.setModelId(modelService.modelDetails(model1.getName()).getId().toString());
-        offer1.setImageURL("google.com");
+        offer1.setImageURL("https://th.bing.com/th/id/R.5a1b28d96b00ab3aef745893f991d65b?rik=RhijviGBJog01g&pid=ImgRaw&r=0");
         offer1.setMileage(100000);
         offer1.setPrice(100000);
         offer1.setTransmission(TypesOFTransmission.AUTOMATIC);

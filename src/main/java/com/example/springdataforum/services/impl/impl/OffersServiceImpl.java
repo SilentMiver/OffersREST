@@ -18,15 +18,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
 import jakarta.validation.ConstraintViolation;
+
 @Service
 public class OffersServiceImpl implements OffersService {
 
     private final ModelMapper modelMapper;
-    private  OffersRepository offerRepository;
+    private OffersRepository offerRepository;
 
     @Autowired
-    public void setOfferRepository(OffersRepository offerRepository){
+    public void setOfferRepository(OffersRepository offerRepository) {
         this.offerRepository = offerRepository;
     }
 
@@ -66,6 +68,18 @@ public class OffersServiceImpl implements OffersService {
     @Override
     public List<ShowDetailedOffersInfoDto> findAllByUserName(String username) {
         return offerRepository.findAllByUserName(username).stream().map((s) -> modelMapper.map(s, ShowDetailedOffersInfoDto.class)).collect(Collectors.toList());
+    }
+@Override
+public List<ShowDetailedOffersInfoDto> finaAllByBrandName(String brandName) {
+        return offerRepository.findAllByBrandName(brandName).stream().map(o -> modelMapper.map(o, ShowDetailedOffersInfoDto.class)).collect(Collectors.toList());
+    }
+    @Override
+    public List<ShowDetailedOffersInfoDto> finaAllByBrandNameAndPrice(String brandName, int price) {
+        return offerRepository.findAllByBrandNameAndPrice(brandName, price).stream().map(o -> modelMapper.map(o, ShowDetailedOffersInfoDto.class)).collect(Collectors.toList());
+    }
+    @Override
+    public List<ShowDetailedOffersInfoDto> finaAllByPrice(int price) {
+        return offerRepository.findAllByPrice(price).stream().map(o -> modelMapper.map(o, ShowDetailedOffersInfoDto.class)).collect(Collectors.toList());
     }
 
 }

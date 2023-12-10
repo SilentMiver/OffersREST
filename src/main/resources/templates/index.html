@@ -3,16 +3,50 @@
 <head th:replace="fragments/head"/>
 <body class="d-flex flex-column h-100">
 <div th:replace="fragments/navbar">Navbar</div>
+<form th:action="@{/home}" method="get">
+    <label for="brandFilter">Filter by Brand:</label>
+    <select id="brandFilter" name="brandFilter">
+        <option value="">All Brands</option>
+        <th:block th:each="brand : ${allBrands}">
+            <option th:value="${brand.name}" th:text="${brand.name}"></option>
+        </th:block>
+    </select>
+                    <label for="priceFilter"></label>
+                    <select id="priceFilter" name="priceFilter">
+                        <option value="">Select price</option>
+                        <th:block th:each="offer : ${allOffers}">
+                            <option th:value="${offer.price}" th:text="${offer.price}"></option>
+                        </th:block>
+                    </select>
+    <button type="submit">Apply Filter</button>
+</form>
 <main class="flex-shrink-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="jumbotron text-center rounded col-md-8 align-self-center pt-5">
-                <div class="justify-content-center">
-                    <h1>Welcome to Car Market!</h1>
-                </div>
-                <div><span th:text="'Last update of Database:'"></span>&nbsp;
-                    <span th:text="${#dates.createNow()}"></span>
+    <div class="container mt-4">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Loop through all offers and create a card for each -->
+
+
+            <div th:each="offer : ${allOffers}" class="col">
+                <div class="card">
+                    <img th:src="${offer.imageURL}" class="card-img-top" alt="Offer Image">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${offer.model.name}"></h5>
+                        <p class="card-text">
+                            <strong>Brand:</strong> <span th:text="${offer.model.brand.name}"></span><br>
+                            <strong>Year:</strong> <span th:text="${offer.year}"></span><br>
+                            <strong>Mileage:</strong> <span th:text="${offer.mileage}"></span><br>
+                            <strong>Price:</strong> <span th:text="${offer.price}"></span><br>
+                            <strong>Posted by:</strong><a th:href="@{/users/details/{userName}(userName=${offer.user.userName})}" class="btn btn-outline-secondary btn-circle" style="margin-left: 10px" th:text="${offer.user.userName}">
+                            <i class="fa fa-arrow-right"></i>
+                        </a>
+                            <!-- Add more details as needed -->
+                        </p>
+                        <div class="d-flex justify-content-end align-items-center">
+                            <a th:href="@{/offers/details/{id}(id=${offer.id})}" class="btn btn-primary mr-2">View Details</a>
+                            <a th:href="@{/models/details/{name}(name=${offer.model.name})}" class="btn btn-primary mr-2" style="margin-left: 10px">About model</a>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
