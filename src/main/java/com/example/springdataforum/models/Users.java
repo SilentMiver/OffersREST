@@ -14,6 +14,7 @@ public class Users extends BaseEntity {
     String lastName;
     //role
     private boolean isActive;
+    private String email;
     String imageURL;
     LocalDateTime created;
     LocalDateTime modified;
@@ -115,6 +116,21 @@ public class Users extends BaseEntity {
     public void setOffers(List<Offers> offers) {
         this.offers = offers;
     }
+    public Users(String userName, String password, String email) {
+        this();
+
+        this.username = userName;
+        this.password = password;
+        this.email = email;
+    }
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Users(String username, String password, String firstName, String lastName, boolean isActive, String imageURL, LocalDateTime created, LocalDateTime modified, UserRole role, List<Offers> offers) {
         this.username = username;
@@ -128,4 +144,5 @@ public class Users extends BaseEntity {
         this.role = role;
         this.offers = offers;
     }
+
 }

@@ -1,17 +1,17 @@
 package com.example.springdataforum.conf;
 
 
-import com.example.springdataforum.Constans.CategoryOfVehicles;
-import com.example.springdataforum.Constans.TypesOFTransmission;
-import com.example.springdataforum.Constans.TypesOfGas;
 import com.example.springdataforum.Constans.TypesOfRoles;
-import com.example.springdataforum.dto.*;
+import com.example.springdataforum.models.UserRole;
+import com.example.springdataforum.models.Users;
 import com.example.springdataforum.repositories.BrandsRepository;
+import com.example.springdataforum.repositories.UserRoleRepository;
+import com.example.springdataforum.repositories.UsersRepository;
 import com.example.springdataforum.services.impl.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -23,8 +23,12 @@ public class DataInitializer implements CommandLineRunner {
     private final OffersService offerService;
     private final UserRolesService userRolesService;
     private final BrandsRepository brandsRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final UserRoleRepository roleRepository;
+    private final String defaultPassword;
+    private final UsersRepository usersRepository;
 
-    public DataInitializer(UserRolesService roleService, BrandsService brandService, ModelsService modelService, UsersService usersService, OffersService offerService, UserRolesService userRolesService, BrandsRepository brandsRepository) {
+    public DataInitializer(UserRolesService roleService, BrandsService brandService, ModelsService modelService, UsersService usersService, OffersService offerService, UserRolesService userRolesService, BrandsRepository brandsRepository, PasswordEncoder passwordEncoder, UserRoleRepository userRoleRepository, @Value("topsecret") String defaultPassword, UsersRepository usersRepository) {
         this.roleService = roleService;
         this.brandService = brandService;
         this.modelService = modelService;
@@ -32,6 +36,10 @@ public class DataInitializer implements CommandLineRunner {
         this.offerService = offerService;
         this.userRolesService = userRolesService;
         this.brandsRepository = brandsRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.roleRepository = userRoleRepository;
+        this.defaultPassword = defaultPassword;
+        this.usersRepository = usersRepository;
     }
 
     @Override
@@ -40,54 +48,56 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void seedData() {
-        var date = LocalDateTime.now();
-        AddUserRoleDto userRole1;
-        AddUserRoleDto userRole2;
-        userRole1 = new AddUserRoleDto();
-        userRole2 = new AddUserRoleDto();
-        userRole1.setRole(TypesOfRoles.USER);
-        userRole2.setRole(TypesOfRoles.ADMIN);
-        userRolesService.addUserRole(userRole1);
-        userRolesService.addUserRole(userRole2);
-        UniqueBrandNameValidator validator =new UniqueBrandNameValidator();
-        validator.setBrandsRepository(brandsRepository);
-        var user1 = new AddUsersDto();
-        user1.setRoleId(roleService.getAll().get(0).getId().toString());
-        user1.setUserName("User");
-        user1.setPassword("1321312");
-        user1.setFirstName("John");
-        user1.setLastName("Doe");
-        user1.setImageURL("yandex.ru");
-        user1.setCreated(date);
-        user1.setModified(date);
-        usersService.addUser(user1);
-        var brand1 = new AddBrandDto();
-        brand1.setName("Brand");
-        brand1.setCreated(date);
-        brand1.setModified(date);
-        brandService.addBrand(brand1);
-        var model1 = new AddModelDto();
-        model1.setBrandId(brandService.findByName(brand1.name).get().getId().toString());
-        model1.setName("Model");
-        model1.setCategory(CategoryOfVehicles.Car);
-        model1.setStartYear(1800);
-        model1.setEndYear(1800);
-        model1.setCreated(date);
-        model1.setModified(date);
-        modelService.addModel(model1);
-        var offer1 = new AddOfferDto();
-        offer1.setDescription("12345678910");
-        offer1.setUserId(usersService.userDetails(user1.getUserName()).getId().toString());
-        offer1.setModelId(modelService.modelDetails(model1.getName()).getId().toString());
-        offer1.setImageURL("https://th.bing.com/th/id/R.5a1b28d96b00ab3aef745893f991d65b?rik=RhijviGBJog01g&pid=ImgRaw&r=0");
-        offer1.setMileage(100000);
-        offer1.setPrice(100000);
-        offer1.setTransmission(TypesOFTransmission.AUTOMATIC);
-        offer1.setEngine(TypesOfGas.ELECTRIC);
-        offer1.setYear("1900");
-        offer1.setCreated(date);
-        offer1.setModified(date);
-        offerService.addOffer(offer1);
+        initRoles();
+        initUsers();
+//        var date = LocalDateTime.now();
+//        AddUserRoleDto userRole1;
+//        AddUserRoleDto userRole2;
+//        userRole1 = new AddUserRoleDto();
+//        userRole2 = new AddUserRoleDto();
+//        userRole1.setRole(TypesOfRoles.USER);
+//        userRole2.setRole(TypesOfRoles.ADMIN);
+//        userRolesService.addUserRole(userRole1);
+//        userRolesService.addUserRole(userRole2);
+//        UniqueBrandNameValidator validator =new UniqueBrandNameValidator();
+//        validator.setBrandsRepository(brandsRepository);
+//        var user1 = new AddUsersDto();
+//        user1.setRoleId(roleService.getAll().get(0).getId().toString());
+//        user1.setUserName("User");
+//        user1.setPassword("1321312");
+//        user1.setFirstName("John");
+//        user1.setLastName("Doe");
+//        user1.setImageURL("yandex.ru");
+//        user1.setCreated(date);
+//        user1.setModified(date);
+//        usersService.addUser(user1);
+//        var brand1 = new AddBrandDto();
+//        brand1.setName("Brand");
+//        brand1.setCreated(date);
+//        brand1.setModified(date);
+//        brandService.addBrand(brand1);
+//        var model1 = new AddModelDto();
+//        model1.setBrandId(brandService.findByName(brand1.name).get().getId().toString());
+//        model1.setName("Model");
+//        model1.setCategory(CategoryOfVehicles.Car);
+//        model1.setStartYear(1800);
+//        model1.setEndYear(1800);
+//        model1.setCreated(date);
+//        model1.setModified(date);
+//        modelService.addModel(model1);
+//        var offer1 = new AddOfferDto();
+//        offer1.setDescription("12345678910");
+//        offer1.setUserId(usersService.userDetails(user1.getUserName()).getId().toString());
+//        offer1.setModelId(modelService.modelDetails(model1.getName()).getId().toString());
+//        offer1.setImageURL("https://th.bing.com/th/id/R.5a1b28d96b00ab3aef745893f991d65b?rik=RhijviGBJog01g&pid=ImgRaw&r=0");
+//        offer1.setMileage(100000);
+//        offer1.setPrice(100000);
+//        offer1.setTransmission(TypesOFTransmission.AUTOMATIC);
+//        offer1.setEngine(TypesOfGas.ELECTRIC);
+//        offer1.setYear("1900");
+//        offer1.setCreated(date);
+//        offer1.setModified(date);
+//        offerService.addOffer(offer1);
 
 //        System.out.println("Start test: \n");
 //        ShowDetailedUserRolesInfoDto role1 = new ShowDetailedUserRolesInfoDto(UUID.randomUUID(), TypesOfRoles.USER);
@@ -171,5 +181,36 @@ public class DataInitializer implements CommandLineRunner {
 //        //offerService.delete(1L);
 //        // brandService.delete(brand1.getId());
 
+    }
+    private void initRoles() {
+        if (roleRepository.count() == 0) {
+            var adminRole = new UserRole(TypesOfRoles.ADMIN);
+            var normalUserRole = new UserRole(TypesOfRoles.USER);
+
+            roleRepository.save(adminRole);
+            roleRepository.save(normalUserRole);
+        }
+    }
+    private void initAdmin(){
+        var adminRole = roleRepository.findByRole(TypesOfRoles.ADMIN).orElseThrow();
+
+        var adminUser = new Users("admin", passwordEncoder.encode(defaultPassword), "admin@example.com");
+        adminUser.setRole(adminRole);
+
+        usersRepository.save(adminUser);
+    }
+    private void initNormalUser(){
+        var userRole = roleRepository.findByRole(TypesOfRoles.USER).orElseThrow();
+
+        var normalUser = new Users("user", passwordEncoder.encode(defaultPassword), "user@example.com");
+        normalUser.setRole(userRole);
+
+        usersRepository.save(normalUser);
+    }
+    private void initUsers() {
+        if (usersRepository.count() == 0) {
+            initAdmin();
+            initNormalUser();
+        }
     }
 }

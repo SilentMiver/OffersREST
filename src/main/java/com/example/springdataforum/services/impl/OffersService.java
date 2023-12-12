@@ -17,6 +17,7 @@ public interface OffersService {
 
     void removeOffer(String offerName);
 
+
     List<ShowDetailedOffersInfoDto> getAll();
     List<ShowDetailedOffersInfoDto> finaAllByPrice( int price);
     List<ShowDetailedOffersInfoDto> finaAllByBrandNameAndPrice(String brandName, int price);

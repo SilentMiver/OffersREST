@@ -17,6 +17,7 @@ public interface UsersRepository extends JpaRepository<Users, UUID> {
     @Query("SELECT u FROM Users u JOIN u.role r WHERE r.role = :role")
     List<Users> findUsersByRole(@Param("role") int role);
     Optional<Users> findByUsername(String username);
+    Optional<Users> findByEmail(String email);
     @Modifying
     @Transactional
     void deleteByUsername(String name);

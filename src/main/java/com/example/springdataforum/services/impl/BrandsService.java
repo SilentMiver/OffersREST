@@ -1,8 +1,6 @@
 package com.example.springdataforum.services.impl;
 
-import com.example.springdataforum.dto.AddBrandDto;
-import com.example.springdataforum.dto.ShowBrandsInfoDto;
-import com.example.springdataforum.dto.ShowDetailedBrandsInfoDto;
+import com.example.springdataforum.dto.*;
 import com.example.springdataforum.models.Brands;
 
 import java.util.List;
@@ -29,6 +27,7 @@ public interface BrandsService {
     ShowDetailedBrandsInfoDto brandDetails(String brandName) ;
     void removeBrand(String brandName);
     Optional<Brands> findByName(String name);
+    void updateBrand(String name, UpdateBrandDto updateBrandDto);
 
 
 }

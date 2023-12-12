@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 @Repository
 public interface UserRoleRepository extends JpaRepository<UserRole, UUID> {
+    Optional<UserRole> findByRole(TypesOfRoles role);
     @Modifying
     @Transactional
     void deleteByRole(TypesOfRoles role);

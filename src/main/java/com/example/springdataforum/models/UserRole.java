@@ -30,4 +30,11 @@ public class UserRole extends BaseEntity {
     public void setUsers(List<Users> users) {
         this.users = users;
     }
+
+    public UserRole(TypesOfRoles role) {
+        this.role = role;
+    }
+
+    protected UserRole() {
+    }
 }

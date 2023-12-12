@@ -3,9 +3,7 @@ package com.example.springdataforum.services.impl.impl;
 import com.example.springdataforum.conf.utilities.ValidationUtil;
 import com.example.springdataforum.controllers.exceptions.BrandsIsExistException;
 import com.example.springdataforum.controllers.exceptions.BrandsNotFoundException;
-import com.example.springdataforum.dto.AddBrandDto;
-import com.example.springdataforum.dto.ShowBrandsInfoDto;
-import com.example.springdataforum.dto.ShowDetailedBrandsInfoDto;
+import com.example.springdataforum.dto.*;
 import com.example.springdataforum.models.Brands;
 import com.example.springdataforum.repositories.BrandsRepository;
 import com.example.springdataforum.services.impl.BrandsService;
@@ -14,6 +12,7 @@ import jakarta.validation.ConstraintViolation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -126,6 +125,16 @@ public class BrandsServiceImpl implements BrandsService {
     @Override
     public Optional<Brands> findByName(String name) {
         return brandRepository.findByName(name);
+    }
+
+
+    @Override
+    public void updateBrand(String name, UpdateBrandDto updateBrandDto) {
+        brandRepository.findByName(name).ifPresent(brand -> {
+            brand.setName(updateBrandDto.getName());
+            brand.setModified(LocalDateTime.now());
+            brandRepository.save(brand);
+        });
     }
 
 

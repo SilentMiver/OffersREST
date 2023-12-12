@@ -6,14 +6,21 @@ import com.example.springdataforum.controllers.exceptions.UsersNotFoundException
 import com.example.springdataforum.dto.AddUsersDto;
 import com.example.springdataforum.dto.ShowDetailedUsersInfoDto;
 import com.example.springdataforum.dto.ShowUsersInfoDto;
+
+import com.example.springdataforum.dto.UpdateUserDto;
 import com.example.springdataforum.models.Users;
 import com.example.springdataforum.repositories.UsersRepository;
 import com.example.springdataforum.services.impl.UsersService;
 import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -25,6 +32,7 @@ public class UsersServiceImpl implements UsersService {
     private final ModelMapper modelMapper;
     private UsersRepository usersRepository;
     private final ValidationUtil validationUtil;
+    private static final Logger logger = LoggerFactory.getLogger(UsersServiceImpl.class);
 
     public UsersServiceImpl(ModelMapper modelMapper, ValidationUtil validationUtil) {
         this.modelMapper = modelMapper;
@@ -100,6 +108,13 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public Users getUser(String userName) {
+        System.out.println(userName);
+        return usersRepository.findByUsername(userName)
+                .orElseThrow(() -> new UsersNotFoundException(userName + " was not found!"));
+    }
+    @CacheEvict(cacheNames = "users", allEntries = true)
+    @Override
     public void addUser(AddUsersDto userDto) {
         usersRepository.saveAndFlush(modelMapper.map(userDto, Users.class));
     }
@@ -109,8 +124,9 @@ public class UsersServiceImpl implements UsersService {
         return usersRepository.findAll().stream().map(user -> modelMapper.map(user, ShowUsersInfoDto.class))
                 .collect(Collectors.toList());
     }
+
     @Override
-    public ShowUsersInfoDto getUserByName(String userName){
+    public ShowUsersInfoDto getUserByName(String userName) {
         return usersRepository.findByUsername(userName).stream().map(user -> modelMapper.map(user, ShowUsersInfoDto.class)).toList().get(0);
 
     }
@@ -124,5 +140,32 @@ public class UsersServiceImpl implements UsersService {
     public void removeUser(String userName) {
         usersRepository.deleteByUsername(userName);
 
+
     }
+    @Cacheable("users")
+    public List<ShowUsersInfoDto> allUsers() {
+        return usersRepository.findAll().stream().map(users -> modelMapper.map(users, ShowUsersInfoDto.class))
+                .collect(Collectors.toList());
+    }
+    @CacheEvict(value = "users", key = "#userName")
+    @Override
+    public void updateUser(String userName, UpdateUserDto updateUserDto) {
+        logger.info("Updating user: {}", userName);
+        Users existingUser = usersRepository.findByUsername(userName).orElse(null);
+        if (existingUser == null) {
+            throw new UsersNotFoundException(userName);
+        }
+
+        // Update the fields
+        existingUser.setFirstName(updateUserDto.getFirstName());
+        existingUser.setLastName(updateUserDto.getLastName());
+        existingUser.setPassword(updateUserDto.getPassword());
+        existingUser.setModified(LocalDateTime.now());
+
+        // Save the updated user
+        usersRepository.save(existingUser);
+        logger.info("User {} updated successfully", userName);
+    }
+
+
 }
