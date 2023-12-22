@@ -1,8 +1,9 @@
 package com.example.springdataforum.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,8 +17,9 @@ public class Users extends BaseEntity {
     private boolean isActive;
     private String email;
     String imageURL;
-    LocalDateTime created;
-    LocalDateTime modified;
+
+    Date created;
+    Date modified;
 
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id")
@@ -84,20 +86,21 @@ public class Users extends BaseEntity {
     }
     @Column(name = "created")
 
-    public LocalDateTime getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
     @Column(name = "modified")
+    
 
-    public LocalDateTime getModified() {
+    public Date getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Date modified) {
         this.modified = modified;
     }
 
@@ -132,7 +135,7 @@ public class Users extends BaseEntity {
         this.email = email;
     }
 
-    public Users(String username, String password, String firstName, String lastName, boolean isActive, String imageURL, LocalDateTime created, LocalDateTime modified, UserRole role, List<Offers> offers) {
+    public Users(String username, String password, String firstName, String lastName, boolean isActive, String imageURL, Date created, Date modified, UserRole role, List<Offers> offers) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;

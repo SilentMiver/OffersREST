@@ -2,7 +2,8 @@ package com.example.springdataforum.dto;
 
 import com.example.springdataforum.Constans.CategoryOfVehicles;
 
-import java.time.LocalDateTime;
+
+import java.util.Date;
 import java.util.UUID;
 
 public class ShowDetailedModelsInfoDto {
@@ -12,11 +13,11 @@ public class ShowDetailedModelsInfoDto {
     String imageURL;
     int startYear;
     int endYear;
-    LocalDateTime created;
-    LocalDateTime modified;
+    Date created;
+    Date modified;
     ShowDetailedBrandsInfoDto brand;
 
-    public ShowDetailedModelsInfoDto(UUID id, String name, CategoryOfVehicles category, String imageURL, int startYear, int endYear, LocalDateTime created, LocalDateTime modified, ShowDetailedBrandsInfoDto brand) {
+    public ShowDetailedModelsInfoDto(UUID id, String name, CategoryOfVehicles category, String imageURL, int startYear, int endYear, Date created, Date modified, ShowDetailedBrandsInfoDto brand) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -86,19 +87,19 @@ public class ShowDetailedModelsInfoDto {
         this.endYear = endYear;
     }
 
-    public LocalDateTime getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    public LocalDateTime getModified() {
+    public Date getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Date modified) {
         this.modified = modified;
     }
 

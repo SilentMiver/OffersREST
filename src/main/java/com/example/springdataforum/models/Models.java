@@ -3,7 +3,8 @@ package com.example.springdataforum.models;
 import com.example.springdataforum.Constans.CategoryOfVehicles;
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -14,8 +15,8 @@ public class Models extends BaseEntity {
     String imageURL;
     int startYear;
     int endYear;
-    LocalDateTime created;
-    LocalDateTime modified;
+    Date created;
+    Date modified;
     // brand ссылка To do
     @ManyToOne
     @JoinColumn(name = "brand_id", referencedColumnName = "id")
@@ -26,7 +27,7 @@ public class Models extends BaseEntity {
     protected Models() {
     }
 
-    public Models(String name, CategoryOfVehicles category, String imageURL, int startYear, int endYear, LocalDateTime created, LocalDateTime modified, Brands brand) {
+    public Models(String name, CategoryOfVehicles category, String imageURL, int startYear, int endYear, Date created, Date modified, Brands brand) {
         this.name = name;
         this.category = category;
         this.imageURL = imageURL;
@@ -38,7 +39,7 @@ public class Models extends BaseEntity {
     }
 
 
-    public Models(String name, CategoryOfVehicles category, String imageURL, int startYear, int endYear, LocalDateTime created, LocalDateTime modified) {
+    public Models(String name, CategoryOfVehicles category, String imageURL, int startYear, int endYear, Date created, Date modified) {
         this.name = name;
         this.category = category;
         this.imageURL = imageURL;
@@ -48,7 +49,7 @@ public class Models extends BaseEntity {
         this.modified = modified;
     }
 
-    public Models(String name, CategoryOfVehicles category, String imageURL, int startYear, int endYear, LocalDateTime created, LocalDateTime modified, Brands brand, List<Offers> offers) {
+    public Models(String name, CategoryOfVehicles category, String imageURL, int startYear, int endYear, Date created, Date modified, Brands brand, List<Offers> offers) {
         this.name = name;
         this.category = category;
         this.imageURL = imageURL;
@@ -105,20 +106,20 @@ public class Models extends BaseEntity {
     }
     @Column(name = "created")
 
-    public LocalDateTime getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
     @Column(name = "modified")
 
-    public LocalDateTime getModified() {
+    public Date getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Date modified) {
         this.modified = modified;
     }
 

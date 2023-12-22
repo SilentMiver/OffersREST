@@ -7,7 +7,8 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import java.time.LocalDateTime;
+import java.util.Date;
+
 
 public class AddModelDto {
     @UniqueModelName
@@ -16,8 +17,8 @@ public class AddModelDto {
     String imageURL;
     int startYear;
     int endYear;
-    LocalDateTime created;
-    LocalDateTime modified;
+    Date created;
+    Date modified;
     String brandId;
 
 
@@ -94,19 +95,19 @@ public class AddModelDto {
     }
 
 
-    public LocalDateTime getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    public LocalDateTime getModified() {
+    public Date getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Date modified) {
         this.modified = modified;
     }
 }

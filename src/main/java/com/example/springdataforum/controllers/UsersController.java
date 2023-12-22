@@ -11,6 +11,9 @@ import com.example.springdataforum.services.impl.UsersService;
 import com.example.springdataforum.services.impl.impl.AuthService;
 import com.example.springdataforum.view.UserProfileView;
 import jakarta.validation.Valid;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
@@ -20,7 +23,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
-import java.time.LocalDateTime;
+import java.util.Date;
+
 
 @Controller
 @RequestMapping("/users")
@@ -30,6 +34,7 @@ public class UsersController {
     private UserRolesService userRolesService;
     private UsersRepository usersRepository;
     private AuthService authService;
+    private static final Logger LOG = LogManager.getLogger(Controller.class);
 
     @Autowired
     public void setAuthService(AuthService authService) {
@@ -68,7 +73,8 @@ public class UsersController {
 //        return usersService.update(showsDetailedUsersInfoDto);
 //    }
     @GetMapping("/all")
-    public String showAllUsers(Model model) {
+    public String showAllUsers(Model model, Principal principal) {
+        LOG.log(Level.INFO, "Show all users for " + principal.getName());
         model.addAttribute("usersInfos", usersService.getAll());
 
         return "getAllUsers";
@@ -95,8 +101,9 @@ public class UsersController {
                     bindingResult);
             return "redirect:/users/add";
         }
-        userModel.setCreated(LocalDateTime.now());
-        userModel.setModified(LocalDateTime.now());
+
+        userModel.setCreated(new Date());
+        userModel.setModified(new Date());
         usersService.addUser(userModel);
 
         return "redirect:/users/all";
@@ -117,11 +124,13 @@ public class UsersController {
     }
 
     @GetMapping("/update/{user-userName}")
-    public String updateUserForm(@PathVariable("user-userName") String userName, Model model) {
+    public String updateUserForm(@PathVariable("user-userName") String userName, Model model)
+    {
+
         Users user = usersRepository.findByUsername(userName).orElse(null);
         model.addAttribute("user", user);
         model.addAttribute("updateUserModel", new UpdateUserDto());
-        return "/user-update";
+        return "updateUser";
     }
 
     @PostMapping("/update/{user-userName}")
@@ -143,7 +152,10 @@ public class UsersController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login()
+    {
+
+
         return "login";
     }
 

@@ -4,13 +4,14 @@ import com.example.springdataforum.conf.UniqueBrandName;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-import java.time.LocalDateTime;
+import java.util.Date;
+
 
 public class AddBrandDto {
     @UniqueBrandName
     public String name;
-    public LocalDateTime created;
-    public LocalDateTime modified;
+    public Date created;
+    public Date modified;
 
 
     @NotEmpty(message = "Brand name must not be null or empty!")
@@ -24,19 +25,19 @@ public class AddBrandDto {
         this.name = name;
     }
 
-    public LocalDateTime getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    public LocalDateTime getModified() {
+    public Date getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Date modified) {
         this.modified = modified;
     }
 

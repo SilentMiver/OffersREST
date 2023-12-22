@@ -30,6 +30,7 @@ public class HomeController {
     }
 
 
+
     @GetMapping("/home")
     public String homePage(@RequestParam(name = "brandFilter", required = false) String brandFilter,
                            @RequestParam(name = "priceFilter", required = false) String priceFilter,

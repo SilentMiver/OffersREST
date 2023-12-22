@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,8 +29,8 @@
             <td>
                 <!-- Add actions as needed, e.g., details, edit, delete -->
                 <a th:href="@{/offers/details/{id}(id=${offer.id})}">Details</a>
-                <a th:href="@{/offers/edit/{description}(description=${offer.description})}">Edit</a>
-                <a th:href="@{/offers/remove/{description}(description=${offer.description})}">Delete</a>
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{/offers/edit/{description}(description=${offer.description})}">Edit</a>
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{/offers/remove/{description}(description=${offer.description})}">Delete</a>
             </td>
         </tr>
         </tbody>

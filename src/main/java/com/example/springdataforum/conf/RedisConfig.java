@@ -35,7 +35,6 @@ public class RedisConfig {
                 .cacheDefaults(cacheConfig)
                 .withCacheConfiguration("users", myDefaultCacheConfig(Duration.ofMinutes(10)))
                 .withCacheConfiguration("models", myDefaultCacheConfig(Duration.ofMinutes(10)))
-
                 .build();
     }
 

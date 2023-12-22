@@ -5,7 +5,8 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import java.time.LocalDateTime;
+
+import java.util.Date;
 import java.util.UUID;
 
 public class AddUsersDto {
@@ -18,8 +19,8 @@ public class AddUsersDto {
     private String lastName;
     private boolean isActive = true;
     private String imageURL;
-    private LocalDateTime created;
-    private LocalDateTime modified;
+    private Date created;
+    private Date modified;
 
     @NotNull(message = "Null")
     public String getRoleId() {
@@ -96,19 +97,19 @@ public class AddUsersDto {
         this.imageURL = imageURL;
     }
 
-    public LocalDateTime getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    public LocalDateTime getModified() {
+    public Date getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Date modified) {
         this.modified = modified;
     }
 

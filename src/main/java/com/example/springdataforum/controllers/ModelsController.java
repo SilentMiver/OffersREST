@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -46,8 +47,8 @@ public class ModelsController {
             model.addAttribute("allBrands", brandsService.getAll());
             return "addModel";
         }
-        modelDto.setCreated(LocalDateTime.now());
-        modelDto.setModified(LocalDateTime.now());
+        modelDto.setCreated(new Date());
+        modelDto.setModified(new Date());
         modelsService.addModel(modelDto);
         return "redirect:/models/all";
     }

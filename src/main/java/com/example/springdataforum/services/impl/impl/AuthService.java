@@ -8,6 +8,7 @@ import com.example.springdataforum.repositories.UsersRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -47,6 +48,8 @@ public class AuthService {
         );
 
         user.setRole(userRole);
+        user.setCreated(new Date());
+        user.setModified(new Date());
 
         this.userRepository.save(user);
     }

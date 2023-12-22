@@ -8,8 +8,8 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.Date;
+
 
 public class AddOfferDto {
     @UniqueOfferDescription
@@ -20,8 +20,8 @@ public class AddOfferDto {
     private int price;
     private TypesOFTransmission transmission;
     private String year;
-    LocalDateTime created;
-    LocalDateTime modified;
+    Date created;
+    Date modified;
     private String userId;
     private String modelId;
     @NotNull(message = "User must not be null or empty!")
@@ -59,19 +59,19 @@ public class AddOfferDto {
 //        this.user = user;
 //    }
 
-    public LocalDateTime getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    public LocalDateTime getModified() {
+    public Date getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Date modified) {
         this.modified = modified;
     }
 

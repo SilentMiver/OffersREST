@@ -1,17 +1,19 @@
 package com.example.springdataforum.dto;
 
 
+import com.example.springdataforum.conf.UniqueUserName;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class UpdateUserDto {
+    @UniqueUserName
     private String userName;
     private String firstName;
     private String lastName;
     private String password;
     @NotEmpty(message = "Name must not be null or empty!")
-    @Size(min = 2, max = 10, message = "Name must be more 2 !")
+    @Size(min = 2, message = "Name must be more 2 !")
     public String getUserName() {
         return userName;
     }

@@ -1,9 +1,12 @@
 package com.example.springdataforum.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class ShowDetailedUsersInfoDto {
+public class ShowDetailedUsersInfoDto implements Serializable {
     UUID id;
     ShowDetailedUserRolesInfoDto role;
     String userName;
@@ -12,7 +15,9 @@ public class ShowDetailedUsersInfoDto {
     String lastName;
     boolean isActive;
     String imageURL;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     LocalDateTime created;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     LocalDateTime modified;
 
    protected ShowDetailedUsersInfoDto() {

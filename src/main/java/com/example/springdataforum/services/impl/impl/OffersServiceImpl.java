@@ -11,6 +11,9 @@ import com.example.springdataforum.repositories.OffersRepository;
 import com.example.springdataforum.services.impl.OffersService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -22,6 +25,7 @@ import java.util.stream.Collectors;
 import jakarta.validation.ConstraintViolation;
 
 @Service
+@EnableCaching
 public class OffersServiceImpl implements OffersService {
 
     private final ModelMapper modelMapper;
@@ -36,6 +40,7 @@ public class OffersServiceImpl implements OffersService {
         this.modelMapper = modelMapper;
 
     }
+
 
 
     @Override
@@ -54,13 +59,13 @@ public class OffersServiceImpl implements OffersService {
 
         return modelMapper.map(offerRepository.findById(UUID.fromString(id)).orElse(null), ShowDetailedOffersInfoDto.class);
     }
-
+    @CacheEvict(value = "offers", allEntries = true)
     @Override
     public void removeOffer(String description) {
         offerRepository.deleteByDescription(description);
 
     }
-
+    @Cacheable(value = "offers")
     @Override
     public List<ShowDetailedOffersInfoDto> getAll() {
         return offerRepository.findAll().stream().map((s) -> modelMapper.map(s, ShowDetailedOffersInfoDto.class)).collect(Collectors.toList());

@@ -1,3 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <title>Select</title>
+</head>
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="navbar" id="navbarNavAlt">>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-item nav-link text-dark" href="/home">Home</a>
+            </li>
+            <li sec:authorize="hasRole('ADMIN')" class="nav-item">
+                <a sec:authorize="hasRole('ADMIN')" class="nav-item nav-link text-dark" href="/add">Add Entity list</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link text-dark" href="/all">All Entity list</a>
+            </li><li class="nav-item">
+            <a class="nav-item nav-link text-dark" href="/allUserOffers/user"> <strike>All Offers of User</strike></a>
+        </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link text-dark " href="users/profile">Profile</a>
+            </li>
+
+
+        </ul>
+
+    </div>
+</nav>
 <div class="card-img">
     <div class="navbar" id="navbarNavAltMarkup">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -13,7 +45,7 @@
             <li class="nav-item">
                 <a class="nav-item nav-link text-dark" href="/offers/all">All Offers</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                 <a class="nav-item nav-link text-dark" href="/users/all">All User</a>
 
         </ul>

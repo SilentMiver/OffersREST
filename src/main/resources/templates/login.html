@@ -29,12 +29,16 @@
                                type="password" class="form-control text-center" aria-describedby="passwordHelp"/>
                     </div>
 
+
                     <p class="text-danger" th:if="${badCredentials}">
                         Invalid username or password.
                     </p>
 
                     <button type="submit" class="btn btn-secondary">Login</button>
                 </form>
+                <div class="justify-content-center">
+                    <a href="/users/register">Don't have a profile? Register now!</a>
+                </div>
             </div>
         </div>
     </div>

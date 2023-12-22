@@ -4,7 +4,8 @@ import com.example.springdataforum.Constans.TypesOFTransmission;
 import com.example.springdataforum.Constans.TypesOfGas;
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.util.Date;
+
 
 @Entity
 @Table(name = "Offers")
@@ -19,8 +20,8 @@ public class Offers extends BaseEntity {
     int price;
     TypesOFTransmission transmission;
     String year;
-    LocalDateTime created;
-    LocalDateTime modified;
+    Date created;
+    Date modified;
     // model and seller
     @ManyToOne
     @JoinColumn(name = "model_id", referencedColumnName = "id")
@@ -121,25 +122,25 @@ public class Offers extends BaseEntity {
 
     @Column(name = "created")
 
-    public LocalDateTime getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
     @Column(name = "modified")
 
-    public LocalDateTime getModified() {
+    public Date getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Date modified) {
         this.modified = modified;
     }
 
-    public Offers(String description, TypesOfGas engine, String imageURL, int mileage, int price, TypesOFTransmission transmission, String year, LocalDateTime created, LocalDateTime modified, Models model, Users user) {
+    public Offers(String description, TypesOfGas engine, String imageURL, int mileage, int price, TypesOFTransmission transmission, String year, Date created, Date modified, Models model, Users user) {
         this.description = description;
         this.engine = engine;
         this.imageURL = imageURL;

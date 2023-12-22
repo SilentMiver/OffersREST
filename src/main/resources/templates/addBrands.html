@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,30 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
-<div th:replace="fragments/navbar">Navbar</div>
-<div class="container mt-5">
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="navbar" id="navbarNavAltMarkup">>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-item nav-link text-dark" href="/home">Home</a>
+            </li>
+            <li sec:authorize="hasRole('ADMIN')" class="nav-item">
+                <a sec:authorize="hasRole('ADMIN')" class="nav-item nav-link text-dark" href="/add">Add Entity list</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link text-dark" href="/all">All Entity list</a>
+            </li><li class="nav-item">
+            <a class="nav-item nav-link text-dark" href="/allUserOffers/user"> <strike>All Offers of User</strike></a>
+        </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link text-dark " href="users/profile">Profile</a>
+            </li>
+
+
+        </ul>
+
+    </div>
+</nav>
+<div class="container mt-5" >
     <h2>Add Brand</h2>
     <form th:action="@{/brands/add}" th:object="${brandModel}" method="post">
         <div class="form-group">

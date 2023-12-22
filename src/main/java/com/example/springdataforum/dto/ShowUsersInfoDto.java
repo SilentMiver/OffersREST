@@ -1,6 +1,8 @@
 package com.example.springdataforum.dto;
 
-public class ShowUsersInfoDto {
+import java.io.Serializable;
+
+public class ShowUsersInfoDto implements Serializable {
     private String userName;
     private String lastName;
     private boolean isActive;

@@ -1,10 +1,12 @@
 package com.example.springdataforum.dto;
 
+import com.example.springdataforum.conf.UniqueUserName;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 public class UserRegistrationDto {
+    @UniqueUserName
     private String userName;
     private String email;
 

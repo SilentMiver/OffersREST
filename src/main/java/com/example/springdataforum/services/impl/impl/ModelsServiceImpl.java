@@ -13,6 +13,9 @@ import com.example.springdataforum.services.impl.ModelsService;
 import org.modelmapper.ModelMapper;
 import jakarta.validation.ConstraintViolation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +24,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@EnableCaching
 public class ModelsServiceImpl implements ModelsService {
 
     private ModelsRepository modelRepository;
@@ -42,11 +46,12 @@ public class ModelsServiceImpl implements ModelsService {
     public void addModel(AddModelDto modelDto) {
         modelRepository.saveAndFlush(modelMapper.map(modelDto, Models.class));
     }
-
     @Override
+
     public List<ShowDetailedModelsInfoDto> getAll() {
         return modelRepository.findAll().stream().map((s) -> modelMapper.map(s, ShowDetailedModelsInfoDto.class)).collect(Collectors.toList());
     }
+    @Cacheable(value = "models")
 
     @Override
     public List<ShowModelsInfoDto> getAllModels() {
@@ -58,8 +63,9 @@ public class ModelsServiceImpl implements ModelsService {
     public ShowDetailedModelsInfoDto modelDetails(String modelName) {
         return modelMapper.map(modelRepository.findByName(modelName).orElse(null), ShowDetailedModelsInfoDto.class);
     }
-
     @Override
+    @CacheEvict(value = "models")
+
     public void removeModel(String modelName) {
         modelRepository.deleteByName(modelName);
     }

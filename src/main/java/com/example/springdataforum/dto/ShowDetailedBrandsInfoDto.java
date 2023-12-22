@@ -1,15 +1,16 @@
 package com.example.springdataforum.dto;
 
-import java.time.LocalDateTime;
+
+import java.util.Date;
 import java.util.UUID;
 
 public class ShowDetailedBrandsInfoDto {
     public UUID id;
     public String name;
-    public LocalDateTime created;
-    public LocalDateTime modified;
+    public Date created;
+    public Date modified;
 
-    public ShowDetailedBrandsInfoDto(UUID id, String name, LocalDateTime created, LocalDateTime modified) {
+    public ShowDetailedBrandsInfoDto(UUID id, String name, Date created, Date modified) {
         this.id = id;
         this.name = name;
         this.created = created;
@@ -34,19 +35,19 @@ public class ShowDetailedBrandsInfoDto {
         this.name = name;
     }
 
-    public LocalDateTime getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    public LocalDateTime getModified() {
+    public Date getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Date modified) {
         this.modified = modified;
     }
 

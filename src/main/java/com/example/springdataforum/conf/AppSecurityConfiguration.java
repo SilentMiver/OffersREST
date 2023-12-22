@@ -41,10 +41,10 @@ public class AppSecurityConfiguration {
                                 authorizeHttpRequests.
                                         requestMatchers(PathRequest.toStaticResources().atCommonLocations())
                                         .permitAll().
-                                        requestMatchers("/", "/users/login", "/users/register", "/users/login-error")
+                                        requestMatchers("/home","/", "/users/login", "/users/register", "/users/login-error")
                                         .permitAll().
-                                        requestMatchers("/users/profile").authenticated().
-                                        requestMatchers("/users/add", "/users/user-delete/").hasRole(TypesOfRoles.ADMIN.name()).
+                                        requestMatchers("/users/profile", "users/update").authenticated().
+                                        requestMatchers("/users/add", "/users/remove/").hasRole(TypesOfRoles.ADMIN.name()).
                                         anyRequest().authenticated()
                 )
                 .formLogin(

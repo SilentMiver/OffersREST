@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -132,7 +133,7 @@ public class BrandsServiceImpl implements BrandsService {
     public void updateBrand(String name, UpdateBrandDto updateBrandDto) {
         brandRepository.findByName(name).ifPresent(brand -> {
             brand.setName(updateBrandDto.getName());
-            brand.setModified(LocalDateTime.now());
+            brand.setModified(new Date());
             brandRepository.save(brand);
         });
     }

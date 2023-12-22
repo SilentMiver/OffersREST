@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller //not @Rest
@@ -59,8 +60,8 @@ public class BrandsController {
                     bindingResult);
             return "redirect:/brands/add";
         }
-        brandModel.setCreated(LocalDateTime.now());
-        brandModel.setModified(LocalDateTime.now());
+        brandModel.setCreated(new Date());
+        brandModel.setModified(new Date());
         brandService.addBrand(brandModel);
 
         return "redirect:/brands/all";

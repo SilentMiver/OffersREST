@@ -18,15 +18,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@EnableCaching
 public class UsersServiceImpl implements UsersService {
 
     private final ModelMapper modelMapper;
@@ -57,6 +60,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Deprecated
     @Override
+    @Cacheable("users")
     public List<ShowDetailedUsersInfoDto> getAll() {
         return usersRepository.findAll().stream().map((s) -> modelMapper.map(s, ShowDetailedUsersInfoDto.class)).collect(Collectors.toList());
     }
@@ -108,18 +112,19 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+
     public Users getUser(String userName) {
         System.out.println(userName);
         return usersRepository.findByUsername(userName)
                 .orElseThrow(() -> new UsersNotFoundException(userName + " was not found!"));
     }
-    @CacheEvict(cacheNames = "users", allEntries = true)
     @Override
     public void addUser(AddUsersDto userDto) {
         usersRepository.saveAndFlush(modelMapper.map(userDto, Users.class));
     }
 
     @Override
+    @Cacheable("users")
     public List<ShowUsersInfoDto> getAllUsers() {
         return usersRepository.findAll().stream().map(user -> modelMapper.map(user, ShowUsersInfoDto.class))
                 .collect(Collectors.toList());
@@ -137,6 +142,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    @CacheEvict(value = "users")
     public void removeUser(String userName) {
         usersRepository.deleteByUsername(userName);
 
@@ -147,7 +153,7 @@ public class UsersServiceImpl implements UsersService {
         return usersRepository.findAll().stream().map(users -> modelMapper.map(users, ShowUsersInfoDto.class))
                 .collect(Collectors.toList());
     }
-    @CacheEvict(value = "users", key = "#userName")
+    @CacheEvict(value = "users")
     @Override
     public void updateUser(String userName, UpdateUserDto updateUserDto) {
         logger.info("Updating user: {}", userName);
@@ -160,7 +166,7 @@ public class UsersServiceImpl implements UsersService {
         existingUser.setFirstName(updateUserDto.getFirstName());
         existingUser.setLastName(updateUserDto.getLastName());
         existingUser.setPassword(updateUserDto.getPassword());
-        existingUser.setModified(LocalDateTime.now());
+        existingUser.setModified(new Date());
 
         // Save the updated user
         usersRepository.save(existingUser);
